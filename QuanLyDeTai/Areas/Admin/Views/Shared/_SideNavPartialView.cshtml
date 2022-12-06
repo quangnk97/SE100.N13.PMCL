@@ -1,53 +1,55 @@
-﻿<div class="side-nav">
+﻿<div class="side-nav" style="background-color: #3184FF; font-family: 'Ubuntu', san-serif">
     <div class="side-nav-inner">
-        <ul class="side-nav-menu scrollable">
-            <li class="nav-item dropdown open">
+        <ul class="side-nav-menu scrollable border-0" style="font-size: 18px">
+            @*<li class="nav-item dropdown">
                 <a class="dropdown-toggle" href="javascript:void(0);">
                     <span class="icon-holder">
                         <i class="anticon anticon-dashboard"></i>
                     </span>
-                    <span class="title">General</span>
+                    <span class="title text-light">General</span>
                     <span class="arrow">
                         <i class="arrow-icon"></i>
                     </span>
                 </a>
-                <ul class="dropdown-menu">
-                    <li class="active">
-                        <a href="">Dashboard</a>
+                <ul class="dropdown-menu"  style="font-size: 16px">
+                    <li class="@(ViewData["Title"] == "AdminDashboard"?"active bg-light":"")">
+                        <a class="@(ViewData["Title"] == "AdminDashboard"?"text-primary":"text-light")"
+                        asp-area="Admin" asp-controller="Home" asp-action="Index">Dashboard</a>
                     </li>
-                    <li>
-                        <a href="">Topic register</a>
+                    <li class="@(ViewData["Title"] == "AdminTopicRegister"?"active":"nonactive")">
+                        <a class="text-light" href="">Topic register</a>
                     </li>
-                    <li>
-                        <a href="">Extend time limit</a>
+                    <li class="@(ViewData["Title"] == "AdminExtendTimeLimit"?"active":"nonactive")">
+                        <a class="text-light" href="">Extend time limit</a>
                     </li>
-                    <li>
-                        <a href="">Cancel topic</a>
+                    <li class="@(ViewData["Title"] == "AdminCancelTopic"?"active":"nonactive")">
+                        <a class="text-light" href="">Cancel topic</a>
                     </li>
                 </ul>
-            </li>
+            </li>*@
             <li class="nav-item dropdown">
                 <a class="dropdown-toggle" href="javascript:void(0);">
                     <span class="icon-holder">
                         <i class="anticon anticon-appstore"></i>
                     </span>
-                    <span class="title">Administration</span>
+                    <span class="title text-light">Administration</span>
                     <span class="arrow">
                         <i class="arrow-icon"></i>
                     </span>
                 </a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a href="">Topic</a>
+                <ul class="dropdown-menu" style="font-size: 16px">
+                    <li class="@(ViewData["Title"] == "ManangeTopics"?"active":"nonactive")">
+                        <a class="text-light" href="">Topic</a>
                     </li>
-                    <li>
-                        <a asp-area="Admin" asp-controller="AdminLecturers" asp-action="Index">Lecturer</a>
+                    <li class="@(ViewData["Title"] == "ManageLecturers"?"active bg-light":"")">
+                        <a class="@(ViewData["Title"] == "ManageLecturers"?"text-primary":"text-light")"
+                           asp-area="Admin" asp-controller="AdminLecturers" asp-action="Index">Lecturer</a>
                     </li>
-                    <li>
-                        <a href="">Assessment</a>
+                    <li class="@(ViewData["Title"] == "ManageAssessments"?"active":"nonactive")">
+                        <a class="text-light" href="">Assessment</a>
                     </li>
-                    <li>
-                        <a href="">Report</a>
+                    <li class="@(ViewData["Title"] == "ManageReport"?"active":"nonactive")">
+                        <a class="text-light" href="">Report</a>
                     </li>
                     @*<li class="nav-item dropdown">
                         <a href="javascript:void(0);">

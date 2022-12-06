@@ -22,6 +22,7 @@ namespace QuanLyDeTai.Models
         public string? LevelCurrent { get; set; }
         public string? FacultyId { get; set; }
         public string? Avatar { get; set; }
+        public string? Password { get; set; }
 
         public virtual Faculty? Faculty { get; set; }
         public virtual ICollection<Assess> Assesses { get; set; }

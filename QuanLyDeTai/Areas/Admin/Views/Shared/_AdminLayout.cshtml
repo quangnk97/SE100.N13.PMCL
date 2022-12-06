@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - QuanLyDeTai</title>
+    <title>MIHO</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     @*<link rel="stylesheet" href="https://cdn.syncfusion.com/ej2/20.1.55/material.css" />*@
     <link href="https://cdn.syncfusion.com/ej2/20.1.55/bootstrap5-dark.css" rel="stylesheet" />
@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="~/QuanLyDeTai.styles.css" asp-append-version="true" />
     <script src="https://cdn.syncfusion.com/ej2/20.1.55/dist/ej2.min.js"></script>
 
-    <link rel="shortcut icon" href="~/adminassets/images/logo/favicon.png">
+    <link rel="shortcut icon" href="~/MIHO_logo.png">
 
     <!-- page css -->
     <link href="~/adminassets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet">
@@ -29,8 +29,8 @@
             <!-- Header START -->
             <div class="header border-0">
                 <div class="logo logo-dark border-0" style="background-color: #3184FF">
-                    <a asp-action="Index" asp-area="Admin" asp-controller="Home">
-                        <img style="width: 75px; height: 70px; float: left" 
+                        <img style="width: 100px; height: 90px; float: left"
+                            class="m-t-10"
                             src="~/MIHO_logo.png" alt="Logo">
                         <img class="logo-fold" style="width: 75px; height: 70px; float: left"
                              src="~/MIHO_logo.png" alt="Logo">
@@ -38,7 +38,8 @@
                 </div>
                 <div class="logo logo-white" style="background-color: #3184FF">
                     <a asp-action="Index" asp-area="Admin" asp-controller="Home">
-                        <img style="width: 75px; height: 70px; float: left"
+                        <img style="width: 100px; height: 90px; float: left"
+                             class="m-t-10"
                              src="~/MIHO_logo.png" alt="Logo">
                         <img class="logo-fold" style="width: 75px; height: 70px; float: left"
                              src="~/MIHO_logo.png" alt="Logo">
@@ -56,21 +57,26 @@
                                 <i class="anticon"></i>
                             </a>
                         </li>
-                        <li>
+                        @*<li>
                             <a href="javascript:void(0);" data-toggle="modal" data-target="#search-drawer">
                                 <i class="anticon anticon-search"></i>
                             </a>
+                        </li>*@
+                        <li>
+                            <span style="color: black;
+                                        font-size: 40px;
+                                        font-weight: 700">MIHO</span>
                         </li>
                     </ul>
                     <ul class="nav-right">
                         <li class="dropdown dropdown-animated scale-left">
                             <a href="javascript:void(0);" data-toggle="dropdown">
-                                <i class="anticon anticon-bell notification-badge"></i>
+                                <i class="fa-solid fa-bell notification-badge"></i>
                             </a>
                             <div class="dropdown-menu pop-notification">
                                 <div class="p-v-15 p-h-25 border-bottom d-flex justify-content-between align-items-center">
                                     <p class="text-dark font-weight-semibold m-b-0">
-                                        <i class="anticon anticon-bell"></i>
+                                        <i class="fa-solid fa-bell"></i>
                                         <span class="m-l-10">Notification</span>
                                     </p>
                                     <a class="btn-sm btn-default btn" href="javascript:void(0);">

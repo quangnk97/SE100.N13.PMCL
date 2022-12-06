@@ -30,26 +30,26 @@
             <li class="nav-item dropdown">
                 <a class="dropdown-toggle" href="javascript:void(0);">
                     <span class="icon-holder">
-                        <i class="anticon anticon-appstore"></i>
+                        <i class="fa-solid fa-list"></i>
                     </span>
-                    <span class="title text-light">Administration</span>
+                    <span class="title text-dark" style="font-weight: 700">Administration</span>
                     <span class="arrow">
                         <i class="arrow-icon"></i>
                     </span>
                 </a>
                 <ul class="dropdown-menu" style="font-size: 16px">
                     <li class="@(ViewData["Title"] == "ManangeTopics"?"active":"nonactive")">
-                        <a class="text-light" href="">Topic</a>
+                        <a class="text-light" href=""><i class="fa-solid fa-book mr-3"></i>Topic</a>
                     </li>
                     <li class="@(ViewData["Title"] == "ManageLecturers"?"active bg-light":"")">
                         <a class="@(ViewData["Title"] == "ManageLecturers"?"text-primary":"text-light")"
-                           asp-area="Admin" asp-controller="AdminLecturers" asp-action="Index">Lecturer</a>
+                           asp-area="Admin" asp-controller="AdminLecturers" asp-action="Index"><i class="fa-solid fa-user-graduate mr-3"></i>Lecturer</a>
                     </li>
                     <li class="@(ViewData["Title"] == "ManageAssessments"?"active":"nonactive")">
-                        <a class="text-light" href="">Assessment</a>
+                        <a class="text-light" href=""><i class="fa-solid fa-clipboard-list mr-3"></i>Assessment</a>
                     </li>
                     <li class="@(ViewData["Title"] == "ManageReport"?"active":"nonactive")">
-                        <a class="text-light" href="">Report</a>
+                        <a class="text-light" href=""><i class="fa-solid fa-newspaper mr-3"></i>Report</a>
                     </li>
                     @*<li class="nav-item dropdown">
                         <a href="javascript:void(0);">

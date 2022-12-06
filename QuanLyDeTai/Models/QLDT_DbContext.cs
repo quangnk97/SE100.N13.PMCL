@@ -133,6 +133,10 @@ namespace QuanLyDeTai.Models
                     .HasMaxLength(40)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Password)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
                 entity.HasOne(d => d.Faculty)
                     .WithMany(p => p.Lecturers)
                     .HasForeignKey(d => d.FacultyId)

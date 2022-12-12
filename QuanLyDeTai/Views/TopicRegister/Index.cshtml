@@ -24,32 +24,32 @@
     </div>
 </div>
 
-<div class="row m-b-10" style="margin-bottom: 50px !important">
-    <div class="col-xl-12 d-flex flex-column">
-        <span style="color: black; font-size: 16px; font-weight: 500">Name</span>
-        <input class="tb-custom" placeholder="Input name of topic" asp-for="TopicName" />
+<form asp-action="Register" method="post">
+    @Html.AntiForgeryToken()
+    <div class="row m-b-10" style="margin-bottom: 50px !important">
+        <div class="col-xl-12 d-flex flex-column">
+            <span style="color: black; font-size: 16px; font-weight: 500">Name</span>
+            <input class="tb-custom" placeholder="Input name of topic" asp-for="TopicName" />
+        </div>
     </div>
-</div>
 
-<div class="row m-b-10" style="margin-bottom: 50px !important">
-    <div class="col-xl-6 d-flex flex-column">
-        <span style="color: black; font-size: 16px; font-weight: 500">Research field</span>
-        <input class="tb-custom" placeholder="Input research field" asp-for="ResearchField" />
+    <div class="row m-b-10" style="margin-bottom: 50px !important">
+        <div class="col-xl-6 d-flex flex-column">
+            <span style="color: black; font-size: 16px; font-weight: 500">Research field</span>
+            <input class="tb-custom" placeholder="Input research field" asp-for="ResearchField" />
+        </div>
+        <div class="col-xl-6 d-flex flex-column">
+            <span style="color: black; font-size: 16px; font-weight: 500">Level</span>
+            <select asp-for="LevelTopic" name="LevelTopic" class="tb-custom">
+                <option value="Faculty">Faculty</option>
+                <option value="School">School</option>
+            </select>
+        </div>
     </div>
-    <div class="col-xl-6 d-flex flex-column">
-        <span style="color: black; font-size: 16px; font-weight: 500">Level</span>
-        <select asp-for="LevelTopic" name="LevelTopic" class="tb-custom">
-            <option value="Faculty">Faculty</option>
-            <option value="School">School</option>
-        </select>
-    </div>
-</div>
 
-<div class="row m-b-10" style="margin-bottom: 50px !important">
-    <div class="col-xl-12 d-flex flex-column">
-        <span style="color: black; font-size: 16px; font-weight: 500">Members</span>
-        <form asp-action="Register" method="post">
-            @Html.AntiForgeryToken()
+    <div class="row m-b-10" style="margin-bottom: 50px !important">
+        <div class="col-xl-12 d-flex flex-column">
+            <span style="color: black; font-size: 16px; font-weight: 500">Members</span>
             <ejs-grid id="Grid" dataSource="@ViewBag.LecturersList" allowSelection="true" allowPaging="true" toolbar="@(new List<string>() { "Search"})" allowSorting="true">
                 <e-grid-selectionsettings checkboxMode="ResetOnRowClick" type="Multiple"></e-grid-selectionsettings>
                 <e-grid-pagesettings pageCount="2"></e-grid-pagesettings>
@@ -67,7 +67,7 @@
             <div class="row d-flex justify-content-end" style="margin-top: 50px">
                 <button class="btn-register" type="submit">Register</button>
             </div>
-        </form>
+        </div>
     </div>
-</div>
+</form>
 

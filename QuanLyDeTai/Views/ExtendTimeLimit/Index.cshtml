@@ -1,8 +1,47 @@
-﻿
+﻿@model QuanLyDeTai.Models.Topic
+
 @{
     ViewData["Title"] = "UserExtendTimeLimit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>EXTEND TIME LIMIT</h1>
+<div class="row m-b-10" style="border-bottom: 3px solid black; margin-bottom: 50px !important">
+    <div class="d-flex justify-content-end text-dark" style="font-size: 25px; font-weight: 500">
+        EXTEND TIME LIMIT
+    </div>
+</div>
+
+<form asp-action="Extend" method="post">
+    <div class="row m-b-10" style="margin-bottom: 50px !important">
+        <div class="col-xl-6 d-flex flex-column">
+            <span style="color: black; font-size: 16px; font-weight: 500">Name</span>
+            <select asp-for="TopicName" name="TopicName" class="tb-custom">
+                <option value="1">Test 1</option>
+                <option value="2">Test 2</option>
+            </select>
+            
+        </div>
+        <div class="col-xl-6 d-flex flex-column">
+            <span style="color: black; font-size: 16px; font-weight: 500">Registered year</span>
+            <input class="tb-custom" asp-for="RegisteredYear" disabled />
+        </div>
+    </div>
+
+    <div class="row m-b-10" style="margin-bottom: 50px !important">
+        <div class="col-xl-6 d-flex flex-column">
+            <span style="color: black; font-size: 16px; font-weight: 500">Request time</span>
+            <select asp-for="RegisteredYear" name="RegisteredYear" class="tb-custom">
+                <option value="1">Test 1</option>
+                <option value="2">Test 2</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row d-flex justify-content-end" style="margin-top: 50px">
+        <button class="btn-register" type="submit">Send request</button>
+    </div>
+</form>
+
+
+
 

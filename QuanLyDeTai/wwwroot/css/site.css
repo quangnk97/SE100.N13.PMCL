@@ -21,3 +21,53 @@ body {
 .side-nav-menu {
     margin-top: 40px !important;
 }
+
+.tb-custom {
+    border: 1px solid black;
+    border-radius: 10px;
+    height: 35px;
+}
+
+.btn-register {
+    background-color: #3184FF;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    width: 200px;
+    height: 50px;
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+.e-grid {
+    font-family: 'Ubuntu', sans-serif;
+    border: 1px solid black;
+}
+.e-grid .e-row {
+    background-color: white;
+    border: none;
+}
+.e-grid .e-headercell {
+   color: black;
+}
+
+.e-grid .e-headercelldiv {
+   font-size: 14px;
+}
+.e-grid .e-gridpager .e-currentitem {
+    background-color: #3184FF;
+}
+.e-grid .e-gridpager {
+    font-family: 'Ubuntu', sans-serif;
+ }
+.e-grid .e-toolbar-items {
+    background-color: white;
+}
+.e-grid .e-toolbar .e-input-group {
+    border: 1px solid black;
+    border-radius: 10px;
+}
+.e-grid .e-toolbar .e-input-group input.e-input {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 14px;
+}

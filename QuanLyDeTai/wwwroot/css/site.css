@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 html {
   font-size: 14px;
 }
@@ -70,4 +74,21 @@ body {
 .e-grid .e-toolbar .e-input-group input.e-input {
     font-family: 'Ubuntu', sans-serif;
     font-size: 14px;
+}
+
+.input-personal-info {
+    border: 1px solid black;
+    border-radius: 3px;
+    width: 250px;
+}
+
+.btn-personal-info-custom {
+    background-color: #3184FF;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    width: 100px;
+    height: 30px;
+    font-size: 13px;
+    margin-right: 20px;
 }

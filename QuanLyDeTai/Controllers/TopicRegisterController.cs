@@ -21,7 +21,15 @@ namespace QuanLyDeTai.Controllers
         // GET: TopicRegister
         public async Task<IActionResult> Index()
         {
+            ViewBag.LecturersList = await _context.Lecturers.ToListAsync();
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register()
+        {
+            return RedirectToAction(nameof(Index));
         }
     }
 }

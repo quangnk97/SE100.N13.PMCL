@@ -52,7 +52,7 @@
             <span style="color: black; font-size: 16px; font-weight: 500">Members</span>
             <ejs-grid id="Grid" dataSource="@ViewBag.LecturersList" allowSelection="true" allowPaging="true" toolbar="@(new List<string>() { "Search"})" allowSorting="true">
                 <e-grid-selectionsettings checkboxMode="ResetOnRowClick" type="Multiple"></e-grid-selectionsettings>
-                <e-grid-pagesettings pageCount="2"></e-grid-pagesettings>
+                <e-grid-pagesettings pageSize="10"></e-grid-pagesettings>
                 <e-grid-columns>
                     <e-grid-column field="LecturerCode" headerText="Code" width="120"></e-grid-column>
                     <e-grid-column field="LecturerName" headerText="Name" width="180"></e-grid-column>

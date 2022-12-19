@@ -22,6 +22,46 @@ body {
     font-family: 'Ubuntu', sans-serif !important;
 }
 
+.login_form {
+    margin-top: 140px;
+    width: fit-content;
+    height: fit-content;
+    border-radius: 20px;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(64,64,64,0.29);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(64,64,64,0.29);
+    box-shadow: 10px 10px 5px 0px rgba(64,64,64,0.29);
+}
+
+.login_form_right {
+    padding: 100px;
+    background-color: white;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.login_form_left {
+    padding: 30px;
+    background-color: #3184FF;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.login_input_group {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.btn_login_custom {
+    background-color: #3184FF;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    width: 150px;
+    height: 45px;
+    font-size: 20px;
+}
+
 .side-nav-menu {
     margin-top: 40px !important;
 }

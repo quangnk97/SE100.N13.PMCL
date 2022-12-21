@@ -1,4 +1,5 @@
-﻿
+﻿@model QuanLyDeTai.Models.Lecturer
+
 @{
     ViewData["Title"] = "UserPersonalInfo";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,11 +9,11 @@
     <div class="col-xl-12" style="border: 1px solid black; border-radius: 20px">
         <div class="row" style="padding: 20px">
             <div class="col-xl-3">
-                <img src="https://i.guim.co.uk/img/media/6da559740e50bd2e78bc46f3b316f41cd2b11b83/0_64_3500_2099/master/3500.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=fa40a75c10ef9a8312114208c6d9ef2c" style="border-radius: 300px; width: 200px; height: 200px" />
+                <img src="@Model.Avatar" style="border-radius: 300px; width: 200px; height: 200px; object-fit: cover" />
             </div>
             <div class="col-xl-8 d-flex flex-column justify-content-center">
-                <span style="font-size: 30px; font-weight: 500; color: black">NGUYEN HOANG PHUC</span>
-                <span style="font-size: 20px; color: black">Role: Admin</span>
+                <span style="font-size: 30px; font-weight: 500; color: black">@Model.LecturerName</span>
+                <span style="font-size: 20px; color: black">Role: Lecturer</span>
             </div>
         </div>
     </div>
@@ -28,7 +29,7 @@
                 <span style="font-size: 15px; font-weight: 500; color: black">Name</span>
             </div>
             <div class="col-xl-8">
-                <input type="text" class="input-personal-info" value="Nguyen Hoang Phuc" />
+                <input type="text" class="input-personal-info" value="@Model.LecturerName" />
             </div>
         </div>
         <div class="row" style="margin-bottom: 20px">
@@ -36,7 +37,7 @@
                 <span style="font-size: 15px; font-weight: 500; color: black">Date of birth</span>
             </div>
             <div class="col-xl-8">
-                <input type="date" class="input-personal-info" />
+                <input type="date" class="input-personal-info" value="@Model.Dob.Value.ToString("yyyy-MM-dd")" />
             </div>
         </div>
         <div class="row" style="margin-bottom: 20px">
@@ -44,7 +45,7 @@
                 <span style="font-size: 15px; font-weight: 500; color: black">Email</span>
             </div>
             <div class="col-xl-8">
-                <input type="email" class="input-personal-info" value="hoangphucnguyen112002@gmail.com" />
+                <input type="email" class="input-personal-info" value="@Model.Email" />
             </div>
         </div>
         <div class="row" style="margin-bottom: 20px">
@@ -52,7 +53,7 @@
                 <span style="font-size: 15px; font-weight: 500; color: black">Phone number</span>
             </div>
             <div class="col-xl-8">
-                <input type="text" class="input-personal-info" value="0933538901" />
+                <input type="text" class="input-personal-info" value="@Model.PhoneNumber" />
             </div>
         </div>
         <div class="row d-flex flex-row justify-content-end">

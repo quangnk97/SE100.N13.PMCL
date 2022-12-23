@@ -203,6 +203,10 @@ namespace QuanLyDeTai.Models
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
+                entity.Property(e => e.IsCancelled).HasColumnName("isCancelled");
+
+                entity.Property(e => e.IsExtended).HasColumnName("isExtended");
+
                 entity.Property(e => e.LevelTopic)
                     .HasMaxLength(20)
                     .IsUnicode(false);

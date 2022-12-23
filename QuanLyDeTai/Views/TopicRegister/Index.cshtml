@@ -5,19 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@{
-    List<Object> levelItems = new List<Object>();
-
-    levelItems.Add(new
-    {
-        text = "Faculty"
-    });
-    levelItems.Add(new
-    {
-        text = "School"
-    });
-}
-
 <div class="row m-b-10" style="border-bottom: 3px solid black; margin-bottom: 50px !important">
     <div class="d-flex justify-content-end text-dark" style="font-size: 25px; font-weight: 500">
         TOPIC REGISTER
@@ -30,6 +17,12 @@
         <div class="col-xl-12 d-flex flex-column">
             <span style="color: black; font-size: 16px; font-weight: 500">Name</span>
             <input class="tb-custom" placeholder="Input name of topic" asp-for="TopicName" />
+            @if (TempData["TopicNameEmpty"] != null)
+            {
+                <div class="d-flex justify-content-start align-items-center" style="margin-top: 10px">
+                    <span style="color:red">@TempData["TopicNameEmpty"].ToString()</span>
+                </div>
+            }
         </div>
     </div>
 
@@ -37,10 +30,16 @@
         <div class="col-xl-6 d-flex flex-column">
             <span style="color: black; font-size: 16px; font-weight: 500">Research field</span>
             <input class="tb-custom" placeholder="Input research field" asp-for="ResearchField" />
+            @if (TempData["ResearchFieldEmpty"] != null)
+            {
+                <div class="d-flex justify-content-start align-items-center" style="margin-top: 10px">
+                    <span style="color:red">@TempData["ResearchFieldEmpty"].ToString()</span>
+                </div>
+            }
         </div>
         <div class="col-xl-6 d-flex flex-column">
             <span style="color: black; font-size: 16px; font-weight: 500">Level</span>
-            <select asp-for="LevelTopic" name="LevelTopic" class="tb-custom">
+            <select asp-for="LevelTopic" name="LevelTopic" class="tb-custom" id="research_field">
                 <option value="Faculty">Faculty</option>
                 <option value="School">School</option>
             </select>
@@ -65,9 +64,23 @@
             </ejs-grid>
 
             <div class="row d-flex justify-content-end" style="margin-top: 50px">
-                <button class="btn-register" type="submit">Register</button>
+                <button id="btn_register" class="btn-register" type="submit">Register</button>
             </div>
         </div>
     </div>
 </form>
+
+<script>
+    document.getElementById('btn_register').onclick = () => {
+        var grid = document.getElementById("Grid").ej2_instances[0];
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Register", "TopicRegister")',
+            dataType: "json",
+            data: grid.getSelectedRecords(),
+            contentType: "application/json; charset=utf-8",
+        });
+    }
+</script>
 

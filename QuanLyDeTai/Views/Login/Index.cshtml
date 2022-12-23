@@ -46,10 +46,12 @@
                 <div class="login_input_group d-flex align-items-center justify-content-center" style="margin-bottom: 15px">
                     <i class="fa-solid fa-user"></i>
                     <input type="text" class="border-0 m-l-10" name="LecturerCode" value="@Model.LecturerCode" placeholder="Username" style="font-size: 17px" />
+                    <i class="fa-solid fa-eye" style="color: transparent"></i>
                 </div>
                 <div class="login_input_group d-flex align-items-center justify-content-center">
                     <i class="fa-solid fa-lock"></i>
-                    <input type="password" class="border-0 m-l-10" name="Password" value="@Model.Password" placeholder="Password" style="font-size: 17px" />
+                    <input id="txtPassword" type="password" class="border-0 m-l-10" name="Password" value="@Model.Password" placeholder="Password" style="font-size: 17px" />
+                    <i class="fa-solid fa-eye" id="togglePassword"></i>
                 </div>
                 @if (TempData["PasswordValid"] != null)
                 {
@@ -69,6 +71,16 @@
             </form>
         </div>
     </div>
+
+    <script type="text/javascript">
+        var togglePassword = document.querySelector('#togglePassword');
+        var password = document.querySelector('#txtPassword');
+        togglePassword.addEventListener('click', function (e) {
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            this.classList.toggle('fa-eye-slash');
+        });
+    </script>
 
     <script src="~/adminassets/js/vendors.min.js"></script>
 

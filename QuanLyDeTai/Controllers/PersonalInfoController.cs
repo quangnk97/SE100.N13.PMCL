@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using QuanLyDeTai.Models;
 
 namespace QuanLyDeTai.Controllers
@@ -12,9 +13,9 @@ namespace QuanLyDeTai.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            return View(_context.Lecturers.Find(GlobalVariables.CurrentLoggedInUser.LecturerId));
         }
     }
 }

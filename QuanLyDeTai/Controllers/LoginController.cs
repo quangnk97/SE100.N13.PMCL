@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QuanLyDeTai.Models;
 using Syncfusion.EJ2.Linq;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace QuanLyDeTai.Controllers
 {
@@ -31,7 +34,10 @@ namespace QuanLyDeTai.Controllers
                 if (lecturer.LecturerCode == "admin")
                 {
                     if (lecturer.Password == "daylamatkhaudanhchoadmin")
+                    {
+                        GlobalVariables.CurrentLoggedInUser.LecturerId = 0;
                         return RedirectToAction(nameof(Index), "Home", new { Area = "Admin" });
+                    }    
                     else
                         TempData["PasswordValid"] = "Wrong password.";
                 }
@@ -41,14 +47,17 @@ namespace QuanLyDeTai.Controllers
                     if (lecturerTemp != null)
                     {
                         if (lecturerTemp.Password == lecturer.Password)
+                        {
+                            GlobalVariables.CurrentLoggedInUser = lecturerTemp;
                             return RedirectToAction(nameof(Index), "Home");
+                        }    
                         else
                             TempData["PasswordValid"] = "Wrong password.";
 
                     }
                     else
                     {
-                        TempData["PasswordValid"] = "Account not exists.";
+                        TempData["PasswordValid"] = "Account does not exists.";
                     }    
                 }
             }

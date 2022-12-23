@@ -38,17 +38,28 @@
                     </span>
                 </a>
                 <ul class="dropdown-menu" style="font-size: 16px">
-                    <li>
-                        <a class="text-light" asp-area="Admin" asp-controller="AdminTopics" asp-action="Index"><i class="fa-solid fa-book mr-3"></i>Topic</a>
+                    <li class="@(ViewData["Title"] == "ManageTopics"?"active bg-light":"")">
+                        <a class="@(ViewData["Title"] == "ManageTopics"?"text-primary":"text-light")"
+                           asp-area="Admin" asp-controller="AdminTopics" asp-action="Index">
+                        <i class="fa-solid fa-book mr-3"></i>Topic</a>
                     </li>
-                    <li>
-                        <a class="text-light" asp-area="Admin" asp-controller="AdminLecturers" asp-action="Index"><i class="fa-solid fa-user-graduate mr-3"></i>Lecturer</a>
+
+                    <li class="@(ViewData["Title"] == "ManageLecturers"?"active bg-light":"")">
+                        <a class="@(ViewData["Title"] == "ManageLecturers"?"text-primary":"text-light")"
+                           asp-area="Admin" asp-controller="AdminLecturers" asp-action="Index">
+                        <i class="fa-solid fa-user-graduate mr-3"></i>Lecturer</a>
                     </li>
-                    <li>
-                        <a class="text-light" asp-area="Admin" asp-controller="AdminAssessments" asp-action="Index"><i class="fa-solid fa-clipboard-list mr-3"></i>Assessment</a>
+
+                    <li class="@(ViewData["Title"] == "ManageAssessments"?"active bg-light":"")">
+                        <a class="@(ViewData["Title"] == "ManageAssessments"?"text-primary":"text-light")"
+                           asp-area="Admin" asp-controller="AdminAssessments" asp-action="Index">
+                        <i class="fa-solid fa-clipboard-list mr-3"></i>Assessment</a>
                     </li>
-                    <li>
-                        <a class="text-light" asp-area="Admin" asp-controller="AdminReport" asp-action="Index"><i class="fa-solid fa-newspaper mr-3"></i>Report</a>
+
+                    <li class="@(ViewData["Title"] == "Report"?"active bg-light":"")">
+                        <a class="@(ViewData["Title"] == "Report"?"text-primary":"text-light")"
+                           asp-area="Admin" asp-controller="AdminReport" asp-action="Index">
+                        <i class="fa-solid fa-newspaper mr-3"></i>Report</a>
                     </li>
                     @*<li class="nav-item dropdown">
                         <a href="javascript:void(0);">

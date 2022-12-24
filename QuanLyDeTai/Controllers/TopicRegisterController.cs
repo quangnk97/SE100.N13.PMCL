@@ -12,6 +12,7 @@ using Microsoft.AspNet.Identity;
 using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Newtonsoft.Json;
 
 namespace QuanLyDeTai.Controllers
 {
@@ -33,12 +34,11 @@ namespace QuanLyDeTai.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register([Bind]Topic topic, List<Lecturer> selectedLecturers)
+        public async Task<IActionResult> Register([Bind] LecturersInTopicViewModel topic)
         {
-            TempData["abc"] = User.Identity.GetUserId();
-            if (String.IsNullOrEmpty(topic.TopicName))
+            if (String.IsNullOrEmpty(topic.TopicModel.TopicName))
             {
-                if (String.IsNullOrEmpty(topic.ResearchField))
+                if (String.IsNullOrEmpty(topic.TopicModel.ResearchField))
                 {
                     TempData["TopicNameEmpty"] = "Required.";
                     TempData["ResearchFieldEmpty"] = "Required.";
@@ -48,9 +48,9 @@ namespace QuanLyDeTai.Controllers
                     TempData["TopicNameEmpty"] = "Required.";
                 }
             }
-            else if (String.IsNullOrEmpty(topic.ResearchField))
+            else if (String.IsNullOrEmpty(topic.TopicModel.ResearchField))
             {
-                if (String.IsNullOrEmpty(topic.TopicName))
+                if (String.IsNullOrEmpty(topic.TopicModel.TopicName))
                 {
                     TempData["TopicNameEmpty"] = "Required.";
                     TempData["ResearchFieldEmpty"] = "Required.";
@@ -62,13 +62,17 @@ namespace QuanLyDeTai.Controllers
             }
             else
             {
-                topic.RegisteredYear = DateTime.Now.Year;
-                topic.Duration = 365;
-                topic.Approved = false;
-                topic.IsExtended = false;
-                topic.IsCancelled = false;
-                //_context.Add(topic);
+                topic.TopicModel.RegisteredYear = DateTime.Now.Year;
+                topic.TopicModel.Duration = 365;
+                topic.TopicModel.Approved = false;
+                topic.TopicModel.IsExtended = false;
+                topic.TopicModel.IsCancelled = false;
+                //_context.Add(topic.TopicModel);
                 //await _context.SaveChangesAsync();
+
+                var selectedLecturers = JsonConvert.DeserializeObject<List<Lecturer>>(topic.SelectedLecturersList);
+                TempData["ResearchFieldEmpty"] = selectedLecturers[0].LecturerName;
+
 
                 return RedirectToAction(nameof(Index));
             }

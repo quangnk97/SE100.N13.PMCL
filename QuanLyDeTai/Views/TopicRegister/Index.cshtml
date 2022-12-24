@@ -1,4 +1,4 @@
-﻿@model QuanLyDeTai.Models.Topic
+﻿@model QuanLyDeTai.LecturersInTopicViewModel
 
 @{
     ViewData["Title"] = "UserTopicRegister";
@@ -16,7 +16,7 @@
     <div class="row m-b-10" style="margin-bottom: 50px !important">
         <div class="col-xl-12 d-flex flex-column">
             <span style="color: black; font-size: 16px; font-weight: 500">Name</span>
-            <input class="tb-custom" placeholder="Input name of topic" asp-for="TopicName" />
+            <input class="tb-custom" placeholder="Input name of topic" asp-for="TopicModel.TopicName" />
             @if (TempData["TopicNameEmpty"] != null)
             {
                 <div class="d-flex justify-content-start align-items-center" style="margin-top: 10px">
@@ -29,7 +29,7 @@
     <div class="row m-b-10" style="margin-bottom: 50px !important">
         <div class="col-xl-6 d-flex flex-column">
             <span style="color: black; font-size: 16px; font-weight: 500">Research field</span>
-            <input class="tb-custom" placeholder="Input research field" asp-for="ResearchField" />
+            <input class="tb-custom" placeholder="Input research field" asp-for="TopicModel.ResearchField" />
             @if (TempData["ResearchFieldEmpty"] != null)
             {
                 <div class="d-flex justify-content-start align-items-center" style="margin-top: 10px">
@@ -39,7 +39,7 @@
         </div>
         <div class="col-xl-6 d-flex flex-column">
             <span style="color: black; font-size: 16px; font-weight: 500">Level</span>
-            <select asp-for="LevelTopic" name="LevelTopic" class="tb-custom" id="research_field">
+            <select asp-for="TopicModel.LevelTopic" name="LevelTopic" class="tb-custom" id="research_field">
                 <option value="Faculty">Faculty</option>
                 <option value="School">School</option>
             </select>
@@ -68,19 +68,17 @@
             </div>
         </div>
     </div>
+
+    <input id="selectedLecturers" asp-for="SelectedLecturersList" hidden />
 </form>
 
 <script>
     document.getElementById('btn_register').onclick = () => {
         var grid = document.getElementById("Grid").ej2_instances[0];
-
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("Register", "TopicRegister")',
-            dataType: "json",
-            data: grid.getSelectedRecords(),
-            contentType: "application/json; charset=utf-8",
-        });
+        
+        var myJSON = JSON.stringify(grid.getSelectedRecords());
+        
+        document.getElementById('selectedLecturers').value = myJSON;
     }
 </script>
 

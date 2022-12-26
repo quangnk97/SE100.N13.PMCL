@@ -12,7 +12,6 @@
 </div>
 
 <form asp-action="Register" method="post">
-    @Html.AntiForgeryToken()
     <div class="row m-b-10" style="margin-bottom: 50px !important">
         <div class="col-xl-12 d-flex flex-column">
             <span style="color: black; font-size: 16px; font-weight: 500">Name</span>
@@ -39,8 +38,8 @@
         </div>
         <div class="col-xl-6 d-flex flex-column">
             <span style="color: black; font-size: 16px; font-weight: 500">Level</span>
-            <select asp-for="TopicModel.LevelTopic" name="LevelTopic" class="tb-custom" id="research_field">
-                <option value="Faculty">Faculty</option>
+            <select asp-for="TopicModel.LevelTopic" name="TopicModel.LevelTopic" class="tb-custom" id="research_field">
+                <option value="Faculty" selected>Faculty</option>
                 <option value="School">School</option>
             </select>
         </div>
@@ -56,7 +55,7 @@
                     <e-grid-column field="LecturerCode" headerText="Code" width="120"></e-grid-column>
                     <e-grid-column field="LecturerName" headerText="Name" width="180"></e-grid-column>
                     <e-grid-column field="Major" headerText="Major" width="180"></e-grid-column>
-                    <e-grid-column field="FacultyId" headerText="Faculty" width="180"></e-grid-column>
+                    <e-grid-column field="FacultyId" foreignKeyValue="FacultyName" dataSource="ViewBag.FacultiesList" headerText="Faculty" width="180"></e-grid-column>
                     <e-grid-column field="LevelCurrent" headerText="Level" width="100"></e-grid-column>
                     <e-grid-column field="Contract" headerText="Contract" width="100"></e-grid-column>
                     <e-grid-column type="checkbox" width="50"></e-grid-column>
@@ -75,10 +74,14 @@
 <script>
     document.getElementById('btn_register').onclick = () => {
         var grid = document.getElementById("Grid").ej2_instances[0];
-        
-        var myJSON = JSON.stringify(grid.getSelectedRecords());
-        
-        document.getElementById('selectedLecturers').value = myJSON;
+
+        if (grid.getSelectedRecords().length <= 4) {
+            var myJSON = JSON.stringify(grid.getSelectedRecords());
+
+            document.getElementById('selectedLecturers').value = myJSON;
+        }
+        else
+            alert('Maximum 5 members for one topic !');
     }
 </script>
 

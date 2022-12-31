@@ -48,7 +48,7 @@ namespace QuanLyDeTai.Areas.Admin.Controllers
         // GET: Admin/AdminLecturers/Create
         public IActionResult Create()
         {
-            ViewData["FacultyId"] = new SelectList(_context.Faculties, "FacultyId", "FacultyId");
+            ViewData["FacultyId"] = new SelectList(_context.Faculties, "FacultyId", "FacultyName");
             return View();
         }
 

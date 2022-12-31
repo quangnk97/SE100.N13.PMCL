@@ -57,7 +57,7 @@ namespace QuanLyDeTai.Controllers
                     }
                     else
                     {
-                        TempData["PasswordValid"] = "Account does not exists.";
+                        TempData["PasswordValid"] = "Account doesn't exist.";
                     }    
                 }
             }

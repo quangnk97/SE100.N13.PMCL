@@ -19,7 +19,7 @@ html {
 
 body {
     margin-bottom: 60px;
-    font-family: 'Ubuntu', sans-serif !important;
+    font-family: 'Roboto', sans-serif !important;
 }
 
 .login_form {
@@ -47,7 +47,7 @@ body {
 }
 
 .login_input_group {
-    border: 1px solid black;
+    border: 2px solid black;
     border-radius: 10px;
     padding: 10px;
 }
@@ -67,9 +67,14 @@ body {
 }
 
 .tb-custom {
-    border: 1px solid black;
+    border: 2px solid gray;
     border-radius: 10px;
-    height: 35px;
+    height: 45px;
+    font-size: 17px;
+    font-weight: 300;
+    color: black;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .btn-register {
@@ -84,51 +89,70 @@ body {
 }
 
 .e-grid {
-    font-family: 'Ubuntu', sans-serif;
-    border: 1px solid black;
+    font-family: 'Roboto', sans-serif;
+    border: 2px solid gray;
+    border-radius: 10px;
+    padding: 4px 10px 0px 10px;
+    background-color: transparent;
+}
+.e-grid .e-toolbar {
+    border: none;
 }
 .e-grid .e-row {
-    background-color: white;
+    background-color: transparent;
     border: none;
+}
+.e-grid .e-rowcell {
+    font-size: 16px;
+    font-weight: 300;
+    background-color: transparent;
 }
 .e-grid .e-headercell {
    color: black;
+   background-color: transparent;
 }
 
 .e-grid .e-headercelldiv {
-   font-size: 14px;
+   font-size: 15px;
+   font-weight: 500;
+   background-color: transparent;
 }
 .e-grid .e-gridpager .e-currentitem {
     background-color: #3184FF;
 }
 .e-grid .e-gridpager {
-    font-family: 'Ubuntu', sans-serif;
- }
+    font-family: 'Roboto', sans-serif;
+}
 .e-grid .e-toolbar-items {
-    background-color: white;
+    background-color: transparent;
 }
 .e-grid .e-toolbar .e-input-group {
-    border: 1px solid black;
-    border-radius: 10px;
+    border: 2px solid gray;
+    padding: 0px 0px 0px 10px;
 }
 .e-grid .e-toolbar .e-input-group input.e-input {
-    font-family: 'Ubuntu', sans-serif;
-    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
 }
 
 .input-personal-info {
-    border: 1px solid black;
-    border-radius: 3px;
+    border: 2px solid gray;
+    border-radius: 10px;
     width: 250px;
+    height: 40px;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: 300;
 }
 
 .btn-personal-info-custom {
     background-color: #3184FF;
     border: none;
-    border-radius: 20px;
+    border-radius: 10px;
     color: white;
     width: 100px;
-    height: 30px;
+    height: 35px;
     font-size: 13px;
     margin-right: 20px;
 }

@@ -6,7 +6,7 @@
 }
 
 <div class="row m-b-10" style="border-bottom: 3px solid black; margin-bottom: 50px !important">
-    <div class="d-flex justify-content-end text-dark" style="font-size: 25px; font-weight: 500">
+    <div class="d-flex justify-content-end text-dark" style="font-size: 25px; font-weight: 700">
         TOPIC REGISTER
     </div>
 </div>
@@ -14,7 +14,7 @@
 <form asp-action="Register" method="post">
     <div class="row m-b-10" style="margin-bottom: 50px !important">
         <div class="col-xl-12 d-flex flex-column">
-            <span style="color: black; font-size: 16px; font-weight: 500">Name</span>
+            <span style="color: black; font-size: 16px; font-weight: 700">Name</span>
             <input class="tb-custom" placeholder="Input name of topic" asp-for="TopicModel.TopicName" />
             @if (TempData["TopicNameEmpty"] != null)
             {
@@ -27,7 +27,7 @@
 
     <div class="row m-b-10" style="margin-bottom: 50px !important">
         <div class="col-xl-6 d-flex flex-column">
-            <span style="color: black; font-size: 16px; font-weight: 500">Research field</span>
+            <span style="color: black; font-size: 16px; font-weight: 700">Research field</span>
             <input class="tb-custom" placeholder="Input research field" asp-for="TopicModel.ResearchField" />
             @if (TempData["ResearchFieldEmpty"] != null)
             {
@@ -37,7 +37,7 @@
             }
         </div>
         <div class="col-xl-6 d-flex flex-column">
-            <span style="color: black; font-size: 16px; font-weight: 500">Level</span>
+            <span style="color: black; font-size: 16px; font-weight: 700">Level</span>
             <select asp-for="TopicModel.LevelTopic" name="TopicModel.LevelTopic" class="tb-custom" id="research_field">
                 <option value="Faculty" selected>Faculty</option>
                 <option value="School">School</option>
@@ -47,7 +47,7 @@
 
     <div class="row m-b-10" style="margin-bottom: 50px !important">
         <div class="col-xl-12 d-flex flex-column">
-            <span style="color: black; font-size: 16px; font-weight: 500">Members</span>
+            <span style="color: black; font-size: 16px; font-weight: 700">Members</span>
             <ejs-grid id="Grid" dataSource="@ViewBag.LecturersList" allowSelection="true" allowPaging="true" toolbar="@(new List<string>() { "Search"})" allowSorting="true">
                 <e-grid-selectionsettings checkboxMode="ResetOnRowClick" type="Multiple"></e-grid-selectionsettings>
                 <e-grid-pagesettings pageSize="10"></e-grid-pagesettings>
@@ -63,7 +63,7 @@
             </ejs-grid>
 
             <div class="row d-flex justify-content-end" style="margin-top: 50px">
-                <button id="btn_register" class="btn-register" type="submit">Register</button>
+                <button id="btn_register" class="btn-register" type="submit">REGISTER</button>
             </div>
         </div>
     </div>

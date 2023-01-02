@@ -5,7 +5,14 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using QuanLyDeTai.Models;
+using System.Security.Claims;
+using Microsoft.AspNet.Identity;
+using System.Text;
+using Microsoft.CodeAnalysis;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Newtonsoft.Json;
 
 namespace QuanLyDeTai.Controllers
 {
@@ -21,14 +28,107 @@ namespace QuanLyDeTai.Controllers
         // GET: TopicRegister
         public async Task<IActionResult> Index()
         {
-            ViewBag.LecturersList = await _context.Lecturers.ToListAsync();
+            ViewBag.LecturersList = await _context.Lecturers.Where(x => x.LecturerId != GlobalVariables.CurrentLoggedInUser.LecturerId).ToListAsync();
+            ViewBag.FacultiesList = await _context.Faculties.ToListAsync();
             return View();
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register()
+        public async Task<IActionResult> Register([Bind] LecturersInTopicViewModel topic)
         {
+            if (String.IsNullOrEmpty(topic.TopicModel.TopicName))
+            {
+                if (String.IsNullOrEmpty(topic.TopicModel.ResearchField))
+                {
+                    TempData["TopicNameEmpty"] = "Required.";
+                    TempData["ResearchFieldEmpty"] = "Required.";
+                }
+                else
+                {
+                    TempData["TopicNameEmpty"] = "Required.";
+                }
+            }
+            else if (String.IsNullOrEmpty(topic.TopicModel.ResearchField))
+            {
+                if (String.IsNullOrEmpty(topic.TopicModel.TopicName))
+                {
+                    TempData["TopicNameEmpty"] = "Required.";
+                    TempData["ResearchFieldEmpty"] = "Required.";
+                }
+                else
+                {
+                    TempData["ResearchFieldEmpty"] = "Required.";
+                }
+            }
+            else
+            {
+                if (String.IsNullOrEmpty(topic.SelectedLecturersList)){}
+                else
+                {
+                    var selectedLecturers = JsonConvert.DeserializeObject<List<Lecturer>>(topic.SelectedLecturersList);
+
+                    if (selectedLecturers.Count > 0 && selectedLecturers.Count <= 4)
+                    {
+                        topic.TopicModel.RegisteredYear = DateTime.Now.Year;
+                        topic.TopicModel.Duration = 365;
+                        topic.TopicModel.Approved = false;
+                        topic.TopicModel.IsExtended = false;
+                        topic.TopicModel.IsCancelled = false;
+
+                        _context.Add(topic.TopicModel);
+                        await _context.SaveChangesAsync();
+
+                        var topicTemp = await _context.Topics.FirstOrDefaultAsync(x => x.TopicName == topic.TopicModel.TopicName);
+                        if (topicTemp != null)
+                        {
+                            for (int i = 0; i < selectedLecturers.Count; i++)
+                            {
+                                Register register = new Register();
+                                register.TopicId = topicTemp.TopicId;
+                                register.LecturerId = selectedLecturers[i].LecturerId;
+                                register.PositionTopic = "Author";
+                                register.LevelLecturer = selectedLecturers[i].LevelCurrent;
+
+                                _context.Add(register);
+                                await _context.SaveChangesAsync();
+                            }
+                        }
+
+                        Register reg = new Register();
+                        reg.TopicId = topicTemp.TopicId;
+                        reg.LecturerId = GlobalVariables.CurrentLoggedInUser.LecturerId;
+                        reg.PositionTopic = "Topic Manager";
+                        reg.LevelLecturer = GlobalVariables.CurrentLoggedInUser.LevelCurrent;
+
+                        _context.Add(reg);
+                        await _context.SaveChangesAsync();
+                    }
+                    else if (selectedLecturers.Count == 0)
+                    {
+                        topic.TopicModel.RegisteredYear = DateTime.Now.Year;
+                        topic.TopicModel.Duration = 365;
+                        topic.TopicModel.Approved = false;
+                        topic.TopicModel.IsExtended = false;
+                        topic.TopicModel.IsCancelled = false;
+
+                        _context.Add(topic.TopicModel);
+                        await _context.SaveChangesAsync();
+
+                        var topicTemp = await _context.Topics.FirstOrDefaultAsync(x => x.TopicName == topic.TopicModel.TopicName);
+                        if (topicTemp != null)
+                        {
+                            Register reg = new Register();
+                            reg.TopicId = topicTemp.TopicId;
+                            reg.LecturerId = GlobalVariables.CurrentLoggedInUser.LecturerId;
+                            reg.PositionTopic = "Topic Manager";
+                            reg.LevelLecturer = GlobalVariables.CurrentLoggedInUser.LevelCurrent;
+
+                            _context.Add(reg);
+                            await _context.SaveChangesAsync();
+                        }
+                    }    
+                }
+            }
             return RedirectToAction(nameof(Index));
         }
     }

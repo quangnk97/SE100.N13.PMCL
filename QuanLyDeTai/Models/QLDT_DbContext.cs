@@ -197,6 +197,9 @@ namespace QuanLyDeTai.Models
             {
                 entity.ToTable("TOPIC");
 
+                entity.HasIndex(e => e.TopicName, "Unique_TopicName")
+                    .IsUnique();
+
                 entity.Property(e => e.TopicId).HasColumnName("TopicID");
 
                 entity.Property(e => e.AssessmentDate).HasColumnType("smalldatetime");

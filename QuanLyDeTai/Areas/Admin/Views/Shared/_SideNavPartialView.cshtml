@@ -1,64 +1,40 @@
-﻿<div class="side-nav" style="background-color: #3184FF; font-family: 'Ubuntu', san-serif">
+﻿<div class="side-nav" style="background-color: #3184FF; font-family: 'Roboto', san-serif">
     <div class="side-nav-inner">
         <ul class="side-nav-menu scrollable border-0" style="font-size: 18px">
-            @*<li class="nav-item dropdown">
-                <a class="dropdown-toggle" href="javascript:void(0);">
-                    <span class="icon-holder">
-                        <i class="anticon anticon-dashboard"></i>
-                    </span>
-                    <span class="title text-light">General</span>
-                    <span class="arrow">
-                        <i class="arrow-icon"></i>
-                    </span>
-                </a>
-                <ul class="dropdown-menu"  style="font-size: 16px">
-                    <li class="@(ViewData["Title"] == "AdminDashboard"?"active bg-light":"")">
-                        <a class="@(ViewData["Title"] == "AdminDashboard"?"text-primary":"text-light")"
-                        asp-area="Admin" asp-controller="Home" asp-action="Index">Dashboard</a>
-                    </li>
-                    <li class="@(ViewData["Title"] == "AdminTopicRegister"?"active":"nonactive")">
-                        <a class="text-light" href="">Topic register</a>
-                    </li>
-                    <li class="@(ViewData["Title"] == "AdminExtendTimeLimit"?"active":"nonactive")">
-                        <a class="text-light" href="">Extend time limit</a>
-                    </li>
-                    <li class="@(ViewData["Title"] == "AdminCancelTopic"?"active":"nonactive")">
-                        <a class="text-light" href="">Cancel topic</a>
-                    </li>
-                </ul>
-            </li>*@
             <li class="nav-item dropdown">
                 <a class="dropdown-toggle" href="javascript:void(0);">
                     <span class="icon-holder">
                         <i class="fa-solid fa-list"></i>
                     </span>
-                    <span class="title text-dark" style="font-weight: 700">Administration</span>
+                    <span class="title text-dark" style="font-weight: 700; font-size: 20px">Administration</span>
                     <span class="arrow">
                         <i class="arrow-icon"></i>
                     </span>
                 </a>
-                <ul class="dropdown-menu" style="font-size: 16px">
-                    <li class="@(ViewData["Title"] == "ManageTopics"?"active bg-light":"")">
-                        <a class="@(ViewData["Title"] == "ManageTopics"?"text-primary":"text-light")"
-                           asp-area="Admin" asp-controller="AdminTopics" asp-action="Index">
+                <ul class="dropdown-menu" style="font-size: 16px; font-weight: 300">
+                    <li class="@(ViewData["Title"] == "AdminDashboard"?"active":"")" style="@(ViewData["Title"] == "AdminDashboard"?"background-color: rgb(2, 2, 2, 20%)":"")">
+                        <a class="text-light" asp-area="Admin" asp-controller="Home" asp-action="Index">
+                            <i class="fa-solid fa-box mr-3"></i>Dashboard
+                        </a>
+                    </li>
+
+                    <li class="@(ViewData["Title"] == "ManageTopics"?"active":"")" style="@(ViewData["Title"] == "ManageTopics"?"background-color: rgb(2, 2, 2, 20%)":"")">
+                        <a class="text-light" asp-area="Admin" asp-controller="AdminTopics" asp-action="Index">
                         <i class="fa-solid fa-book mr-3"></i>Topic</a>
                     </li>
 
-                    <li class="@(ViewData["Title"] == "ManageLecturers"?"active bg-light":"")">
-                        <a class="@(ViewData["Title"] == "ManageLecturers"?"text-primary":"text-light")"
-                           asp-area="Admin" asp-controller="AdminLecturers" asp-action="Index">
+                    <li class="@(ViewData["Title"] == "ManageLecturers"?"active":"")" style="@(ViewData["Title"] == "ManageLecturers"?"background-color: rgb(2, 2, 2, 20%)":"")">
+                        <a class="text-light" asp-area="Admin" asp-controller="AdminLecturers" asp-action="Index">
                         <i class="fa-solid fa-user-graduate mr-3"></i>Lecturer</a>
                     </li>
 
-                    <li class="@(ViewData["Title"] == "ManageAssessments"?"active bg-light":"")">
-                        <a class="@(ViewData["Title"] == "ManageAssessments"?"text-primary":"text-light")"
-                           asp-area="Admin" asp-controller="AdminAssessments" asp-action="Index">
+                    <li class="@(ViewData["Title"] == "ManageAssessments"?"active":"")" style="@(ViewData["Title"] == "ManageAssessments"?"background-color: rgb(2, 2, 2, 20%)":"")">
+                        <a class="text-light" asp-area="Admin" asp-controller="AdminAssessments" asp-action="Index">
                         <i class="fa-solid fa-clipboard-list mr-3"></i>Assessment</a>
                     </li>
 
-                    <li class="@(ViewData["Title"] == "Report"?"active bg-light":"")">
-                        <a class="@(ViewData["Title"] == "Report"?"text-primary":"text-light")"
-                           asp-area="Admin" asp-controller="AdminReport" asp-action="Index">
+                    <li class="@(ViewData["Title"] == "Report"?"active":"")" style="@(ViewData["Title"] == "Report"?"background-color: rgb(2, 2, 2, 20%)":"")">
+                        <a class="text-light" asp-area="Admin" asp-controller="AdminReport" asp-action="Index">
                         <i class="fa-solid fa-newspaper mr-3"></i>Report</a>
                     </li>
                     @*<li class="nav-item dropdown">

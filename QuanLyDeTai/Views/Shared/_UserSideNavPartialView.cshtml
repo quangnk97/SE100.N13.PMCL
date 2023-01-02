@@ -1,4 +1,4 @@
-﻿<div class="side-nav" style="background-color: #3184FF; font-family: 'Ubuntu', san-serif">
+﻿<div class="side-nav" style="background-color: #3184FF; font-family: 'Roboto', san-serif">
     <div class="side-nav-inner">
         <ul class="side-nav-menu scrollable border-0" style="font-size: 18px">
             <li class="nav-item dropdown">
@@ -6,31 +6,26 @@
                     <span class="icon-holder">
                         <i class="fa-solid fa-house-chimney"></i>
                     </span>
-                    <span class="title text-dark" style="font-weight: 700">General</span>
+                    <span class="title text-dark" style="font-weight: 700; font-size: 20px">General</span>
                     <span class="arrow">
                         <i class="arrow-icon"></i>
                     </span>
                 </a>
-                <ul class="dropdown-menu" style="font-size: 16px">
-                    <li class="@(ViewData["Title"] == "UserDashboard"?"active bg-light":"")">
-                        <a class="@(ViewData["Title"] == "UserDashboard"?"text-primary":"text-light")"
-                           asp-controller="Home" asp-action="Index"><i class="fa-solid fa-box mr-3"></i>Dashboard</a>
+                <ul class="dropdown-menu" style="font-size: 16px; font-weight: 300">
+                    <li class="@(ViewData["Title"] == "UserDashboard"?"active":"")" style="@(ViewData["Title"] == "UserDashboard"?"background-color: rgb(2, 2, 2, 20%)":"")">
+                        <a class="text-light" asp-controller="Home" asp-action="Index"><i class="fa-solid fa-box mr-3"></i>Dashboard</a>
                     </li>
-                    <li class="@(ViewData["Title"] == "UserTopicRegister"?"active bg-light":"")">
-                        <a class="@(ViewData["Title"] == "UserTopicRegister"?"text-primary":"text-light")"
-                           asp-controller="TopicRegister" asp-action="Index"><i class="fa-solid fa-pen-clip mr-3"></i>Topic register</a>
+                    <li class="@(ViewData["Title"] == "UserTopicRegister"?"active":"")" style="@(ViewData["Title"] == "UserTopicRegister"?"background-color: rgb(2, 2, 2, 20%)":"")">
+                        <a class="text-light" asp-controller="TopicRegister" asp-action="Index"><i class="fa-solid fa-pen-clip mr-3"></i>Topic register</a>
                     </li>
-                    <li class="@(ViewData["Title"] == "UserExtendTimeLimit"?"active bg-light":"")">
-                        <a class="@(ViewData["Title"] == "UserExtendTimeLimit"?"text-primary":"text-light")"
-                           asp-controller="ExtendTimeLimit" asp-action="Index"><i class="fa-solid fa-calendar-days mr-3"></i>Extend time limit</a>
+                    <li class="@(ViewData["Title"] == "UserExtendTimeLimit"?"active":"")" style="@(ViewData["Title"] == "UserExtendTimeLimit"?"background-color: rgb(2, 2, 2, 20%)":"")">
+                        <a class="text-light" asp-controller="ExtendTimeLimit" asp-action="Index"><i class="fa-solid fa-calendar-days mr-3"></i>Extend time limit</a>
                     </li>
-                    <li class="@(ViewData["Title"] == "UserCancelTopic"?"active bg-light":"")">
-                        <a class="@(ViewData["Title"] == "UserCancelTopic"?"text-primary":"text-light")"
-                           asp-controller="CancelTopic" asp-action="Index"><i class="fa-solid fa-file-excel mr-3"></i>Cancel topic</a>
+                    <li class="@(ViewData["Title"] == "UserCancelTopic"?"active":"")" style="@(ViewData["Title"] == "UserCancelTopic"?"background-color: rgb(2, 2, 2, 20%)":"")">
+                        <a class="text-light" asp-controller="CancelTopic" asp-action="Index"><i class="fa-solid fa-file-excel mr-3"></i>Cancel topic</a>
                     </li>
-                    <li class="@(ViewData["Title"] == "UserPersonalInfo"?"active bg-light":"")">
-                        <a class="@(ViewData["Title"] == "UserPersonalInfo"?"text-primary":"text-light")"
-                           asp-controller="PersonalInfo" asp-action="Index"><i class="fa-solid fa-user mr-3"></i>Personal info</a>
+                    <li class="@(ViewData["Title"] == "UserPersonalInfo"?"active":"")" style="@(ViewData["Title"] == "UserPersonalInfo"?"background-color: rgb(2, 2, 2, 20%)":"")">
+                        <a class="text-light" asp-controller="PersonalInfo" asp-action="Index"><i class="fa-solid fa-user mr-3"></i>Personal info</a>
                     </li>
                 </ul>
             </li>

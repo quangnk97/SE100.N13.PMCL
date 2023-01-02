@@ -6,7 +6,7 @@
 }
 
 <div class="row m-b-10" style="border-bottom: 3px solid black; margin-bottom: 50px !important">
-    <div class="d-flex justify-content-end text-dark" style="font-size: 25px; font-weight: 500">
+    <div class="d-flex justify-content-end text-dark" style="font-size: 25px; font-weight: 700">
         EXTEND TIME LIMIT
     </div>
 </div>
@@ -14,33 +14,45 @@
 <form asp-action="Extend" method="post">
     <div class="row m-b-10" style="margin-bottom: 50px !important">
         <div class="col-xl-6 d-flex flex-column">
-            <span style="color: black; font-size: 16px; font-weight: 500">Name</span>
-            <select asp-for="TopicName" name="TopicName" class="tb-custom">
-                <option value="1">Test 1</option>
-                <option value="2">Test 2</option>
-            </select>
-            
+            <span style="color: black; font-size: 16px; font-weight: 700">Name</span>
+            <select asp-for="TopicId" name="TopicId" class="tb-custom" asp-items="ViewBag.TopicsList" id="selectTopicName"></select>
         </div>
         <div class="col-xl-6 d-flex flex-column">
-            <span style="color: black; font-size: 16px; font-weight: 500">Registered year</span>
-            <input class="tb-custom" asp-for="RegisteredYear" disabled />
+            <span style="color: black; font-size: 16px; font-weight: 700">Registered year</span>
+            <select class="tb-custom" asp-items="ViewBag.RegisteredYearList" id="registeredYear" disabled></select>
         </div>
     </div>
 
     <div class="row m-b-10" style="margin-bottom: 50px !important">
         <div class="col-xl-6 d-flex flex-column">
-            <span style="color: black; font-size: 16px; font-weight: 500">Request time</span>
-            <select asp-for="RegisteredYear" name="RegisteredYear" class="tb-custom">
-                <option value="1">Test 1</option>
-                <option value="2">Test 2</option>
+            <span style="color: black; font-size: 16px; font-weight: 700">Request time</span>
+            <select asp-for="RequestTime" name="RequestTime" class="tb-custom">
+                <option value="30">1 month</option>
+                <option value="60">2 months</option>
+                <option value="90">3 months</option>
+                <option value="120">4 months</option>
+                <option value="150">5 months</option>
+                <option value="180">6 months</option>
             </select>
         </div>
     </div>
+    @if (TempData["abc"] != null)
+    {
+        <div class="d-flex justify-content-start align-items-center" style="margin-top: 10px">
+            <span style="color:red">@TempData["abc"].ToString()</span>
+        </div>
+    }
 
     <div class="row d-flex justify-content-end" style="margin-top: 50px">
-        <button class="btn-register" type="submit">Send request</button>
+        <button class="btn-register" type="submit">SEND REQUEST</button>
     </div>
 </form>
+
+<script>
+    document.getElementById('selectTopicName').onchange = () => {
+        document.getElementById('registeredYear').value = document.getElementById('selectTopicName').value;
+    }
+</script>
 
 
 

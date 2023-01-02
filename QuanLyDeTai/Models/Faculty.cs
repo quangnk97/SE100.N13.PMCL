@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace QuanLyDeTai.Models
 {
@@ -13,6 +15,9 @@ namespace QuanLyDeTai.Models
         public string FacultyId { get; set; } = null!;
         public string? FacultyName { get; set; }
 
+
+        [JsonIgnore]
+        [IgnoreDataMember]
         public virtual ICollection<Lecturer> Lecturers { get; set; }
     }
 }

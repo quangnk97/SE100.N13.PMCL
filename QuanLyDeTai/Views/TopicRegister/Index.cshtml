@@ -1,47 +1,45 @@
-﻿@model QuanLyDeTai.Models.Topic
+﻿@model QuanLyDeTai.LecturersInTopicViewModel
 
 @{
     ViewData["Title"] = "UserTopicRegister";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@{
-    List<Object> levelItems = new List<Object>();
-
-    levelItems.Add(new
-    {
-        text = "Faculty"
-    });
-    levelItems.Add(new
-    {
-        text = "School"
-    });
-}
-
 <div class="row m-b-10" style="border-bottom: 3px solid black; margin-bottom: 50px !important">
-    <div class="d-flex justify-content-end text-dark" style="font-size: 25px; font-weight: 500">
+    <div class="d-flex justify-content-end text-dark" style="font-size: 25px; font-weight: 700">
         TOPIC REGISTER
     </div>
 </div>
 
 <form asp-action="Register" method="post">
-    @Html.AntiForgeryToken()
     <div class="row m-b-10" style="margin-bottom: 50px !important">
         <div class="col-xl-12 d-flex flex-column">
-            <span style="color: black; font-size: 16px; font-weight: 500">Name</span>
-            <input class="tb-custom" placeholder="Input name of topic" asp-for="TopicName" />
+            <span style="color: black; font-size: 16px; font-weight: 700">Name</span>
+            <input class="tb-custom" placeholder="Input name of topic" asp-for="TopicModel.TopicName" />
+            @if (TempData["TopicNameEmpty"] != null)
+            {
+                <div class="d-flex justify-content-start align-items-center" style="margin-top: 10px">
+                    <span style="color:red">@TempData["TopicNameEmpty"].ToString()</span>
+                </div>
+            }
         </div>
     </div>
 
     <div class="row m-b-10" style="margin-bottom: 50px !important">
         <div class="col-xl-6 d-flex flex-column">
-            <span style="color: black; font-size: 16px; font-weight: 500">Research field</span>
-            <input class="tb-custom" placeholder="Input research field" asp-for="ResearchField" />
+            <span style="color: black; font-size: 16px; font-weight: 700">Research field</span>
+            <input class="tb-custom" placeholder="Input research field" asp-for="TopicModel.ResearchField" />
+            @if (TempData["ResearchFieldEmpty"] != null)
+            {
+                <div class="d-flex justify-content-start align-items-center" style="margin-top: 10px">
+                    <span style="color:red">@TempData["ResearchFieldEmpty"].ToString()</span>
+                </div>
+            }
         </div>
         <div class="col-xl-6 d-flex flex-column">
-            <span style="color: black; font-size: 16px; font-weight: 500">Level</span>
-            <select asp-for="LevelTopic" name="LevelTopic" class="tb-custom">
-                <option value="Faculty">Faculty</option>
+            <span style="color: black; font-size: 16px; font-weight: 700">Level</span>
+            <select asp-for="TopicModel.LevelTopic" name="TopicModel.LevelTopic" class="tb-custom" id="research_field">
+                <option value="Faculty" selected>Faculty</option>
                 <option value="School">School</option>
             </select>
         </div>
@@ -49,7 +47,7 @@
 
     <div class="row m-b-10" style="margin-bottom: 50px !important">
         <div class="col-xl-12 d-flex flex-column">
-            <span style="color: black; font-size: 16px; font-weight: 500">Members</span>
+            <span style="color: black; font-size: 16px; font-weight: 700">Members</span>
             <ejs-grid id="Grid" dataSource="@ViewBag.LecturersList" allowSelection="true" allowPaging="true" toolbar="@(new List<string>() { "Search"})" allowSorting="true">
                 <e-grid-selectionsettings checkboxMode="ResetOnRowClick" type="Multiple"></e-grid-selectionsettings>
                 <e-grid-pagesettings pageSize="10"></e-grid-pagesettings>
@@ -57,7 +55,7 @@
                     <e-grid-column field="LecturerCode" headerText="Code" width="120"></e-grid-column>
                     <e-grid-column field="LecturerName" headerText="Name" width="180"></e-grid-column>
                     <e-grid-column field="Major" headerText="Major" width="180"></e-grid-column>
-                    <e-grid-column field="FacultyId" headerText="Faculty" width="180"></e-grid-column>
+                    <e-grid-column field="FacultyId" foreignKeyValue="FacultyName" dataSource="ViewBag.FacultiesList" headerText="Faculty" width="180"></e-grid-column>
                     <e-grid-column field="LevelCurrent" headerText="Level" width="100"></e-grid-column>
                     <e-grid-column field="Contract" headerText="Contract" width="100"></e-grid-column>
                     <e-grid-column type="checkbox" width="50"></e-grid-column>
@@ -65,9 +63,25 @@
             </ejs-grid>
 
             <div class="row d-flex justify-content-end" style="margin-top: 50px">
-                <button class="btn-register" type="submit">Register</button>
+                <button id="btn_register" class="btn-register" type="submit">REGISTER</button>
             </div>
         </div>
     </div>
+
+    <input id="selectedLecturers" asp-for="SelectedLecturersList" hidden />
 </form>
+
+<script>
+    document.getElementById('btn_register').onclick = () => {
+        var grid = document.getElementById("Grid").ej2_instances[0];
+
+        if (grid.getSelectedRecords().length <= 4) {
+            var myJSON = JSON.stringify(grid.getSelectedRecords());
+
+            document.getElementById('selectedLecturers').value = myJSON;
+        }
+        else
+            alert('Maximum 5 members for one topic !');
+    }
+</script>
 

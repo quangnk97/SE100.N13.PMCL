@@ -29,7 +29,7 @@ namespace QuanLyDeTai.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=.;Database=QLDT_Db;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-HD3L4EO;Database=QLDT_Db;Trusted_Connection=True;");
             }
         }
 
@@ -38,7 +38,7 @@ namespace QuanLyDeTai.Models
             modelBuilder.Entity<Assess>(entity =>
             {
                 entity.HasKey(e => new { e.AssessmentId, e.LecturerId, e.TopicId })
-                    .HasName("PK__ASSESS__848E5DA0B4395153");
+                    .HasName("PK__ASSESS__848E5DA08BCA3908");
 
                 entity.ToTable("ASSESS");
 
@@ -137,6 +137,10 @@ namespace QuanLyDeTai.Models
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
+                entity.Property(e => e.PhoneNumber)
+                    .HasMaxLength(15)
+                    .IsUnicode(false);
+
                 entity.HasOne(d => d.Faculty)
                     .WithMany(p => p.Lecturers)
                     .HasForeignKey(d => d.FacultyId)
@@ -146,7 +150,7 @@ namespace QuanLyDeTai.Models
             modelBuilder.Entity<Register>(entity =>
             {
                 entity.HasKey(e => new { e.LecturerId, e.TopicId })
-                    .HasName("PK__REGISTER__9A5A59EA04BC708A");
+                    .HasName("PK__REGISTER__9A5A59EAF0D3C3CF");
 
                 entity.ToTable("REGISTER");
 
@@ -202,6 +206,10 @@ namespace QuanLyDeTai.Models
                 entity.Property(e => e.Comment)
                     .HasMaxLength(200)
                     .IsUnicode(false);
+
+                entity.Property(e => e.IsCancelled).HasColumnName("isCancelled");
+
+                entity.Property(e => e.IsExtended).HasColumnName("isExtended");
 
                 entity.Property(e => e.LevelTopic)
                     .HasMaxLength(20)

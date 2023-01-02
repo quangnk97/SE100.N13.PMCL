@@ -25,7 +25,7 @@ namespace QuanLyDeTai.Models
         public bool? Approved { get; set; }
         public string? Reason { get; set; }
         public bool? IsExtended { get; set; }
-        public bool? IsCancelled { get; set; }
+        public int? IsCancelled { get; set; }
         public int? RequestTime { get; set; }
 
         public virtual Assessment? Assessment { get; set; }

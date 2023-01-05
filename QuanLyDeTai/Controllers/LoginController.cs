@@ -35,7 +35,9 @@ namespace QuanLyDeTai.Controllers
                 {
                     if (lecturer.Password == "daylamatkhaudanhchoadmin")
                     {
+                        GlobalVariables.CurrentLoggedInUser = new Lecturer();
                         GlobalVariables.CurrentLoggedInUser.LecturerId = 0;
+
                         return RedirectToAction(nameof(Index), "Home", new { Area = "Admin" });
                     }    
                     else

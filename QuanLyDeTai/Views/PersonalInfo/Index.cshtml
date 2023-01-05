@@ -5,67 +5,92 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="row m-b-10">
-    <div class="col-xl-12" style="border: 2px solid gray; border-radius: 20px">
-        <div class="row" style="padding: 20px">
-            <div class="col-xl-3">
-                <img src="@Model.Avatar" style="border-radius: 300px; width: 200px; height: 200px; object-fit: cover" />
+<form asp-action="ModifyPersonalInfo" method="post">
+    <input asp-for="LecturerId" type="text" value="@Model.LecturerId" hidden />
+    <div class="row m-b-10">
+        <div class="col-xl-12" style="border: 2px solid gray; border-radius: 20px">
+            <div class="row" style="padding: 20px">
+                <div class="col-xl-3">
+                    <img src="@Model.Avatar" style="border-radius: 300px; width: 200px; height: 200px; object-fit: cover" />
+                </div>
+                <div class="col-xl-8 d-flex flex-column justify-content-center">
+                    <span style="font-size: 30px; font-weight: 500; color: black">@Model.LecturerName</span>
+                    <span style="font-size: 20px; color: black">Role: Lecturer</span>
+                </div>
             </div>
-            <div class="col-xl-8 d-flex flex-column justify-content-center">
-                <span style="font-size: 30px; font-weight: 500; color: black">@Model.LecturerName</span>
-                <span style="font-size: 20px; color: black">Role: Lecturer</span>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-xl-5" style="border: 2px solid gray; border-radius: 20px; padding: 20px">
-        <div class="row" style="margin-bottom: 20px">
-            <span style="font-size: 23px; font-weight: 700; color: black">Information</span>
-        </div>
-        <div class="row d-flex justify-content-center align-items-center" style="margin-bottom: 20px">
-            <div class="col-xl-4">
-                <span style="font-size: 16px; font-weight: 500; color: black">Name</span>
-            </div>
-            <div class="col-xl-8">
-                <input type="text" class="input-personal-info" value="@Model.LecturerName" />
-            </div>
-        </div>
-        <div class="row d-flex justify-content-center align-items-center" style="margin-bottom: 20px">
-            <div class="col-xl-4">
-                <span style="font-size: 16px; font-weight: 500; color: black">Date of birth</span>
-            </div>
-            <div class="col-xl-8">
-                <input type="date" class="input-personal-info" value="@Model.Dob.Value.ToString("yyyy-MM-dd")" />
-            </div>
-        </div>
-        <div class="row d-flex justify-content-center align-items-center" style="margin-bottom: 20px">
-            <div class="col-xl-4">
-                <span style="font-size: 16px; font-weight: 500; color: black">Email</span>
-            </div>
-            <div class="col-xl-8">
-                <input type="email" class="input-personal-info" value="@Model.Email" />
-            </div>
-        </div>
-        <div class="row d-flex justify-content-center align-items-center" style="margin-bottom: 20px">
-            <div class="col-xl-4">
-                <span style="font-size: 16px; font-weight: 500; color: black">Phone number</span>
-            </div>
-            <div class="col-xl-8">
-                <input type="text" class="input-personal-info" value="@Model.PhoneNumber" />
-            </div>
-        </div>
-        <div class="row d-flex flex-row justify-content-end">
-            <button class="btn-personal-info-custom">Edit</button>
-            <button class="btn-personal-info-custom">Cancel</button>
         </div>
     </div>
 
-    <div class="col-xl-7" style="padding-left: 25px">
-        <div class="row" style="border: 2px solid gray; border-radius: 20px; height: 100%; padding: 20px">
-            <span style="font-size: 23px; font-weight: 700; color: black">Topics</span>
+    <div class="row">
+        <div class="col-xl-5" style="border: 2px solid gray; border-radius: 20px; padding: 20px">
+            <div class="row" style="margin-bottom: 20px">
+                <span style="font-size: 23px; font-weight: 700; color: black">Information</span>
+            </div>
+            <div class="row d-flex justify-content-center align-items-center" style="margin-bottom: 20px">
+                <div class="col-xl-4">
+                    <span style="font-size: 16px; font-weight: 500; color: black">Name</span>
+                </div>
+                <div class="col-xl-8">
+                    <input asp-for="LecturerName" type="text" class="input-personal-info" value="@Model.LecturerName" />
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center align-items-center" style="margin-bottom: 20px">
+                <div class="col-xl-4">
+                    <span style="font-size: 16px; font-weight: 500; color: black">Date of birth</span>
+                </div>
+                <div class="col-xl-8">
+                    <input asp-for="Dob" type="date" class="input-personal-info" value="@Model.Dob.Value.ToString("yyyy-MM-dd")" />
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center align-items-center" style="margin-bottom: 20px">
+                <div class="col-xl-4">
+                    <span style="font-size: 16px; font-weight: 500; color: black">Email</span>
+                </div>
+                <div class="col-xl-8">
+                    <input asp-for="Email" type="email" class="input-personal-info" value="@Model.Email" />
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center align-items-center" style="margin-bottom: 20px">
+                <div class="col-xl-4">
+                    <span style="font-size: 16px; font-weight: 500; color: black">Phone number</span>
+                </div>
+                <div class="col-xl-8">
+                    <input asp-for="PhoneNumber" type="text" class="input-personal-info" value="@Model.PhoneNumber" />
+                </div>
+            </div>
+            <div class="row d-flex flex-row justify-content-end">
+                <button type="submit" class="btn-personal-info-custom" id="editPersonalInfo" hidden>Edit</button>
+                <button type="button" class="btn-personal-info-custom" id="cancelPersonalInfo" hidden>Cancel</button>
+            </div>
+        </div>
+
+        <div class="col-xl-7" style="padding-left: 25px">
+            <div class="row" style="border: 2px solid gray; border-radius: 20px; height: 100%; padding: 20px">
+                <span style="font-size: 23px; font-weight: 700; color: black">Topics</span>
+            </div>
+            @if (TempData["abc"] != null)
+            {
+                <div class="d-flex justify-content-start align-items-center" style="margin-top: 10px">
+                    <span style="color:red">@TempData["abc"].ToString()</span>
+                </div>
+            }
         </div>
     </div>
-</div>
+</form>
+
+<script>
+    var listInput = document.querySelectorAll('input');
+    for (let i = 0; i < listInput.length; i++)
+    {
+        listInput[i].onfocus = () => {
+            document.getElementById('editPersonalInfo').hidden = false;
+            document.getElementById('cancelPersonalInfo').hidden = false;
+        }
+    } 
+
+    document.getElementById('cancelPersonalInfo').onclick = () => {
+        document.getElementById('editPersonalInfo').hidden = true;
+        document.getElementById('cancelPersonalInfo').hidden = true;
+    }
+</script>
 

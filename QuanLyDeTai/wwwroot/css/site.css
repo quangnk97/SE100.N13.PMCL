@@ -160,3 +160,141 @@ body {
 #togglePassword {
     cursor: pointer;
 }
+
+/* Register topic popup */
+.overlayConfirmRegisterTopicDialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(128, 128, 128, 0.5);
+}
+
+.custom-register-topic-popup {
+    display: flex;
+    flex-direction: column;
+    border: 7px solid #3184FF;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: white;
+    align-items: center;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(64,64,64,0.29);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(64,64,64,0.29);
+    box-shadow: 10px 10px 5px 0px rgba(64,64,64,0.29);
+}
+
+#confirmRegisterTopicButton {
+    background-color: #3184FF;
+    margin-right: 20px;
+}
+#cancelRegisterTopicButton {
+    background-color: red;
+}
+#confirmRegisterTopicButton, #cancelRegisterTopicButton {
+    font-size: 18px;
+    font-weight: 300;
+    color: white;
+    padding: 15px 35px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+#confirmRegisterTopicButton:hover {
+    background-color: royalblue;
+}
+#cancelRegisterTopicButton:hover {
+    background-color: darkred;
+}
+
+/* Extend time limit popup */
+.overlayConfirmExtendTimeLimitDialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(128, 128, 128, 0.5);
+}
+
+.custom-extend-topic-popup {
+    display: flex;
+    flex-direction: column;
+    border: 7px solid #3184FF;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: white;
+    align-items: center;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(64,64,64,0.29);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(64,64,64,0.29);
+    box-shadow: 10px 10px 5px 0px rgba(64,64,64,0.29);
+}
+
+#confirmExtendTimeLimitButton {
+    background-color: #3184FF;
+    margin-right: 20px;
+}
+#cancelExtendTimeLimitButton {
+    background-color: red;
+}
+#confirmExtendTimeLimitButton, #cancelExtendTimeLimitButton {
+    font-size: 18px;
+    font-weight: 300;
+    color: white;
+    padding: 15px 35px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+#confirmExtendTimeLimitButton:hover {
+    background-color: royalblue;
+}
+#cancelExtendTimeLimitButton:hover {
+    background-color: darkred;
+}
+
+/* Cancel topic popup */
+.overlayConfirmCancelTopicDialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(128, 128, 128, 0.5);
+}
+
+.custom-cancel-topic-popup {
+    display: flex;
+    flex-direction: column;
+    border: 7px solid #3184FF;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: white;
+    align-items: center;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(64,64,64,0.29);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(64,64,64,0.29);
+    box-shadow: 10px 10px 5px 0px rgba(64,64,64,0.29);
+}
+
+#confirmCancelTopicButton {
+    background-color: #3184FF;
+    margin-right: 20px;
+}
+#cancelCancelTopicButton {
+    background-color: red;
+}
+#confirmCancelTopicButton, #cancelCancelTopicButton {
+    font-size: 18px;
+    font-weight: 300;
+    color: white;
+    padding: 15px 35px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+#confirmCancelTopicButton:hover {
+    background-color: royalblue;
+}
+#cancelCancelTopicButton:hover {
+    background-color: darkred;
+}

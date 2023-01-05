@@ -11,11 +11,11 @@
     </div>
 </div>
 
-<form asp-action="Register" method="post">
+<form id="registerTopicForm" asp-action="Register" method="post">
     <div class="row m-b-10" style="margin-bottom: 50px !important">
         <div class="col-xl-12 d-flex flex-column">
-            <span style="color: black; font-size: 16px; font-weight: 700">Name</span>
-            <input class="tb-custom" placeholder="Input name of topic" asp-for="TopicModel.TopicName" />
+            <span style="color: black; font-size: 16px; font-weight: 700">Name <span style="color: red">*</span></span>
+            <input class="tb-custom" placeholder="Input name of topic" asp-for="TopicModel.TopicName" id="registerTopicName" />
             @if (TempData["TopicNameEmpty"] != null)
             {
                 <div class="d-flex justify-content-start align-items-center" style="margin-top: 10px">
@@ -27,8 +27,8 @@
 
     <div class="row m-b-10" style="margin-bottom: 50px !important">
         <div class="col-xl-6 d-flex flex-column">
-            <span style="color: black; font-size: 16px; font-weight: 700">Research field</span>
-            <input class="tb-custom" placeholder="Input research field" asp-for="TopicModel.ResearchField" />
+            <span style="color: black; font-size: 16px; font-weight: 700">Research field <span style="color: red">*</span></span>
+            <input class="tb-custom" placeholder="Input research field" asp-for="TopicModel.ResearchField" id="registerTopicResearchField" />
             @if (TempData["ResearchFieldEmpty"] != null)
             {
                 <div class="d-flex justify-content-start align-items-center" style="margin-top: 10px">
@@ -38,7 +38,7 @@
         </div>
         <div class="col-xl-6 d-flex flex-column">
             <span style="color: black; font-size: 16px; font-weight: 700">Level</span>
-            <select asp-for="TopicModel.LevelTopic" name="TopicModel.LevelTopic" class="tb-custom" id="research_field">
+            <select asp-for="TopicModel.LevelTopic" name="TopicModel.LevelTopic" class="tb-custom" id="registerTopicLevel">
                 <option value="Faculty" selected>Faculty</option>
                 <option value="School">School</option>
             </select>
@@ -47,7 +47,9 @@
 
     <div class="row m-b-10" style="margin-bottom: 50px !important">
         <div class="col-xl-12 d-flex flex-column">
-            <span style="color: black; font-size: 16px; font-weight: 700">Members</span>
+            <span style="color: black; font-size: 16px; font-weight: 700">Members 
+                <span style="font-size: 14px; font-weight: 300; font-style: italic">(Maximum 5 members for one topic)</span>
+            </span>
             <ejs-grid id="Grid" dataSource="@ViewBag.LecturersList" allowSelection="true" allowPaging="true" toolbar="@(new List<string>() { "Search"})" allowSorting="true">
                 <e-grid-selectionsettings checkboxMode="ResetOnRowClick" type="Multiple"></e-grid-selectionsettings>
                 <e-grid-pagesettings pageSize="10"></e-grid-pagesettings>
@@ -61,6 +63,12 @@
                     <e-grid-column type="checkbox" width="50"></e-grid-column>
                 </e-grid-columns>
             </ejs-grid>
+            @if (TempData["TopicMembersInvalid"] != null)
+            {
+                <div class="d-flex justify-content-start align-items-center" style="margin-top: 10px">
+                    <span style="color:red">@TempData["TopicMembersInvalid"].ToString()</span>
+                </div>
+            }
 
             <div class="row d-flex justify-content-end" style="margin-top: 50px">
                 <button id="btn_register" class="btn-register" type="submit">REGISTER</button>
@@ -71,17 +79,66 @@
     <input id="selectedLecturers" asp-for="SelectedLecturersList" hidden />
 </form>
 
+<div class="overlayConfirmRegisterTopicDialog" id="confirmRegisterTopicDialog" hidden>
+    <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%)">
+        <div class="custom-register-topic-popup">
+            <i class="fa-regular fa-circle-question" style="font-size: 70px; color: #3184FF"></i>
+            <h2 style="margin-top: 20px; font-size: 25px; font-weight: 500">
+                Confirm register topic
+            </h2>
+            <div style="margin-bottom: 20px; width: 100%" class="d-flex flex-column justify-content-start">
+                <span id="confirmRegisterTopicName" style="font-size: 18px; font-weight: 300"></span>
+                <span id="confirmRegisterTopicResearchField" style="font-size: 18px; font-weight: 300"></span>
+                <span id="confirmRegisterTopicLevel" style="font-size: 18px; font-weight: 300"></span>
+                <span style="font-size: 18px; font-weight: 300">* Members:</span>
+                <span style="font-size: 16px; font-weight: 300; margin-left: 30px">@GlobalVariables.CurrentLoggedInUser.LecturerCode - @GlobalVariables.CurrentLoggedInUser.LecturerName - Topic Manager</span>
+                <span id="confirmRegisterTopicMembers" style="font-size: 16px; font-weight: 300; margin-left: 30px"></span>
+            </div>
+
+            <div class="buttons">
+                <button type="button" id="confirmRegisterTopicButton">Yes</button>
+                <button type="button" id="cancelRegisterTopicButton">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
+    document.getElementById('registerTopicForm').onsubmit = (e) => {
+        e.preventDefault();
+        document.getElementById('confirmRegisterTopicDialog').hidden = false;
+        document.getElementById('confirmRegisterTopicName').innerText = "* Topic name: " + document.getElementById('registerTopicName').value;
+        document.getElementById('confirmRegisterTopicResearchField').innerText = "* Research field: " + document.getElementById('registerTopicResearchField').value;
+        document.getElementById('confirmRegisterTopicLevel').innerText = "* Level: " + document.getElementById('registerTopicLevel').options[document.getElementById('registerTopicLevel').selectedIndex].text;
+
+        document.getElementById('confirmRegisterTopicMembers').innerText = "";
+        var gridTemp = document.getElementById("Grid").ej2_instances[0];
+        var gridList = gridTemp.getSelectedRecords();
+        for (let i = 0; i < gridList.length; i++) {
+            document.getElementById('confirmRegisterTopicMembers').innerText = document.getElementById('confirmRegisterTopicMembers').innerText + gridList[i].LecturerCode + " - " + gridList[i].LecturerName + " - Author" + "\n";
+        }
+    }
+
+    document.getElementById('confirmRegisterTopicButton').onclick = () => {
+        document.getElementById('confirmRegisterTopicDialog').hidden = true;
+        document.getElementById('registerTopicForm').submit();
+    }
+
+    document.getElementById('cancelRegisterTopicButton').onclick = () => {
+        document.getElementById('confirmRegisterTopicDialog').hidden = true;
+    }
+
     document.getElementById('btn_register').onclick = () => {
         var grid = document.getElementById("Grid").ej2_instances[0];
 
-        if (grid.getSelectedRecords().length <= 4) {
-            var myJSON = JSON.stringify(grid.getSelectedRecords());
+        var myJSON = JSON.stringify(grid.getSelectedRecords());
 
-            document.getElementById('selectedLecturers').value = myJSON;
-        }
-        else
-            alert('Maximum 5 members for one topic !');
+        document.getElementById('selectedLecturers').value = myJSON;
+        //if (grid.getSelectedRecords().length <= 4) {
+            
+        //}
+        //else
+        //    alert('Maximum 5 members for one topic !');
     }
 </script>
 

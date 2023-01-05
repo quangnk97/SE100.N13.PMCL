@@ -40,24 +40,24 @@ namespace QuanLyDeTai.Controllers
             {
                 if (String.IsNullOrEmpty(topic.TopicModel.ResearchField))
                 {
-                    TempData["TopicNameEmpty"] = "Required.";
-                    TempData["ResearchFieldEmpty"] = "Required.";
+                    TempData["TopicNameEmpty"] = "Topic name required.";
+                    TempData["ResearchFieldEmpty"] = "Research field required.";
                 }
                 else
                 {
-                    TempData["TopicNameEmpty"] = "Required.";
+                    TempData["TopicNameEmpty"] = "Topic name required.";
                 }
             }
             else if (String.IsNullOrEmpty(topic.TopicModel.ResearchField))
             {
                 if (String.IsNullOrEmpty(topic.TopicModel.TopicName))
                 {
-                    TempData["TopicNameEmpty"] = "Required.";
-                    TempData["ResearchFieldEmpty"] = "Required.";
+                    TempData["TopicNameEmpty"] = "Topic name required.";
+                    TempData["ResearchFieldEmpty"] = "Research field required.";
                 }
                 else
                 {
-                    TempData["ResearchFieldEmpty"] = "Required.";
+                    TempData["ResearchFieldEmpty"] = "Research field required.";
                 }
             }
             else
@@ -73,7 +73,7 @@ namespace QuanLyDeTai.Controllers
                         topic.TopicModel.Duration = 365;
                         topic.TopicModel.Approved = false;
                         topic.TopicModel.IsExtended = false;
-                        topic.TopicModel.IsCancelled = false;
+                        topic.TopicModel.IsCancelled = 0;
 
                         _context.Add(topic.TopicModel);
                         await _context.SaveChangesAsync();
@@ -109,7 +109,7 @@ namespace QuanLyDeTai.Controllers
                         topic.TopicModel.Duration = 365;
                         topic.TopicModel.Approved = false;
                         topic.TopicModel.IsExtended = false;
-                        topic.TopicModel.IsCancelled = false;
+                        topic.TopicModel.IsCancelled = 0;
 
                         _context.Add(topic.TopicModel);
                         await _context.SaveChangesAsync();
@@ -127,6 +127,8 @@ namespace QuanLyDeTai.Controllers
                             await _context.SaveChangesAsync();
                         }
                     }    
+                    else
+                        TempData["TopicMembersInvalid"] = "Maximum 5 members for one topic.";
                 }
             }
             return RedirectToAction(nameof(Index));

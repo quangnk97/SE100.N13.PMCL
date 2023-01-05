@@ -96,6 +96,9 @@ namespace QuanLyDeTai.Models
             {
                 entity.ToTable("LECTURER");
 
+                entity.HasIndex(e => e.LecturerCode, "Unique_LecturerCode")
+                    .IsUnique();
+
                 entity.Property(e => e.LecturerId).HasColumnName("LecturerID");
 
                 entity.Property(e => e.Avatar)
@@ -135,6 +138,10 @@ namespace QuanLyDeTai.Models
 
                 entity.Property(e => e.Password)
                     .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PhoneNumber)
+                    .HasMaxLength(15)
                     .IsUnicode(false);
 
                 entity.HasOne(d => d.Faculty)

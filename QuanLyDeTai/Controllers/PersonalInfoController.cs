@@ -17,5 +17,23 @@ namespace QuanLyDeTai.Controllers
         {
             return View(_context.Lecturers.Find(GlobalVariables.CurrentLoggedInUser.LecturerId));
         }
+
+        [HttpPost]
+        public async Task<IActionResult> ModifyPersonalInfo([Bind] Lecturer lecturer)
+        {
+            var lecturerTemp = await _context.Lecturers.FindAsync(lecturer.LecturerId);
+
+            if (lecturerTemp != null)
+            {
+                lecturerTemp.LecturerName = lecturer.LecturerName;
+                lecturerTemp.Dob = lecturer.Dob;
+                lecturerTemp.Email = lecturer.Email;
+                lecturerTemp.PhoneNumber = lecturer.PhoneNumber;
+                _context.Update(lecturerTemp);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Text.Json.Serialization;
 
 namespace QuanLyDeTai.Models
 {
@@ -19,7 +17,7 @@ namespace QuanLyDeTai.Models
         public DateTime? Dob { get; set; }
         public string? Major { get; set; }
         public string? Email { get; set; }
-        public long? PhoneNumber { get; set; }
+        public string? PhoneNumber { get; set; }
         public string? Contract { get; set; }
         public string? LevelCurrent { get; set; }
         public string? FacultyId { get; set; }

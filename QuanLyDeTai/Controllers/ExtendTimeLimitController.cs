@@ -15,16 +15,18 @@ namespace QuanLyDeTai.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var RegistersList = _context.Registers.Where(x => x.LecturerId == GlobalVariables.CurrentLoggedInUser.LecturerId && x.PositionTopic == "Topic Manager").ToList();
+            var RegistersListExtend = _context.Registers.Where(x => x.LecturerId == GlobalVariables.CurrentLoggedInUser.LecturerId && x.PositionTopic == "Topic Manager").ToList();
 
-            List<Topic> TopicsList = new List<Topic>();
-            foreach (var item in RegistersList)
+            List<Topic> TopicsListExtend = new List<Topic>();
+            foreach (var item in RegistersListExtend)
             {
-                TopicsList.Add(_context.Topics.FirstOrDefault(x => x.TopicId == item.TopicId));
+                var temp = _context.Topics.FirstOrDefault(x => x.TopicId == item.TopicId);
+                if (temp.Approved == true && temp.IsExtended == false && temp.IsCancelled == 0)
+                    TopicsListExtend.Add(temp);
             }    
 
-            ViewData["TopicsList"] = new SelectList(TopicsList, "TopicId", "TopicName");
-            ViewData["RegisteredYearList"] = new SelectList(TopicsList, "TopicId", "RegisteredYear");
+            ViewData["TopicsListExtend"] = new SelectList(TopicsListExtend, "TopicId", "TopicName");
+            ViewData["RegisteredYearListExtend"] = new SelectList(TopicsListExtend, "TopicId", "RegisteredYear");
 
             return View();
         }
@@ -38,21 +40,15 @@ namespace QuanLyDeTai.Controllers
 
                 if (topicTemp != null)
                 {
-                    if (topicTemp.IsExtended == false)
-                    {
-                        topicTemp.IsExtended = true;
-                        topicTemp.RequestTime = topic.RequestTime;
-                        _context.Update(topicTemp);
-                        await _context.SaveChangesAsync();
-                    }    
-                    else
-                    {
-                        TempData["abc"] = "This topic has already been extended.";
-                    }    
+                    topicTemp.IsExtended = true;
+                    topicTemp.RequestTime = topic.RequestTime;
+                    _context.Update(topicTemp);
+                    await _context.SaveChangesAsync();
                 }
             }
             else
             {
+                var topicTemp = await _context.Topics.FindAsync(topic.TopicId);
                 TempData["abc"] = "Topic doesn't exist.";
             }
 

@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<form asp-action="ModifyPersonalInfo" method="post">
+<form id="PersonalInfoForm" asp-action="ModifyPersonalInfo" method="post">
     <input asp-for="LecturerId" type="text" value="@Model.LecturerId" hidden />
     <div class="row m-b-10">
         <div class="col-xl-12" style="border: 2px solid gray; border-radius: 20px">
@@ -26,12 +26,18 @@
             <div class="row" style="margin-bottom: 20px">
                 <span style="font-size: 23px; font-weight: 700; color: black">Information</span>
             </div>
-            <div class="row d-flex justify-content-center align-items-center" style="margin-bottom: 20px">
+            <div class="row d-flex justify-content-center align-items-center" style="margin-bottom: 8px">
                 <div class="col-xl-4">
                     <span style="font-size: 16px; font-weight: 500; color: black">Name</span>
                 </div>
                 <div class="col-xl-8">
-                    <input asp-for="LecturerName" type="text" class="input-personal-info" value="@Model.LecturerName" />
+                    <input asp-for="LecturerName" type="text" class="input-personal-info" value="@Model.LecturerName" id="nameInput" />
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center align-items-center" style="margin-bottom: 12px">
+                <div class="col-xl-4"></div>
+                <div class="col-xl-8">
+                    <span id="nameInvalid" style="color:red; margin-left: 5px" hidden>Invalid name.</span>
                 </div>
             </div>
             <div class="row d-flex justify-content-center align-items-center" style="margin-bottom: 20px">
@@ -39,46 +45,78 @@
                     <span style="font-size: 16px; font-weight: 500; color: black">Date of birth</span>
                 </div>
                 <div class="col-xl-8">
-                    <input asp-for="Dob" type="date" class="input-personal-info" value="@Model.Dob.Value.ToString("yyyy-MM-dd")" />
+                    <input asp-for="Dob" type="date" class="input-personal-info" value="@Model.Dob.Value.ToString("yyyy-MM-dd")" id="dobInput" />
                 </div>
             </div>
-            <div class="row d-flex justify-content-center align-items-center" style="margin-bottom: 20px">
+            <div class="row d-flex justify-content-center align-items-center" style="margin-bottom: 8px">
                 <div class="col-xl-4">
                     <span style="font-size: 16px; font-weight: 500; color: black">Email</span>
                 </div>
                 <div class="col-xl-8">
-                    <input asp-for="Email" type="email" class="input-personal-info" value="@Model.Email" />
+                    <input asp-for="Email" type="email" class="input-personal-info" value="@Model.Email" id="emailInput" />
                 </div>
             </div>
-            <div class="row d-flex justify-content-center align-items-center" style="margin-bottom: 20px">
+            <div class="row d-flex justify-content-center align-items-center" style="margin-bottom: 12px">
+                <div class="col-xl-4"></div>
+                <div class="col-xl-8">
+                    <span id="emailInvalid" style="color:red; margin-left: 5px" hidden>Invalid email.</span>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center align-items-center" style="margin-bottom: 8px">
                 <div class="col-xl-4">
                     <span style="font-size: 16px; font-weight: 500; color: black">Phone number</span>
                 </div>
                 <div class="col-xl-8">
-                    <input asp-for="PhoneNumber" type="text" class="input-personal-info" value="@Model.PhoneNumber" />
+                    <input asp-for="PhoneNumber" type="text" class="input-personal-info" value="@Model.PhoneNumber" id="phoneNumInput" />
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center align-items-center" style="margin-bottom: 12px">
+                <div class="col-xl-4"></div>
+                <div class="col-xl-8">
+                    <span id="phoneNumInvalid" style="color:red; margin-left: 5px" hidden>Invalid phone number.</span>
                 </div>
             </div>
             <div class="row d-flex flex-row justify-content-end">
-                <button type="submit" class="btn-personal-info-custom" id="editPersonalInfo" hidden>Edit</button>
+                <button type="button" class="btn-personal-info-custom" id="editPersonalInfo" hidden>Edit</button>
                 <button type="button" class="btn-personal-info-custom" id="cancelPersonalInfo" hidden>Cancel</button>
             </div>
         </div>
 
         <div class="col-xl-7" style="padding-left: 25px">
             <div class="row" style="border: 2px solid gray; border-radius: 20px; height: 100%; padding: 20px">
-                <span style="font-size: 23px; font-weight: 700; color: black">Topics</span>
+                <span style="font-size: 23px; font-weight: 700; color: black; margin-bottom: 20px">Topics</span>
+                <ejs-grid id="GridTopics" dataSource="@ViewBag.TopicsListForPersonalInfo" allowPaging="true" allowSorting="true" style="border: none !important">
+                    <e-grid-pagesettings pageSize="5"></e-grid-pagesettings>
+                    <e-grid-columns>
+                        <e-grid-column field="TopicName" headerText="Name" width="130"></e-grid-column>
+                        <e-grid-column field="RegisteredYear" headerText="Registered Year" width="140"></e-grid-column>
+                        <e-grid-column field="ResearchField" headerText="Research Field" width="140"></e-grid-column>
+                        <e-grid-column field="LevelTopic" headerText="Level" width="80"></e-grid-column>
+                    </e-grid-columns>
+                </ejs-grid>
             </div>
-            @if (TempData["abc"] != null)
-            {
-                <div class="d-flex justify-content-start align-items-center" style="margin-top: 10px">
-                    <span style="color:red">@TempData["abc"].ToString()</span>
-                </div>
-            }
         </div>
     </div>
 </form>
 
+<div class="overlayConfirmEditPerInfoDialog" id="confirmEditPerInfoDialog" hidden>
+    <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%)">
+        <div class="custom-edit-perinfo-popup">
+            <i class="fa-regular fa-circle-check" style="font-size: 70px; color: #3184FF"></i>
+            <h2 style="margin-top: 20px; font-size: 25px; font-weight: 500">
+                Success
+            </h2>
+            <span style="font-size: 20px; font-weight: 300; margin-bottom: 20px">Your personal information has been updated</span>
+        </div>
+    </div>
+</div>
+
 <script>
+    const constName = document.getElementById('nameInput').value;
+    const constEmail = document.getElementById('emailInput').value;
+    const constDOB = document.getElementById('dobInput').value;
+    const constPhoneNum = document.getElementById('phoneNumInput').value;
+
     var listInput = document.querySelectorAll('input');
     for (let i = 0; i < listInput.length; i++)
     {
@@ -88,9 +126,60 @@
         }
     } 
 
+    document.getElementById('editPersonalInfo').onclick = () => {
+
+        // Check input
+        var reName = /^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s\W|_]+$/;
+        var Name = document.getElementById('nameInput').value;
+
+        var reEmail = /^[a-z0-9_\.]{1,32}@@[a-z0-9]{2,10}(\.[a-z0-9]{2,10}){1,}$/;
+        var Email = document.getElementById('emailInput').value;
+
+        var rePhoneNum = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
+        var PhoneNum = document.getElementById('phoneNumInput').value;
+
+        // Display validation
+        if (reName.test(Name) == true && reEmail.test(Email) == true && rePhoneNum.test(PhoneNum) == true)
+        {
+            document.getElementById('nameInvalid').hidden = true;
+            document.getElementById('emailInvalid').hidden = true;
+            document.getElementById('phoneNumInvalid').hidden = true;
+
+            document.getElementById('confirmEditPerInfoDialog').hidden = false;
+            
+            setTimeout(() => { document.getElementById('PersonalInfoForm').submit(); }, 1500);
+        }
+        else
+        {
+            if (reName.test(Name) == false) 
+                document.getElementById('nameInvalid').hidden = false;
+            else
+                document.getElementById('nameInvalid').hidden = true;
+
+            if (reEmail.test(Email) == false) 
+                document.getElementById('emailInvalid').hidden = false;
+            else
+                document.getElementById('emailInvalid').hidden = true;
+
+            if (rePhoneNum.test(PhoneNum) == false) 
+                document.getElementById('phoneNumInvalid').hidden = false;
+            else
+                document.getElementById('phoneNumInvalid').hidden = true;
+        }
+    }
+
     document.getElementById('cancelPersonalInfo').onclick = () => {
         document.getElementById('editPersonalInfo').hidden = true;
         document.getElementById('cancelPersonalInfo').hidden = true;
+
+        document.getElementById('nameInvalid').hidden = true;
+        document.getElementById('emailInvalid').hidden = true;
+        document.getElementById('phoneNumInvalid').hidden = true;
+
+        document.getElementById('nameInput').value = constName;
+        document.getElementById('emailInput').value = constEmail;
+        document.getElementById('dobInput').value = constDOB;
+        document.getElementById('phoneNumInput').value = constPhoneNum;
     }
 </script>
 

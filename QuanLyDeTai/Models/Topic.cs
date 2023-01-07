@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace QuanLyDeTai.Models
 {
@@ -31,6 +33,8 @@ namespace QuanLyDeTai.Models
         public virtual Assessment? Assessment { get; set; }
         public virtual Status? Status { get; set; }
         public virtual ICollection<Assess> Assesses { get; set; }
+        [JsonIgnore]
+        [IgnoreDataMember]
         public virtual ICollection<Register> Registers { get; set; }
     }
 }

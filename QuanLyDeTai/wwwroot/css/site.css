@@ -298,3 +298,26 @@ body {
 #cancelCancelTopicButton:hover {
     background-color: darkred;
 }
+
+/* Personal Info popup */
+.overlayConfirmEditPerInfoDialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(128, 128, 128, 0.5);
+}
+
+.custom-edit-perinfo-popup {
+    display: flex;
+    flex-direction: column;
+    border: 7px solid #3184FF;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: white;
+    align-items: center;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(64,64,64,0.29);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(64,64,64,0.29);
+    box-shadow: 10px 10px 5px 0px rgba(64,64,64,0.29);
+}

@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using QuanLyDeTai.Models;
 
 namespace QuanLyDeTai.Controllers
@@ -15,6 +17,18 @@ namespace QuanLyDeTai.Controllers
 
         public async Task<IActionResult> Index()
         {
+            var RegistersList = _context.Registers.Where(x => x.LecturerId == GlobalVariables.CurrentLoggedInUser.LecturerId).ToList();
+
+            List<Topic> TopicsList = new List<Topic>();
+            foreach (var item in RegistersList)
+            {
+                var temp = _context.Topics.FirstOrDefault(x => x.TopicId == item.TopicId);
+                if (temp.Approved == true && temp.IsCancelled == 0)
+                    TopicsList.Add(temp);
+            }
+
+            ViewBag.TopicsListForPersonalInfo = TopicsList;
+
             return View(_context.Lecturers.Find(GlobalVariables.CurrentLoggedInUser.LecturerId));
         }
 

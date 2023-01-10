@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using QuanLyDeTai.Models;
+using System.Collections.Generic;
 
 namespace QuanLyDeTai.Areas.Admin.Controllers
 {
@@ -23,7 +24,8 @@ namespace QuanLyDeTai.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             var qLDT_DbContext = _context.Topics.Include(t => t.Assessment).Include(t => t.Status);
-            return View(await qLDT_DbContext.ToListAsync());
+            List<Topic> Topics = await qLDT_DbContext.ToListAsync();
+            return View(Topics);
         }
 
         // GET: Admin/AdminTopics/Details/5

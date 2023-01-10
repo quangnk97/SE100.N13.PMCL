@@ -45,6 +45,8 @@ namespace QuanLyDeTai.Controllers
                 lecturerTemp.PhoneNumber = lecturer.PhoneNumber;
                 _context.Update(lecturerTemp);
                 await _context.SaveChangesAsync();
+
+                GlobalVariables.CurrentLoggedInUser = lecturerTemp;
             }
 
             return RedirectToAction(nameof(Index));

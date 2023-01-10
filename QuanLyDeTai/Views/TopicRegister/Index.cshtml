@@ -72,6 +72,7 @@
 
             <div class="row d-flex justify-content-end" style="margin-top: 50px">
                 <button id="btn_register" class="btn-register" type="submit">REGISTER</button>
+                <span id="can-not-register" style="text-align: right; margin-top: 10px; margin-right: 25px; color: red; font-weight: 500" hidden>Register in November only</span>
             </div>
         </div>
     </div>
@@ -104,6 +105,20 @@
 </div>
 
 <script>
+    const date = new Date();
+    alert(date.getMonth() + 1);
+    if ((date.getMonth() + 1) != 11)
+    {
+        document.getElementById('btn_register').disabled = true;
+        document.getElementById('can-not-register').hidden = false;
+    }
+    else
+    {
+        document.getElementById('btn_register').disabled = false;
+        document.getElementById('can-not-register').hidden = true;
+    }
+
+
     document.getElementById('registerTopicForm').onsubmit = (e) => {
         e.preventDefault();
         document.getElementById('confirmRegisterTopicDialog').hidden = false;

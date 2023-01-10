@@ -1,9 +1,14 @@
 ﻿@using Syncfusion.EJ2
-@model IEnumerable<QuanLyDeTai.Models.Topic>
+@model List<QuanLyDeTai.Models.Topic>
 
 @{
     ViewData["Title"] = "ManageTopics";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+
+    List<Topic> Model_Disapproved = new List<Topic>();
+    foreach (var item in Model) {
+        if (item.Approved == false) { Model_Disapproved.Add(item); }
+    }
 }
 
 <div>
@@ -25,7 +30,7 @@
     </li>
 
     <li class="nav-item fs-5">
-        <a class="nav-link" data-toggle="tab" href="#CANCEL_REQUEST">CANCEL REQUEST</a>
+        <a class="nav-link" data-toggle="tab" href="#CANCELLING_REQUEST">CANCELLING REQUEST</a>
     </li>
 
     <li class="nav-item fs-5">
@@ -49,46 +54,46 @@
                     <thead>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.TopicName)
+                                TopicName
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.RegisteredYear)
+                                RegisteredYear
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.ResearchField)
+                                ResearchField
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.LevelTopic)
+                                LevelTopic
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Duration)
+                                Duration
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.AssessmentDate)
+                                AssessmentDate
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Comment)
+                                Comment
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Rating)
+                                Rating
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Approved)
+                                Approved
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Reason)
+                                Reason
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Assessment)
+                                Assessment
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Status)
+                                Status
                             </th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model)
+                        @foreach (var item in Model_Disapproved)
                         {
                             <tr>
                                 <td>
@@ -150,338 +155,14 @@
     </div>
 
     <div id="EXTENDING_REQUEST" class="tab-pane fade">
-        <form asp-action="Register" method="post">
-            @Html.AntiForgeryToken()
-            <div class="row m-b-10" style="margin-bottom: 50px !important">
-                <div class="col-xl-12 d-flex flex-row justify-content-center mt-5">
-                    <input class="tb-custom" placeholder="Input name of topic"
-                           style="width: 800px; padding: 20px 10px;font-size: 18px" />
-                </div>
-                <table class="table mt-5">
-                    <thead>
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.TopicName)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.RegisteredYear)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.ResearchField)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.LevelTopic)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Duration)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.AssessmentDate)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Comment)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Rating)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Approved)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Reason)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Assessment)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Status)
-                            </th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TopicName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.RegisteredYear)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ResearchField)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.LevelTopic)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Duration)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.AssessmentDate)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Comment)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Rating)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Approved)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Reason)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Assessment.AssessmentId)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Status.StatusId)
-                                </td>
-                                <td>
-                                    <a asp-action="Edit" asp-route-id="@item.TopicId">Edit</a> |
-                                    <a asp-action="Details" asp-route-id="@item.TopicId">Details</a> |
-                                    <a asp-action="Delete" asp-route-id="@item.TopicId">Delete</a>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="row m-b-10" style="margin-bottom: 50px !important">
-                <div class="col-xl-12 d-flex flex-column">
-                    <div class="row d-flex justify-content-end" style="margin-top: 50px">
-                        <button class="btn-register" type="submit">DECLINE</button>
-                        <button class="btn-register" type="submit">ACCEPT</button>
-                    </div>
-                </div>
-            </div>
-        </form>
+        extending
     </div>
 
-    <div id="CANCEL_REQUEST" class="tab-pane fade">
-        <form asp-action="Register" method="post">
-            @Html.AntiForgeryToken()
-            <div class="row m-b-10" style="margin-bottom: 50px !important">
-                <div class="col-xl-12 d-flex flex-row justify-content-center mt-5">
-                    <input class="tb-custom" placeholder="Input name of topic"
-                           style="width: 800px; padding: 20px 10px;font-size: 18px" />
-                </div>
-                <table class="table mt-5">
-                    <thead>
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.TopicName)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.RegisteredYear)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.ResearchField)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.LevelTopic)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Duration)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.AssessmentDate)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Comment)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Rating)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Approved)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Reason)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Assessment)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Status)
-                            </th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TopicName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.RegisteredYear)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ResearchField)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.LevelTopic)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Duration)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.AssessmentDate)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Comment)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Rating)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Approved)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Reason)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Assessment.AssessmentId)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Status.StatusId)
-                                </td>
-                                <td>
-                                    <a asp-action="Edit" asp-route-id="@item.TopicId">Edit</a> |
-                                    <a asp-action="Details" asp-route-id="@item.TopicId">Details</a> |
-                                    <a asp-action="Delete" asp-route-id="@item.TopicId">Delete</a>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="row m-b-10" style="margin-bottom: 50px !important">
-                <div class="col-xl-12 d-flex flex-column">
-                    <div class="row d-flex justify-content-end" style="margin-top: 50px">
-                        <button class="btn-register" type="submit">DECLINE</button>
-                        <button class="btn-register" type="submit">ACCEPT</button>
-                    </div>
-                </div>
-            </div>
-        </form>
+    <div id="CANCELLING_REQUEST" class="tab-pane fade">
+        cancelling
     </div>
 
     <div id="APPROVED_TOPIC" class="tab-pane fade">
-        <form asp-action="Register" method="post">
-            @Html.AntiForgeryToken()
-            <div class="row m-b-10" style="margin-bottom: 50px !important">
-                <div class="col-xl-12 d-flex flex-row justify-content-center mt-5">
-                    <input class="tb-custom" placeholder="Input name of topic" 
-                    style="width: 800px; padding: 20px 10px;font-size: 18px"/>
-                </div>
-                <table class="table mt-5">
-                    <thead>
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.TopicName)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.RegisteredYear)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.ResearchField)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.LevelTopic)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Duration)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.AssessmentDate)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Comment)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Rating)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Approved)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Reason)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Assessment)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Status)
-                            </th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TopicName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.RegisteredYear)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ResearchField)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.LevelTopic)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Duration)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.AssessmentDate)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Comment)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Rating)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Approved)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Reason)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Assessment.AssessmentId)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Status.StatusId)
-                                </td>
-                                <td>
-                                    <a asp-action="Edit" asp-route-id="@item.TopicId">Edit</a> |
-                                    <a asp-action="Details" asp-route-id="@item.TopicId">Details</a> |
-                                    <a asp-action="Delete" asp-route-id="@item.TopicId">Delete</a>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="row m-b-10" style="margin-bottom: 50px !important">
-                <div class="col-xl-12 d-flex flex-column">
-                    <div class="row d-flex justify-content-end" style="margin-top: 50px">
-                        <button class="btn-register" type="submit">UPDATE</button>
-                        <button class="btn-register" type="submit">DELETE</button>
-                    </div>
-                </div>
-            </div>
-        </form>
+       approved
     </div>
 </div>

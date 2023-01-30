@@ -83,6 +83,7 @@ namespace QuanLyDeTai.Areas.Admin.Controllers
             }
 
             var topic = await _context.Topics.FindAsync(id);
+            var list1 = new List<String>() { "Achieved", "Not Achieved" };
             if (topic == null)
             {
                 return NotFound();

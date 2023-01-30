@@ -9,6 +9,24 @@
     foreach (var item in Model) {
         if (item.Approved == false) { Model_Disapproved.Add(item); }
     }
+
+    List<Topic> Model_Extending = new List<Topic>();
+    foreach (var item in Model)
+    {
+        if (item.Approved == true && item.IsExtended == true) { Model_Extending.Add(item); }
+    }
+
+    List<Topic> Model_Cancelling = new List<Topic>();
+    foreach (var item in Model)
+    {
+        if (item.Approved == true && item.IsCancelled == 1) { Model_Cancelling.Add(item); }
+    }
+
+    List<Topic> Model_Approved = new List<Topic>();
+    foreach (var item in Model)
+    {
+        if (item.Approved == true) { Model_Approved.Add(item); }
+    }
 }
 
 <div>
@@ -46,7 +64,7 @@
                 <div class="col-xl-12 d-flex flex-row justify-content-center mt-5">
                     <input class="tb-custom" placeholder="Input name of topic" 
                     style="width: 800px; padding: 20px 10px;font-size: 18px"/>
-                    <a style="position: absolute; right: 310px" asp-action="Edit">
+                    <a style="position: absolute; right: 310px; top: 8px; font-size: 20px" asp-action="Edit">
                         <i class="fa fa-search" style="color: gray"></i>
                     </a>
                 </div>
@@ -69,25 +87,7 @@
                                 Duration
                             </th>
                             <th>
-                                AssessmentDate
-                            </th>
-                            <th>
-                                Comment
-                            </th>
-                            <th>
-                                Rating
-                            </th>
-                            <th>
                                 Approved
-                            </th>
-                            <th>
-                                Reason
-                            </th>
-                            <th>
-                                Assessment
-                            </th>
-                            <th>
-                                Status
                             </th>
                             <th></th>
                         </tr>
@@ -112,25 +112,7 @@
                                     @Html.DisplayFor(modelItem => item.Duration)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.AssessmentDate)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Comment)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Rating)
-                                </td>
-                                <td>
                                     @Html.DisplayFor(modelItem => item.Approved)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Reason)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Assessment.AssessmentId)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Status.StatusId)
                                 </td>
                                 <td>
                                     <a asp-action="Edit" asp-route-id="@item.TopicId">Edit</a> |
@@ -155,14 +137,239 @@
     </div>
 
     <div id="EXTENDING_REQUEST" class="tab-pane fade">
-        extending
+        <form asp-action="Register" method="post">
+            @Html.AntiForgeryToken()
+            <div class="row m-b-10" style="margin-bottom: 50px !important">
+                <div class="col-xl-12 d-flex flex-row justify-content-center mt-5">
+                    <input class="tb-custom" placeholder="Input name of topic"
+                           style="width: 800px; padding: 20px 10px;font-size: 18px" />
+                    <a style="position: absolute; right: 310px; top: 8px; font-size: 20px" asp-action="Edit">
+                        <i class="fa fa-search" style="color: gray"></i>
+                    </a>
+                </div>
+                <table class="table mt-5">
+                    <thead>
+                        <tr>
+                            <th>
+                                TopicName
+                            </th>
+                            <th>
+                                RegisteredYear
+                            </th>
+                            <th>
+                                ResearchField
+                            </th>
+                            <th>
+                                LevelTopic
+                            </th>
+                            <th>
+                                Duration
+                            </th>
+                            <th>
+                                Approved
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model_Extending)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TopicName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RegisteredYear)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ResearchField)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LevelTopic)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Duration)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Approved)
+                                </td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.TopicId">Edit</a> |
+                                    <a asp-action="Details" asp-route-id="@item.TopicId">Details</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.TopicId">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row m-b-10" style="margin-bottom: 50px !important">
+                <div class="col-xl-12 d-flex flex-column">
+                    <div class="row d-flex justify-content-end" style="margin-top: 50px">
+                        <button class="btn-register" type="submit">DECLINE</button>
+                        <button class="btn-register" type="submit">ACCEPT</button>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 
     <div id="CANCELLING_REQUEST" class="tab-pane fade">
-        cancelling
+        <form asp-action="Register" method="post">
+            @Html.AntiForgeryToken()
+            <div class="row m-b-10" style="margin-bottom: 50px !important">
+                <div class="col-xl-12 d-flex flex-row justify-content-center mt-5">
+                    <input class="tb-custom" placeholder="Input name of topic"
+                           style="width: 800px; padding: 20px 10px;font-size: 18px" />
+                    <a style="position: absolute; right: 310px; top: 8px; font-size: 20px" asp-action="Edit">
+                        <i class="fa fa-search" style="color: gray"></i>
+                    </a>
+                </div>
+                <table class="table mt-5">
+                    <thead>
+                        <tr>
+                            <th>
+                                TopicName
+                            </th>
+                            <th>
+                                RegisteredYear
+                            </th>
+                            <th>
+                                ResearchField
+                            </th>
+                            <th>
+                                LevelTopic
+                            </th>
+                            <th>
+                                Duration
+                            </th>
+                            <th>
+                                Approved
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model_Cancelling)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TopicName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RegisteredYear)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ResearchField)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LevelTopic)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Duration)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Approved)
+                                </td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.TopicId">Edit</a> |
+                                    <a asp-action="Details" asp-route-id="@item.TopicId">Details</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.TopicId">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row m-b-10" style="margin-bottom: 50px !important">
+                <div class="col-xl-12 d-flex flex-column">
+                    <div class="row d-flex justify-content-end" style="margin-top: 50px">
+                        <button class="btn-register" type="submit">DECLINE</button>
+                        <button class="btn-register" type="submit">ACCEPT</button>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 
     <div id="APPROVED_TOPIC" class="tab-pane fade">
-       approved
+        <form asp-action="Register" method="post">
+            @Html.AntiForgeryToken()
+            <div class="row m-b-10" style="margin-bottom: 50px !important">
+                <div class="col-xl-12 d-flex flex-row justify-content-center mt-5">
+                    <input class="tb-custom" placeholder="Input name of topic"
+                           style="width: 800px; padding: 20px 10px;font-size: 18px" />
+                    <a style="position: absolute; right: 310px; top: 8px; font-size: 20px" asp-action="Edit">
+                        <i class="fa fa-search" style="color: gray"></i>
+                    </a>
+                </div>
+                <table class="table mt-5">
+                    <thead>
+                        <tr>
+                            <th>
+                                TopicName
+                            </th>
+                            <th>
+                                RegisteredYear
+                            </th>
+                            <th>
+                                ResearchField
+                            </th>
+                            <th>
+                                LevelTopic
+                            </th>
+                            <th>
+                                Duration
+                            </th>
+                            <th>
+                                Approved
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model_Approved)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TopicName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RegisteredYear)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ResearchField)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LevelTopic)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Duration)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Approved)
+                                </td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.TopicId">Edit</a> |
+                                    <a asp-action="Details" asp-route-id="@item.TopicId">Details</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.TopicId">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row m-b-10" style="margin-bottom: 50px !important">
+                <div class="col-xl-12 d-flex flex-column">
+                    <div class="row d-flex justify-content-end" style="margin-top: 50px">
+                        <button class="btn-register" type="submit">UPDATE</button>
+                        <button class="btn-register" type="submit">DELETE</button>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 </div>

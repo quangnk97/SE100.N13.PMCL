@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using QuanLyDeTai.Models;
 
 namespace QuanLyDeTai.Areas.Admin.Controllers
 {

@@ -12,76 +12,88 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TopicName)
+            Name of Topic
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.TopicName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RegisteredYear)
+            Year of Topic's Registration
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.RegisteredYear)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ResearchField)
+            Field of Topic
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ResearchField)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LevelTopic)
+            Level of Topic
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.LevelTopic)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Duration)
+            Duration for Doing Topic
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Duration)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AssessmentDate)
+            Assessment ID
         </dt>
         <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AssessmentId)
+        </dd>
+        <dt class="col-sm-2">
+            Date of Assessment
+        </dt>
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.AssessmentDate)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Comment)
+            Comment of Chairman of Council
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Comment)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Rating)
+            Rating For Topic
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Rating)
         </dd>
+        <dt class="col-sm-2">
+            Status ID
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Status.StatusName)
+        </dd>
+        <dt class="col-sm-2">
+            Reason for Status
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Reason)
+        </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Approved)
+            Is Topic approved?
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Approved)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Reason)
+            Is Topic extended?
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Reason)
+            @Html.DisplayFor(model => model.IsExtended)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Assessment)
+            Time for Request
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Assessment.AssessmentId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Status.StatusId)
+            @Html.DisplayFor(model => model.RequestTime)
         </dd>
     </dl>
 </div>

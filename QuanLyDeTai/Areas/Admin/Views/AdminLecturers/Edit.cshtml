@@ -15,55 +15,59 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="LecturerId" />
             <div class="form-group">
-                <label asp-for="LecturerCode" class="control-label"></label>
-                <input asp-for="LecturerCode" class="form-control" />
+                <label asp-for="LecturerCode" class="control-label">Lecturer Code</label>
+                <input asp-for="LecturerCode" class="form-control" placeholder="Ex: L20521812" />
                 <span asp-validation-for="LecturerCode" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LecturerName" class="control-label"></label>
-                <input asp-for="LecturerName" class="form-control" />
+                <label asp-for="Password" class="control-label">Password for Account</label>
+                <input asp-for="Password" class="form-control" placeholder="Ex: 123456" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LecturerName" class="control-label">Name of Lecturer</label>
+                <input asp-for="LecturerName" class="form-control" placeholder="Ex: John Smith" />
                 <span asp-validation-for="LecturerName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Dob" class="control-label"></label>
+                <label asp-for="Dob" class="control-label">Date of Birth</label>
                 <input asp-for="Dob" class="form-control" />
                 <span asp-validation-for="Dob" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Major" class="control-label"></label>
-                <input asp-for="Major" class="form-control" />
+                <label asp-for="Major" class="control-label">Major</label>
+                <input asp-for="Major" class="form-control" placeholder="Ex: Math" />
                 <span asp-validation-for="Major" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
+                <label asp-for="Email" class="control-label">Email</label>
+                <input asp-for="Email" class="form-control" placeholder="Ex: abc@gmail.com" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PhoneNumber" class="control-label"></label>
-                <input asp-for="PhoneNumber" class="form-control" />
+                <label asp-for="PhoneNumber" class="control-label">Phone Number</label>
+                <input asp-for="PhoneNumber" class="form-control" placeholder="Ex: 0123456789" />
                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Contract" class="control-label"></label>
-                <input asp-for="Contract" class="form-control" />
+                <label asp-for="Contract" class="control-label">Type of Contract</label>
+                <input asp-for="Contract" class="form-control" placeholder="Ex: Payroll/ Contract/ Visiting" />
                 <span asp-validation-for="Contract" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LevelCurrent" class="control-label"></label>
-                <input asp-for="LevelCurrent" class="form-control" />
+                <label asp-for="LevelCurrent" class="control-label">Current Level</label>
+                <input asp-for="LevelCurrent" class="form-control" placeholder="Ex: Master" />
                 <span asp-validation-for="LevelCurrent" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FacultyId" class="control-label"></label>
-                <select asp-for="FacultyId" class="form-control" asp-items="ViewBag.FacultyId"></select>
-                <span asp-validation-for="FacultyId" class="text-danger"></span>
+                <label asp-for="FacultyId" class="control-label">Faculty</label>
+                <select asp-for="FacultyId" class="form-control" asp-items="ViewBag.FacultyName"></select>
             </div>
-            <div class="form-group">
-                <label asp-for="Avatar" class="control-label"></label>
-                <input asp-for="Avatar" class="form-control" />
-                <span asp-validation-for="Avatar" class="text-danger"></span>
-            </div>
+            @*<div class="form-group">
+            <label asp-for="Avatar" class="control-label"></label>
+            <input asp-for="Avatar" class="form-control" />
+            <span asp-validation-for="Avatar" class="text-danger"></span>
+            </div>*@
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

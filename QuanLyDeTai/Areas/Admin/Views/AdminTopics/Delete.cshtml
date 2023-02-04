@@ -12,77 +12,89 @@
     <h4>Topic</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TopicName)
+        <dt class="col-sm-2">
+            Name of Topic
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.TopicName)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RegisteredYear)
+        <dt class="col-sm-2">
+            Year of Topic's Registration
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.RegisteredYear)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ResearchField)
+        <dt class="col-sm-2">
+            Field of Topic
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ResearchField)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LevelTopic)
+        <dt class="col-sm-2">
+            Level of Topic
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.LevelTopic)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Duration)
+        <dt class="col-sm-2">
+            Duration for Doing Topic
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Duration)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AssessmentDate)
+        <dt class="col-sm-2">
+            Assessment ID
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AssessmentId)
+        </dd>
+        <dt class="col-sm-2">
+            Date of Assessment
+        </dt>
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.AssessmentDate)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Comment)
+        <dt class="col-sm-2">
+            Comment of Chairman of Council
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Comment)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Rating)
+        <dt class="col-sm-2">
+            Rating For Topic
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Rating)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Approved)
+        <dt class="col-sm-2">
+            Status ID
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Approved)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Status.StatusName)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Reason)
+        <dt class="col-sm-2">
+            Reason for Status
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Reason)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Assessment)
+        <dt class="col-sm-2">
+            Is Topic approved?
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Assessment.AssessmentId)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Approved)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
+        <dt class="col-sm-2">
+            Is Topic extended?
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Status.StatusId)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IsExtended)
+        </dd>
+        <dt class="col-sm-2">
+            Time for Request
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RequestTime)
         </dd>
     </dl>
     

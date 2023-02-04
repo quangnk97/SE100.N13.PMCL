@@ -21,7 +21,7 @@ namespace QuanLyDeTai.Controllers
             foreach (var item in RegistersListExtend)
             {
                 var temp = _context.Topics.FirstOrDefault(x => x.TopicId == item.TopicId);
-                if (temp.Approved == true && temp.IsExtended == false && temp.IsCancelled == 0)
+                if (temp.Approved == true && temp.IsExtended == 0 && temp.IsCancelled == 0)
                     TopicsListExtend.Add(temp);
             }    
 
@@ -40,7 +40,7 @@ namespace QuanLyDeTai.Controllers
 
                 if (topicTemp != null)
                 {
-                    topicTemp.IsExtended = true;
+                    topicTemp.IsExtended = 1;
                     topicTemp.RequestTime = topic.RequestTime;
                     _context.Update(topicTemp);
                     await _context.SaveChangesAsync();

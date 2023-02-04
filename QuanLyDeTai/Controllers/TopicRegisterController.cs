@@ -72,7 +72,7 @@ namespace QuanLyDeTai.Controllers
                         topic.TopicModel.RegisteredYear = DateTime.Now.Year;
                         topic.TopicModel.Duration = 365;
                         topic.TopicModel.Approved = false;
-                        topic.TopicModel.IsExtended = false;
+                        topic.TopicModel.IsExtended = 0;
                         topic.TopicModel.IsCancelled = 0;
 
                         _context.Add(topic.TopicModel);
@@ -108,7 +108,7 @@ namespace QuanLyDeTai.Controllers
                         topic.TopicModel.RegisteredYear = DateTime.Now.Year;
                         topic.TopicModel.Duration = 365;
                         topic.TopicModel.Approved = false;
-                        topic.TopicModel.IsExtended = false;
+                        topic.TopicModel.IsExtended = 0;
                         topic.TopicModel.IsCancelled = 0;
 
                         _context.Add(topic.TopicModel);

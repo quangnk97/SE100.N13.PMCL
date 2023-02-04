@@ -60,14 +60,9 @@
                 <span asp-validation-for="Rating" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="StatusId" class="control-label">Status ID</label>
+                <label asp-for="StatusId" class="control-label">Status</label>
                 <select asp-for="StatusId" class="form-control" asp-items="ViewBag.StatusId"></select>
                 <span asp-validation-for="StatusId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Approved" class="control-label">Is Topic approved?</label>
-                <input asp-for="Approved" class="form-control" placeholder="True/ False" />
-                <span asp-validation-for="Approved" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Reason" class="control-label">Reason for Status</label>
@@ -75,21 +70,24 @@
                 <span asp-validation-for="Reason" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Approved" class="control-label">Is Topic approved?</label>
+                <input asp-for="Approved" class="form-control" placeholder="True/ False" />
+                <span asp-validation-for="Approved" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="IsExtended" class="control-label">Is Topic extended?</label>
-                <input asp-for="IsExtended" class="form-control" placeholder="True / False" />
-                <span asp-validation-for="Reason" class="text-danger"></span>
+                <input asp-for="IsExtended" class="form-control" placeholder="0: not sent / 1: sent / -1: officially extend" />
+                <span asp-validation-for="IsExtended" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="RequestTime" class="control-label">Time for Request</label>
-                <input asp-for="RequestTime" class="form-control" placeholder="From 1 to 6" />
-                <span asp-validation-for="Reason" class="text-danger"></span>
+                <input asp-for="RequestTime" class="form-control" placeholder="From 1 to 6 months" />
+                <span asp-validation-for="RequestTime" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="IsCancelled" class="control-label">Is Topic cancelled?</label>
-                <input asp-for="IsCancelled" class="form-control" placeholder="0: not sent Cancelling Request / 
-                                                                               1: sent Cancelling Request / 
-                                                                               -1: officially cancel topic" />
-                <span asp-validation-for="Reason" class="text-danger"></span>
+                <input asp-for="IsCancelled" class="form-control" placeholder="0: not sent / 1: sent / -1: officially cancel" />
+                <span asp-validation-for="IsCancelled" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

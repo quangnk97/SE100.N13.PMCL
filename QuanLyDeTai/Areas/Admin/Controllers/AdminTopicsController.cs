@@ -21,11 +21,101 @@ namespace QuanLyDeTai.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdminTopics
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchDisapproved, string searchExtending, string searchCancelling, string searchApproved)
         {
             var qLDT_DbContext = _context.Topics.Include(t => t.Assessment).Include(t => t.Status);
             List<Topic> Topics = await qLDT_DbContext.ToListAsync();
+            ViewData["SearchDisapproved"] = searchDisapproved;
+            ViewData["SearchExtending"] = searchExtending;
+            ViewData["SearchCancelling"] = searchCancelling;
+            ViewData["SearchApproved"] = searchApproved;
+
             return View(Topics);
+        }
+
+        public async Task<IActionResult> AcceptD(int id)
+        {
+            var qLDT_DbContext = _context.Topics.Include(t => t.Assessment).Include(t => t.Status);
+            List<Topic> Topics = await qLDT_DbContext.ToListAsync();
+            var topic = Topics.FirstOrDefault(t=>t.TopicId==id);
+            
+
+                try
+                {
+                    topic.Approved = true;
+                    _context.Update(topic);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!TopicExists(topic.TopicId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+
+        }
+
+        public async Task<IActionResult> AcceptExtend(int id)
+        {
+            var qLDT_DbContext = _context.Topics.Include(t => t.Assessment).Include(t => t.Status);
+            List<Topic> Topics = await qLDT_DbContext.ToListAsync();
+            var topic = Topics.FirstOrDefault(t => t.TopicId == id);
+
+
+            try
+            {
+                topic.IsExtended = -1;
+                topic.Duration = topic.Duration + topic.RequestTime * 30;
+                _context.Update(topic);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!TopicExists(topic.TopicId))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction(nameof(Index));
+
+        }
+
+        public async Task<IActionResult> AcceptCancel(int id)
+        {
+            var qLDT_DbContext = _context.Topics.Include(t => t.Assessment).Include(t => t.Status);
+            List<Topic> Topics = await qLDT_DbContext.ToListAsync();
+            var topic = Topics.FirstOrDefault(t => t.TopicId == id);
+
+
+            try
+            {
+                topic.IsCancelled = -1;
+                _context.Update(topic);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!TopicExists(topic.TopicId))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction(nameof(Index));
+
         }
 
         // GET: Admin/AdminTopics/Details/5
@@ -61,7 +151,7 @@ namespace QuanLyDeTai.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TopicId,TopicName,RegisteredYear,ResearchField,LevelTopic,Duration,AssessmentId,AssessmentDate,Comment,Rating,StatusId,Approved,Reason")] Topic topic)
+        public async Task<IActionResult> Create([Bind("TopicId,TopicName,RegisteredYear,ResearchField,LevelTopic,Duration,AssessmentId,AssessmentDate,Comment,Rating,StatusId,Approved,Reason,IsExtended,IsCancelled,RequestTime")] Topic topic)
         {
             if (ModelState.IsValid)
             {
@@ -89,7 +179,7 @@ namespace QuanLyDeTai.Areas.Admin.Controllers
                 return NotFound();
             }
             ViewData["AssessmentId"] = new SelectList(_context.Assessments, "AssessmentId", "AssessmentId", topic.AssessmentId);
-            ViewData["StatusId"] = new SelectList(_context.Statuses, "StatusId", "StatusId", topic.StatusId);
+            ViewData["StatusId"] = new SelectList(_context.Statuses, "StatusId", "StatusName", topic.StatusId);
             return View(topic);
         }
 
@@ -98,7 +188,7 @@ namespace QuanLyDeTai.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TopicId,TopicName,RegisteredYear,ResearchField,LevelTopic,Duration,AssessmentId,AssessmentDate,Comment,Rating,StatusId,Approved,Reason")] Topic topic)
+        public async Task<IActionResult> Edit(int id, [Bind("TopicId,TopicName,RegisteredYear,ResearchField,LevelTopic,Duration,AssessmentId,AssessmentDate,Comment,Rating,StatusId,Approved,Reason,IsExtended,IsCancelled,RequestTime")] Topic topic)
         {
             if (id != topic.TopicId)
             {
@@ -126,7 +216,7 @@ namespace QuanLyDeTai.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["AssessmentId"] = new SelectList(_context.Assessments, "AssessmentId", "AssessmentId", topic.AssessmentId);
-            ViewData["StatusId"] = new SelectList(_context.Statuses, "StatusId", "StatusId", topic.StatusId);
+            ViewData["StatusId"] = new SelectList(_context.Statuses, "StatusId", "StatusId");
             return View(topic);
         }
 

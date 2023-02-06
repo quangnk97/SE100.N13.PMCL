@@ -321,3 +321,14 @@ body {
     -moz-box-shadow: 10px 10px 5px 0px rgba(64,64,64,0.29);
     box-shadow: 10px 10px 5px 0px rgba(64,64,64,0.29);
 }
+
+
+/* Image input */
+.avaSelect {
+    background-color: #3184FF;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-left: 3rem;
+}

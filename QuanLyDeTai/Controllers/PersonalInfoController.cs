@@ -46,8 +46,19 @@ namespace QuanLyDeTai.Controllers
                 lecturerTemp.Email = lecturer.Email;
                 lecturerTemp.PhoneNumber = lecturer.PhoneNumber;
 
-                _unitofwork.UploadImage(file);
-                lecturerTemp.Avatar = file.FileName;
+                GlobalVariables.CurrentLoggedInUser.LecturerName = lecturer.LecturerName;
+                GlobalVariables.CurrentLoggedInUser.Dob = lecturer.Dob;
+                GlobalVariables.CurrentLoggedInUser.Email = lecturer.Email;
+                GlobalVariables.CurrentLoggedInUser.PhoneNumber = lecturer.PhoneNumber;
+
+
+                if (file != null)
+                {
+                    _unitofwork.UploadImage(file);
+                    lecturerTemp.Avatar = file.FileName;
+                    GlobalVariables.CurrentLoggedInUser.Avatar = file.FileName;
+                }
+
                 _context.Update(lecturerTemp);
                 await _context.SaveChangesAsync();
             }

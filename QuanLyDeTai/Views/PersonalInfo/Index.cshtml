@@ -5,13 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<form id="PersonalInfoForm" asp-action="ModifyPersonalInfo" method="post">
+<form id="PersonalInfoForm" asp-action="ModifyPersonalInfo" method="post" enctype="multipart/form-data">
     <input asp-for="LecturerId" type="text" value="@Model.LecturerId" hidden />
     <div class="row m-b-10">
         <div class="col-xl-12" style="border: 2px solid gray; border-radius: 20px">
             <div class="row" style="padding: 20px">
                 <div class="col-xl-3">
-                    <img src="@Model.Avatar" style="border-radius: 300px; width: 200px; height: 200px; object-fit: cover" />
+                    <input type="file" name="file" accept="image/*" onchange="loadFile(event)" style="display: none;" id="avaInput" />
+                    <img src="/uploads/@Model.Avatar" style="border-radius: 300px; width: 200px; height: 200px; object-fit: cover" id="avaOutput" />
                 </div>
                 <div class="col-xl-8 d-flex flex-column justify-content-center">
                     <span style="font-size: 30px; font-weight: 500; color: black">@Model.LecturerName</span>
@@ -112,6 +113,12 @@
 </div>
 
 <script>
+
+    var loadFile = function (event) {
+        var image = document.getElementById('avaOutput');
+        image.src = URL.createObjectURL(event.target.files[0]);
+    };
+
     const constName = document.getElementById('nameInput').value;
     const constEmail = document.getElementById('emailInput').value;
     const constDOB = document.getElementById('dobInput').value;

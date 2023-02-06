@@ -9,10 +9,12 @@ namespace QuanLyDeTai.Controllers
     public class PersonalInfoController : Controller
     {
         private readonly QLDT_DbContext _context;
+        private readonly IUnitOfWork _unitofwork;
 
-        public PersonalInfoController(QLDT_DbContext context)
+        public PersonalInfoController(QLDT_DbContext context, IUnitOfWork unitofwork)
         {
             _context = context;
+            _unitofwork = unitofwork;
         }
 
         public async Task<IActionResult> Index()
@@ -33,7 +35,7 @@ namespace QuanLyDeTai.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> ModifyPersonalInfo([Bind] Lecturer lecturer)
+        public async Task<IActionResult> ModifyPersonalInfo(IFormFile file, [Bind] Lecturer lecturer)
         {
             var lecturerTemp = await _context.Lecturers.FindAsync(lecturer.LecturerId);
 
@@ -43,6 +45,9 @@ namespace QuanLyDeTai.Controllers
                 lecturerTemp.Dob = lecturer.Dob;
                 lecturerTemp.Email = lecturer.Email;
                 lecturerTemp.PhoneNumber = lecturer.PhoneNumber;
+
+                _unitofwork.UploadImage(file);
+                lecturerTemp.Avatar = file.FileName;
                 _context.Update(lecturerTemp);
                 await _context.SaveChangesAsync();
             }

@@ -22,7 +22,20 @@ namespace QuanLyDeTai.Areas.Admin.Controllers
         // GET: Admin/AdminAssessments
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Assessments.ToListAsync());
+            return View(await _context.Assessments.ToListAsync());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Index([Bind("AssessmentId,NumberOfMembers")] Assessment assessment)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(assessment);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(assessment);
         }
 
         // GET: Admin/AdminAssessments/Details/5
@@ -44,8 +57,14 @@ namespace QuanLyDeTai.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdminAssessments/Create
-        public IActionResult Create()
+        public IActionResult Create(string searchTopicID)
         {
+            if (!string.IsNullOrEmpty(searchTopicID))
+            {
+                ViewData["SearchTopicID"] = searchTopicID;
+                List<Topic> topics = _context.Topics.ToList();
+                ViewData["TopicList"] = topics;
+            }
             return View();
         }
 
@@ -54,7 +73,7 @@ namespace QuanLyDeTai.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AssessmentId,NumberOfMembers")] Assessment assessment)
+        public async Task<IActionResult> Create([Bind] SubmitCouncil assessment)
         {
             if (ModelState.IsValid)
             {

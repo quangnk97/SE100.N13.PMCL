@@ -15,77 +15,77 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="TopicId" />
             <div class="form-group">
-                <label asp-for="TopicName" class="control-label">Name of Topic</label>
+                <label style="font-weight: 500;" asp-for="TopicName" class="control-label">Name of Topic</label>
                 <input asp-for="TopicName" class="form-control" placeholder="IoT Researching" />
                 <span asp-validation-for="TopicName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="RegisteredYear" class="control-label">Year of Topic's Registration</label>
+                <label style="font-weight: 500;" asp-for="RegisteredYear" class="control-label">Year of Topic's Registration</label>
                 <input asp-for="RegisteredYear" class="form-control" placeholder="2022" />
                 <span asp-validation-for="RegisteredYear" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ResearchField" class="control-label">Field of Topic</label>
+                <label style="font-weight: 500;" asp-for="ResearchField" class="control-label">Field of Topic</label>
                 <input asp-for="ResearchField" class="form-control" placeholder="Information Technology" />
                 <span asp-validation-for="ResearchField" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LevelTopic" class="control-label">Level of Topic</label>
+                <label style="font-weight: 500;" asp-for="LevelTopic" class="control-label">Level of Topic</label>
                 <input asp-for="LevelTopic" class="form-control" placeholder="LV. Faculty / LV. College / LV. Ministry / LV. National" />
                 <span asp-validation-for="LevelTopic" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Duration" class="control-label">Duration for Doing Topic</label>
+                <label style="font-weight: 500;" asp-for="Duration" class="control-label">Duration for Doing Topic</label>
                 <input asp-for="Duration" class="form-control" placeholder="365" />
                 <span asp-validation-for="Duration" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="AssessmentId" class="control-label">Assessment ID</label>
+                <label style="font-weight: 500;" asp-for="AssessmentId" class="control-label">Assessment ID</label>
                 <select asp-for="AssessmentId" class="form-control" asp-items="ViewBag.AssessmentId"></select>
                 <span asp-validation-for="AssessmentId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="AssessmentDate" class="control-label">Date of Assessment</label>
+                <label style="font-weight: 500;" asp-for="AssessmentDate" class="control-label">Date of Assessment</label>
                 <input asp-for="AssessmentDate" class="form-control" />
                 <span asp-validation-for="AssessmentDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Comment" class="control-label">Comment of Chairman of Council</label>
+                <label style="font-weight: 500;" asp-for="Comment" class="control-label">Comment of Chairman of Council</label>
                 <input asp-for="Comment" class="form-control" placeholder="bla bla ..." />
                 <span asp-validation-for="Comment" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Rating" class="control-label">Rating For Topic</label>
+                <label style="font-weight: 500;" asp-for="Rating" class="control-label">Rating For Topic</label>
                 <input asp-for="Rating" class="form-control" placeholder="bla bla ..." />
                 <span asp-validation-for="Rating" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="StatusId" class="control-label">Status</label>
+                <label style="font-weight: 500;" asp-for="StatusId" class="control-label">Status</label>
                 <select asp-for="StatusId" class="form-control" asp-items="ViewBag.StatusId"></select>
                 <span asp-validation-for="StatusId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Reason" class="control-label">Reason for Status</label>
+                <label style="font-weight: 500;" asp-for="Reason" class="control-label">Reason for Status</label>
                 <input asp-for="Reason" class="form-control" placeholder="Project is achieved because of score" />
                 <span asp-validation-for="Reason" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Approved" class="control-label">Is Topic approved?</label>
+                <label style="font-weight: 500;" asp-for="Approved" class="control-label">Is Topic approved?</label>
                 <input asp-for="Approved" class="form-control" placeholder="True/ False" />
                 <span asp-validation-for="Approved" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="IsExtended" class="control-label">Is Topic extended?</label>
+                <label style="font-weight: 500;" asp-for="IsExtended" class="control-label">Is Topic extended?</label>
                 <input asp-for="IsExtended" class="form-control" placeholder="0: not sent / 1: sent / -1: officially extend" />
                 <span asp-validation-for="IsExtended" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="RequestTime" class="control-label">Time for Request</label>
+                <label style="font-weight: 500;" asp-for="RequestTime" class="control-label">Time for Request</label>
                 <input asp-for="RequestTime" class="form-control" placeholder="From 1 to 6 months" />
                 <span asp-validation-for="RequestTime" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="IsCancelled" class="control-label">Is Topic cancelled?</label>
+                <label style="font-weight: 500;" asp-for="IsCancelled" class="control-label">Is Topic cancelled?</label>
                 <input asp-for="IsCancelled" class="form-control" placeholder="0: not sent / 1: sent / -1: officially cancel" />
                 <span asp-validation-for="IsCancelled" class="text-danger"></span>
             </div>

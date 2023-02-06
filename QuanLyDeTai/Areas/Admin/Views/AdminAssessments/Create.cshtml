@@ -3,29 +3,144 @@
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+
+    int error = 0;
+    Topic Temp = new Topic();
+    if (!string.IsNullOrEmpty(ViewBag.SearchTopicID as string))
+    {
+        List<Topic> topics = new List<Topic>();
+        foreach (var item in ViewBag.TopicList as List<Topic>)
+        {
+            if (item.TopicId.ToString() == ViewBag.SearchTopicID) {
+                topics.Add(item);
+                Temp = item;
+                break;
+            }
+        }
+        if (topics.Count == 0) {
+            error = 1;
+        }
+        else { ViewData["NameofTopic"] = Temp.TopicName; }
+    }
+    string hello(){
+        return "heoo";
+    }
 }
 
-<h1>Create</h1>
+<div style="margin: 0px auto 40px; width: 1300px;">
+    <h1>Create</h1>
 
-<h4>Assessment</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="NumberOfMembers" class="control-label"></label>
-                <input asp-for="NumberOfMembers" class="form-control" />
-                <span asp-validation-for="NumberOfMembers" class="text-danger"></span>
+    <h4>Assessment</h4>
+    <hr />
+    <div class="row" style="width: 1300px; margin: 0px auto 10px;">
+        <div class="col-xl-4 d-flex flex-row" style="padding-left: 0px; font-weight: 600; font-size: 18px;">
+            ID of Topic
+        </div>
+        <div class="col-xl-8 d-flex flex-row" style="font-weight: 600; font-size: 18px;">
+            Name of Topic
+        </div>
+    </div>
+
+    <div class="row" style="width: 1300px; margin: 0px auto 40px;">
+        <div class="col-xl-4 d-flex flex-row" style="padding-left: 0px;">
+            @using (Html.BeginForm("Create", "AdminAssessments", FormMethod.Get))
+            {
+                <input name="searchTopicID" class="tb-custom" placeholder="Ex: 10005" ,
+                   style="width: 200px; padding: 20px 40px 20px 10px;font-size: 18px" value=@ViewBag.SearchTopicID />
+                <button type="submit" value="Search" style="font-size: 20px; margin-left: -40px;
+                background-color: transparent; border: 0px;">
+                    <i class="fa fa-search" style="color: gray"></i>
+                </button>
+            }
+        </div>
+        <div class="col-xl-8 d-flex flex-row " style="padding-right: 0px;">
+            <input disabled value="@((error==1)?"":ViewBag.NameofTopic)" type="text" style="width: 500px; font-size: 18px;
+        border: 2px solid gray; border-radius: 10px; padding: 0px 10px;" />
+        </div>
+    </div>
+
+    @if (error == 1)
+    {
+        <div class="row" style="width: 1300px; margin: 0px auto 40px;">
+            <span style="color:red;">Invalid Topic ID</span>
+        </div>
+    }
+  
+    @if (Temp.AssessmentDate.HasValue)
+    {
+        <div class="row" style="width: 1300px; margin: 0px auto 40px;">
+
+            <div style="margin-bottom: 10px; font-weight: 600; font-size: 18px; padding: 0;">
+                Date of Assessment
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+
+            <div style="padding: 0;">
+                <input name="DateAssessment" style="width: 200px; font-size: 18px; border: 2px solid gray; border-radius: 10px;
+            padding: 8px 10px;" type="date" value="@Temp.AssessmentDate.Value.ToString("yyyy-MM-dd")" />
             </div>
-        </form>
+        </div>
+    }
+
+    <h2 style="margin-bottom: 25px;">Add Members</h2>
+    @using (Html.BeginForm("Create", "AdminAssessments", FormMethod.Get))
+    {
+        <button type="submit" style="margin-bottom: 40px; font-size: 16px;" class="btn btn-primary">+ Create A New Member</button>
+    }
+
+    <div class="row" style="margin-bottom: 40px;">
+        <div class="row">
+            <div class="col-xl-3 d-flex flex-row ">
+                Lecturer Code
+            </div>
+
+            <div class="col-xl-4 d-flex flex-row ">
+                Name of Lecturer
+            </div>
+
+            <div class="col-xl-5 d-flex flex-row ">
+                Position
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-3 d-flex flex-row ">
+                <select class="btn-primary" style="width: 200px;">1</select>
+            </div>
+
+            <div class="col-xl-4 d-flex flex-row ">
+                <button class="btn-primary">2</button>
+            </div>
+
+            <div class="col-xl-5 d-flex flex-row ">
+                <button class="btn-primary">3</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="NumberOfMembers" class="control-label"></label>
+                    <input asp-for="NumberOfMembers" class="form-control" />
+                    <span asp-validation-for="NumberOfMembers" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+<input id="okela" onsubmit="Razor()" />
+<script>
+    function Razor(){
+        $("#okela").;
+    }
+</script>
 

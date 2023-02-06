@@ -18,7 +18,10 @@
     else {
         foreach (var item in Model)
         {
-            if (item.Approved == false && item.TopicName.ToLower().Contains(ViewBag.SearchDisapproved.ToLower())) { Model_Disapproved.Add(item); }
+            if (!string.IsNullOrEmpty(item.TopicName))
+            {
+                if (item.Approved == false && item.TopicName.ToLower().Contains(ViewBag.SearchDisapproved.ToLower())) { Model_Disapproved.Add(item); }
+            }
         }
     }
 
@@ -31,8 +34,11 @@
     else {
         foreach (var item in Model)
         {
-            if (item.Approved == true && item.IsExtended == 1 &&
-            item.TopicName.ToLower().Contains(ViewBag.SearchExtending.ToLower())) { Model_Extending.Add(item); }
+            if (!string.IsNullOrEmpty(item.TopicName))
+            {
+                if (item.Approved == true && item.IsExtended == 1 &&
+                item.TopicName.ToLower().Contains(ViewBag.SearchExtending.ToLower())) { Model_Extending.Add(item); }
+            }
         }
     }
 
@@ -47,8 +53,11 @@
     {
         foreach (var item in Model)
         {
-            if (item.Approved == true && item.IsCancelled == 1 &&
-            item.TopicName.ToLower().Contains(ViewBag.SearchCancelling.ToLower())) { Model_Cancelling.Add(item); }
+            if (!string.IsNullOrEmpty(item.TopicName))
+            {
+                if (item.Approved == true && item.IsCancelled == 1 &&
+                item.TopicName.ToLower().Contains(ViewBag.SearchCancelling.ToLower())) { Model_Cancelling.Add(item); }
+            }
         }
     }
 
@@ -63,8 +72,11 @@
     {
         foreach (var item in Model)
         {
-            if (item.Approved == true &&
-            item.TopicName.ToLower().Contains(ViewBag.SearchApproved.ToLower())) { Model_Approved.Add(item); }
+            if (!string.IsNullOrEmpty(item.TopicName))
+            {
+                if (item.Approved == true &&
+                item.TopicName.ToLower().Contains(ViewBag.SearchApproved.ToLower())) { Model_Approved.Add(item); }
+            }
         }
     }
 
@@ -132,6 +144,9 @@
             <table class="table mt-5" style="border: solid 2px darkslategrey; width: 1300px; margin: 0 auto;">
                     <thead>
                     <tr style="border-bottom: solid 2px darkslategrey;">
+                            <th>
+                                ID
+                            </th>
                             <th style="max-width: 250px;">
                                 Topic Name
                             </th>
@@ -157,6 +172,9 @@
                         @foreach (var item in Model_Disapproved)
                         {
                             <tr style="border-bottom: solid 1px darkslategrey;">
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TopicId)
+                                </td>
                                 <td style="max-width: 250px; overflow: hidden;">
                                     @Html.DisplayFor(modelItem => item.TopicName)
                                 </td>
@@ -206,6 +224,9 @@
             <table class="table mt-5" style="border: solid 2px darkslategrey; width: 1300px; margin: 0 auto;">
                     <thead>
                     <tr style="border-bottom: solid 2px darkslategrey;">
+                            <th>
+                                ID
+                            </th>
                             <th style="max-width: 250px;">
                                 Topic Name
                             </th>
@@ -231,6 +252,9 @@
                         @foreach (var item in Model_Approved)
                         {
                         <tr style="border-bottom: solid 1px darkslategrey;">
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TopicId)
+                                </td>
                                 <td style="max-width: 250px; overflow: hidden;">
                                     @Html.DisplayFor(modelItem => item.TopicName)
                                 </td>
@@ -279,6 +303,9 @@
             <table class="table mt-5" style="border: solid 2px darkslategrey; width: 1300px; margin: 0 auto;">
                     <thead>
                     <tr style="border-bottom: solid 2px darkslategrey;">
+                            <th>
+                                ID
+                            </th>
                             <th style="max-width: 250px;">
                                 Topic Name
                             </th>
@@ -304,6 +331,9 @@
                         @foreach (var item in Model_Extending)
                         {
                         <tr style="border-bottom: solid 1px darkslategrey;">
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TopicId)
+                                </td>
                                 <td style="max-width: 250px; overflow: hidden;">
                                 @Html.DisplayFor(modelItem => item.TopicName)
                                 </td>
@@ -353,6 +383,9 @@
             <table class="table mt-5" style="border: solid 2px darkslategrey; width: 1300px; margin: 0 auto;">
                     <thead>
                     <tr style="border-bottom: solid 2px darkslategrey;">
+                            <th>
+                                ID
+                            </th>
                             <th style="max-width: 250px;">
                                 Topic Name
                             </th>
@@ -378,6 +411,9 @@
                         @foreach (var item in Model_Cancelling)
                         {
                         <tr style="border-bottom: solid 1px darkslategrey;">
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TopicId)
+                                </td>
                                 <td style="max-width: 250px; overflow: hidden;">
                                     @Html.DisplayFor(modelItem => item.TopicName)
                                 </td>

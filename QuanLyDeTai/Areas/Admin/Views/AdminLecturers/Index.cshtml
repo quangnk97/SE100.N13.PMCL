@@ -1,18 +1,36 @@
-﻿@model IEnumerable<QuanLyDeTai.Models.Lecturer>
+﻿@model List<QuanLyDeTai.Models.Lecturer>
 
 @{
     ViewData["Title"] = "ManageLecturers";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+
+    List<Lecturer> Model_Lecturer = new List<Lecturer>();
+    if (string.IsNullOrEmpty(ViewBag.SearchLecturer))
+    {
+        foreach (var item in Model)
+        {
+            Model_Lecturer.Add(item);
+        }
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            if (!string.IsNullOrEmpty(item.LecturerName)) {
+                if (item.LecturerName.ToLower().Contains(ViewBag.SearchLecturer.ToLower())) { Model_Lecturer.Add(item); }
+            }
+        }
+    }
 }
 
-<h1 style="border-bottom: solid 2px; text-align: right; margin-bottom: 40px; padding-bottom: 10px;">LECTURER</h1>
+<h1 style="border-bottom: solid 2px; text-align: right; margin: 0px auto 40px; padding-bottom: 10px; width: 1300px;">LECTURER</h1>
 
 <div>
     <div class="row m-b-10" style="width: 1300px; margin: 0 auto;">
         <div class="col-xl-6 d-flex flex-row" style="padding-left: 0px;">
             @using (Html.BeginForm("Index", "AdminLecturers", FormMethod.Get))
             {
-                <input name="searchLecturer" class="tb-custom" placeholder="Search Lecturer" ,
+                <input name="searchLecturer" class="tb-custom" placeholder="Search Name of Lecturer" ,
                    style="width: 300px; padding: 20px 40px 20px 10px;font-size: 18px" value=@ViewBag.SearchDisapproved />
                 <button type="submit" value="Search" style="font-size: 20px; margin-left: -40px; 
                 background-color: transparent; border: 0px;">
@@ -23,7 +41,7 @@
         <div class="col-xl-6 d-flex flex-row justify-content-end" style="padding-right: 0px;">
             @using (Html.BeginForm("Create", "AdminLecturers", FormMethod.Get))
             {
-            <button type="submit" style="width: 220px; font-size: 18px;" class="btn btn-primary">+ Create New Lecturer</button>
+                <button type="submit" style="width: 220px; font-size: 18px;" class="btn btn-primary">+ Create New Lecturer</button>
             }
         </div>
     </div>
@@ -55,7 +73,8 @@
             </tr>
         </thead>
         <tbody>
-    @foreach (var item in Model) {
+            @foreach (var item in Model_Lecturer)
+            {
             <tr style="border-bottom: solid 1px darkslategrey;">
                 <td>
                     @Html.DisplayFor(modelItem => item.LecturerCode)

@@ -69,8 +69,10 @@ namespace QuanLyDeTai.Controllers
                 if (temp.Approved == true && temp.IsCancelled == 0 && temp.StatusId == "S01")
                     Top3TopicsList.Add(temp);
             }
-            ViewBag.Top3Registers = Top3RegistersList;
-            ViewBag.Top3Topics = Top3TopicsList;
+            ViewData["Top3Registers"] = Top3RegistersList;
+            ViewData["Top3Topics"] = Top3TopicsList;
+            /*ViewBag.Top3Registers = Top3RegistersList;
+            ViewBag.Top3Topics = Top3TopicsList;*/
 
             return View();
         }

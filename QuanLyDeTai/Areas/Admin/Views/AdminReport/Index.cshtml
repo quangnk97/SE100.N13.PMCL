@@ -1,5 +1,113 @@
-﻿@{
+﻿@model QuanLyDeTai.Models.Topic
+
+@{
     ViewData["Title"] = "Report";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
-<h1>Report</h1>
+
+<div style="margin: 0px auto 40px; width: 1300px;">
+    <h1 style="margin-bottom: 10px; padding-left: 160px;">Report</h1>
+
+    @using (Html.BeginForm("Index", "AdminReport", FormMethod.Get))
+    {
+        <div style="display: flex; justify-content: center; margin-bottom: 30px;">
+            <input name="searchTopic" class="tb-custom" placeholder="Search Name of Topic" ,
+               style="width: 700px; padding: 20px 40px 20px 10px;font-size: 18px;" value="@ViewBag.SearchTopic" />
+            <button type="submit" value="Search" style="font-size: 20px; margin-left: -40px;
+                background-color: transparent; border: 0px;">
+                <i class="fa fa-search" style="color: gray"></i>
+            </button>
+        </div>
+    }
+
+    <div id="parentDiv" style="padding-left: 160px;">
+        <div style="font-size: 18px; margin-bottom: 35px; font-weight: 600;">
+            <label asp-for="TopicId" class="control-label">Topic ID</label>
+            <br />
+            <input asp-for="TopicId" readonly class="tb-custom" style="font-weight: 400;" />
+        </div>
+        <div style="font-size: 18px; margin-bottom: 35px; font-weight: 600;">
+            <label asp-for="TopicName" class="control-label">Name of Topic</label>
+            <br />
+            <input asp-for="TopicName" readonly class="tb-custom" style="font-weight: 400; width: 500px;" />
+        </div>
+        <div style="font-size: 18px; margin-bottom: 35px; font-weight: 600;">
+            <label asp-for="RegisteredYear" class="control-label">Year of Topic's Registration</label>
+            <br />
+            <input asp-for="RegisteredYear" readonly class="tb-custom" style="font-weight: 400;" />
+        </div>
+        <div style="font-size: 18px; margin-bottom: 35px; font-weight: 600;">
+            <label asp-for="ResearchField" class="control-label">Field of Topic</label>
+            <br />
+            <input asp-for="ResearchField" readonly class="tb-custom" style="font-weight: 400; width: 350px;" />
+        </div>
+        <div style="font-size: 18px; margin-bottom: 35px; font-weight: 600;">
+            <label asp-for="LevelTopic" class="control-label">Level of Topic</label>
+            <br />
+            <input asp-for="LevelTopic" readonly class="tb-custom" style="font-weight: 400; width: 300px;" />
+        </div>
+        <div style="font-size: 18px; margin-bottom: 35px; font-weight: 600;">
+            <label asp-for="Duration" class="control-label">Duration for Doing Topic</label>
+            <br />
+            <input asp-for="Duration" readonly class="tb-custom" style="font-weight: 400;" />
+        </div>
+        <div style="font-size: 18px; margin-bottom: 35px; font-weight: 600;">
+            <label asp-for="AssessmentId" class="control-label">Assessment ID</label>
+            <br />
+            <select asp-for="AssessmentId" disabled class="tb-custom" style="font-weight: 400;  width: 250px;" asp-items="ViewBag.AssessmentId"></select>
+        </div>
+        <div style="font-size: 18px; margin-bottom: 35px; font-weight: 600;">
+            <label asp-for="AssessmentDate" class="control-label">Date of Assessment</label>
+            <br />
+            <input asp-for="AssessmentDate" readonly class="tb-custom" style="font-weight: 400; width: 400px;" />
+        </div>
+        <div style="font-size: 18px; margin-bottom: 35px; font-weight: 600;">
+            <label asp-for="Comment" class="control-label">Comment of Chairman of Council</label>
+            <br />
+            <textarea asp-for="Comment" readonly class="tb-custom" style="font-weight: 400; width: 900px;
+        height: 300px; padding: 10px"></textarea>
+        </div>
+        <div style="font-size: 18px; margin-bottom: 35px; font-weight: 600;">
+            <label asp-for="Rating" class="control-label">Rating For Topic</label>
+            <br />
+            <input asp-for="Rating" readonly class="tb-custom" style="font-weight: 400;" />
+        </div>
+        <div style="font-size: 18px; margin-bottom: 35px; font-weight: 600;">
+            <label asp-for="StatusId" class="control-label">Status</label>
+            <br />
+            <select asp-for="StatusId" disabled class="tb-custom" style="font-weight: 400; width: 300px;" asp-items="ViewBag.StatusId"></select>
+        </div>
+        <div style="font-size: 18px; margin-bottom: 35px; font-weight: 600;">
+            <label asp-for="Approved" class="control-label">Is Topic approved?</label>
+            <br />
+            <input asp-for="Approved" readonly class="tb-custom" style="font-weight: 400;" />
+        </div>
+        <div style="font-size: 18px; margin-bottom: 35px; font-weight: 600;">
+            <label asp-for="Reason" class="control-label">Reason for Status</label>
+            <br />
+            <textarea asp-for="Reason" readonly class="tb-custom" style="font-weight: 400; width: 900px;
+        height: 300px; padding: 10px"></textarea>
+        </div>
+    </div>
+
+    @if (!string.IsNullOrEmpty(ViewBag.SearchTopic)){
+        <div class="row d-flex" style="justify-content: end;">
+            <a id="printPDF" class="btn btn-primary" style="color: white; width: 100px; margin-right: 255px;">Print</a>
+        </div>
+    }
+    
+</div>
+
+@section scripts{
+    <script>
+        $("#printPDF").click(function (){
+            var element = document.getElementById('parentDiv');
+            html2pdf().from(element).set({
+                margin: [30, 10, 5, 10],
+                pagebreak: {avoid:'tr'},
+                jsPDF: {orientation: 'landscape', unit: 'pt', format: 'letter', compressPDF: true}
+            }).save()
+        });
+    </script>
+}
+

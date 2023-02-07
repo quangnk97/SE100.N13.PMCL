@@ -1,32 +1,71 @@
-﻿@model QuanLyDeTai.Models.Assessment
+﻿@model QuanLyDeTai.SubmitCouncil
 
 @{
     ViewData["Title"] = "Edit";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Edit</h1>
+<form asp-action="Edit1" method="post">
+    <div style="margin: 0px auto 40px; width: 1300px; font-size: 18px;">
+        <h1>Edit Assessment</h1>
 
-<h4>Assessment</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="AssessmentId" />
-            <div class="form-group">
-                <label asp-for="NumberOfMembers" class="control-label"></label>
-                <input asp-for="NumberOfMembers" class="form-control" />
-                <span asp-validation-for="NumberOfMembers" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+        <hr />
+        @*<input type="hidden" asp-for="AssessmentId" />*@
+        <div class="form-group">
+            <label class="control-label" style="font-weight: 600;">ID of Topic</label>
+            <input type="number" name="idtopic" class="form-control" style="width: 400px;" placeholder="Ex: 10005" />
+        </div>
+        <br />
+        <div class="form-group">
+            <label class="control-label" style="font-weight: 600;">Code for Member 1</label>
+            <input name="LCode1" class="form-control" style="width: 400px;" placeholder="Ex: L20521767" />
+        </div>
+        <div class="form-group">
+            <label class="control-label" style="font-weight: 600;">Position for Member 1</label>
+            <select name="Pos1" class="form-control" style="width: 400px;">
+                <option value="Council Chairman" selected>Council Chairman</option>
+                <option value="Counter Argument 01">Counter Argument 01</option>
+                <option value="Counter Argument 02">Counter Argument 02</option>
+                <option value="Council Secretary">Council Secretary</option>
+                <option value="Commissioner">Commissioner</option>
+            </select>
+        </div>
+        <br />
+        <div class="form-group">
+            <label class="control-label" style="font-weight: 600;">Code for Member 2</label>
+            <input name="LCode2" class="form-control" style="width: 400px;" placeholder="Ex: L20521767" />
+        </div>
+        <div class="form-group">
+            <label class="control-label" style="font-weight: 600;">Position for Member 2</label>
+            <select name="Pos2" class="form-control" style="width: 400px;">
+                <option value="Council Chairman" selected>Council Chairman</option>
+                <option value="Counter Argument 01">Counter Argument 01</option>
+                <option value="Counter Argument 02">Counter Argument 02</option>
+                <option value="Council Secretary">Council Secretary</option>
+                <option value="Commissioner">Commissioner</option>
+            </select>
+        </div>
+        <br />
+        <div class="form-group">
+            <label class="control-label" style="font-weight: 600;">Code for Member 3</label>
+            <input name="LCode3" class="form-control" style="width: 400px;" placeholder="Ex: L20521767" />
+        </div>
+        <div class="form-group">
+            <label class="control-label" style="font-weight: 600;">Position for Member 3</label>
+            <select name="Pos3" class="form-control" style="width: 400px;">
+                <option value="Council Chairman" selected>Council Chairman</option>
+                <option value="Counter Argument 01">Counter Argument 01</option>
+                <option value="Counter Argument 02">Counter Argument 02</option>
+                <option value="Council Secretary">Council Secretary</option>
+                <option value="Commissioner">Commissioner</option>
+            </select>
+        </div>
+
+        <div style="margin-top: 30px;">
+            <input type="submit" value="Edit" class="btn btn-primary"
+                   style="font-size: 18px; width: 130px;" />
+            <a asp-action="Index">| Back to List</a>
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+</form>
 

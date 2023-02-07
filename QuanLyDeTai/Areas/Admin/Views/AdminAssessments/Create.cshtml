@@ -3,647 +3,76 @@
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
-
-    int error = 0;
-    Topic Temp = new Topic();
-    if (!string.IsNullOrEmpty(ViewBag.SearchTopicID as string))
-    {
-        List<Topic> topics = new List<Topic>();
-        foreach (var item in ViewBag.TopicList as List<Topic>)
-        {
-            if (item.TopicId.ToString() == ViewBag.SearchTopicID)
-            {
-                topics.Add(item);
-                Temp = item;
-                break;
-            }
-        }
-        if (topics.Count == 0)
-        {
-            error = 1;
-        }
-        else { error = 2; ViewData["NameofTopic"] = Temp.TopicName; }
-    }
-
-    int error1 = 0;
-    if (!string.IsNullOrEmpty(ViewBag.Search1 as string))
-    {
-        List<Lecturer> lecturers = new List<Lecturer>();
-        Lecturer TempLecturer = new Lecturer();
-        foreach (var item in ViewBag.LecturerList as List<Lecturer>)
-        {
-            if (item.LecturerCode == ViewBag.Search1)
-            {
-                lecturers.Add(item);
-                TempLecturer = item;
-                break;
-            }
-        }
-        if (lecturers.Count == 0)
-        {
-            error1 = 1;
-        }
-        else { error1 = 2; ViewData["Name1"] = TempLecturer.LecturerName; }
-    }
-
-    int error2 = 0;
-    if (!string.IsNullOrEmpty(ViewBag.Search2 as string))
-    {
-        List<Lecturer> lecturers = new List<Lecturer>();
-        Lecturer TempLecturer = new Lecturer();
-        foreach (var item in ViewBag.LecturerList as List<Lecturer>)
-        {
-            if (item.LecturerCode == ViewBag.Search2)
-            {
-                lecturers.Add(item);
-                TempLecturer = item;
-                break;
-            }
-        }
-        if (lecturers.Count == 0)
-        {
-            error2 = 1;
-        }
-        else { error2 = 2; ViewData["Name2"] = TempLecturer.LecturerName; }
-    }
-
-    int error3 = 0;
-    if (!string.IsNullOrEmpty(ViewBag.Search3 as string))
-    {
-        List<Lecturer> lecturers = new List<Lecturer>();
-        Lecturer TempLecturer = new Lecturer();
-        foreach (var item in ViewBag.LecturerList as List<Lecturer>)
-        {
-            if (item.LecturerCode == ViewBag.Search3)
-            {
-                lecturers.Add(item);
-                TempLecturer = item;
-                break;
-            }
-        }
-        if (lecturers.Count == 0)
-        {
-            error3 = 1;
-        }
-        else { error3 = 2; ViewData["Name3"] = TempLecturer.LecturerName; }
-    }
-
-    int error4 = 0;
-    if (!string.IsNullOrEmpty(ViewBag.Search4 as string))
-    {
-        List<Lecturer> lecturers = new List<Lecturer>();
-        Lecturer TempLecturer = new Lecturer();
-        foreach (var item in ViewBag.LecturerList as List<Lecturer>)
-        {
-            if (item.LecturerCode == ViewBag.Search4)
-            {
-                lecturers.Add(item);
-                TempLecturer = item;
-                break;
-            }
-        }
-        if (lecturers.Count == 0)
-        {
-            error4 = 1;
-        }
-        else { error4 = 2; ViewData["Name4"] = TempLecturer.LecturerName; }
-    }
-
-    int error5 = 0;
-    if (!string.IsNullOrEmpty(ViewBag.Search5 as string))
-    {
-        List<Lecturer> lecturers = new List<Lecturer>();
-        Lecturer TempLecturer = new Lecturer();
-        foreach (var item in ViewBag.LecturerList as List<Lecturer>)
-        {
-            if (item.LecturerCode == ViewBag.Search5)
-            {
-                lecturers.Add(item);
-                TempLecturer = item;
-                break;
-            }
-        }
-        if (lecturers.Count == 0)
-        {
-            error5 = 1;
-        }
-        else { error5 = 2; ViewData["Name5"] = TempLecturer.LecturerName; }
-    }
-
-    int error6 = 0;
-    if (!string.IsNullOrEmpty(ViewBag.Search6 as string))
-    {
-        List<Lecturer> lecturers = new List<Lecturer>();
-        Lecturer TempLecturer = new Lecturer();
-        foreach (var item in ViewBag.LecturerList as List<Lecturer>)
-        {
-            if (item.LecturerCode == ViewBag.Search6)
-            {
-                lecturers.Add(item);
-                TempLecturer = item;
-                break;
-            }
-        }
-        if (lecturers.Count == 0)
-        {
-            error6 = 1;
-        }
-        else { error6 = 2; ViewData["Name6"] = TempLecturer.LecturerName; }
-    }
-
-    int error7 = 0;
-    if (!string.IsNullOrEmpty(ViewBag.Search7 as string))
-    {
-        List<Lecturer> lecturers = new List<Lecturer>();
-        Lecturer TempLecturer = new Lecturer();
-        foreach (var item in ViewBag.LecturerList as List<Lecturer>)
-        {
-            if (item.LecturerCode == ViewBag.Search7)
-            {
-                lecturers.Add(item);
-                TempLecturer = item;
-                break;
-            }
-        }
-        if (lecturers.Count == 0)
-        {
-            error7 = 1;
-        }
-        else { error7 = 2; ViewData["Name7"] = TempLecturer.LecturerName; }
-    }
-
-    int num = 3;
 }
 <form asp-action="Create1" method="post">
-<div style="margin: 0px auto 40px; width: 1300px;">
-    <h1>Create</h1>
+    <div style="margin: 0px auto 40px; width: 1300px; font-size: 18px;">
+        <h1>Create Assessment</h1>
 
-    <h4>Assessment</h4>
-    <hr />
-
-    @using (Html.BeginForm("Create", "AdminAssessments", FormMethod.Get))
-    {
-        <div class="row" style="width: 1300px; margin: 0px auto 10px;">
-            <div class="col-xl-4 d-flex flex-row" style="padding-left: 0px; font-weight: 600; font-size: 18px;">
-                ID of Topic
-            </div>
-            <div class="col-xl-8 d-flex flex-row" style="font-weight: 600; font-size: 18px;">
-                Name of Topic
-            </div>
+        <hr />
+        <div class="form-group">
+            <label asp-for="idtopic" class="control-label" style="font-weight: 600;">ID of Topic</label>
+            <input asp-for="idtopic" class="form-control" style="width: 400px;" placeholder="Ex: 10005" />
+            <span asp-validation-for="idtopic" class="text-danger"></span>
+        </div>
+        <br />
+        <div class="form-group">
+            <label asp-for="LCode1" class="control-label" style="font-weight: 600;">Code for Member 1</label>
+            <input asp-for="LCode1" class="form-control" style="width: 400px;" placeholder="Ex: L20521767" />
+            <span asp-validation-for="LCode1" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Pos1" class="control-label" style="font-weight: 600;">Position for Member 1</label>
+            <select asp-for="Pos1" name="pos1" class="form-control" style="width: 400px;">
+                <option value="Council Chairman" selected>Council Chairman</option>
+                <option value="Counter Argument 01">Counter Argument 01</option>
+                <option value="Counter Argument 02">Counter Argument 02</option>
+                <option value="Council Secretary">Council Secretary</option>
+                <option value="Commissioner">Commissioner</option>
+            </select>
+            <span asp-validation-for="Pos1" class="text-danger"></span>
+        </div>
+        <br />
+        <div class="form-group">
+            <label asp-for="LCode2" class="control-label" style="font-weight: 600;">Code for Member 2</label>
+            <input asp-for="LCode2" class="form-control" style="width: 400px;" placeholder="Ex: L20521767" />
+            <span asp-validation-for="LCode2" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Pos2" class="control-label" style="font-weight: 600;">Position for Member 2</label>
+            <select asp-for="Pos2" name="pos2" class="form-control" style="width: 400px;">
+                <option value="Council Chairman" selected>Council Chairman</option>
+                <option value="Counter Argument 01">Counter Argument 01</option>
+                <option value="Counter Argument 02">Counter Argument 02</option>
+                <option value="Council Secretary">Council Secretary</option>
+                <option value="Commissioner">Commissioner</option>
+            </select>
+            <span asp-validation-for="Pos2" class="text-danger"></span>
+        </div>
+        <br />
+        <div class="form-group">
+            <label asp-for="LCode3" class="control-label" style="font-weight: 600;">Code for Member 3</label>
+            <input asp-for="LCode3" class="form-control" style="width: 400px;" placeholder="Ex: L20521767" />
+            <span asp-validation-for="LCode3" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Pos3" class="control-label" style="font-weight: 600;">Position for Member 3</label>
+            <select asp-for="Pos3" name="pos3" class="form-control" style="width: 400px;">
+                <option value="Council Chairman" selected>Council Chairman</option>
+                <option value="Counter Argument 01">Counter Argument 01</option>
+                <option value="Counter Argument 02">Counter Argument 02</option>
+                <option value="Council Secretary">Council Secretary</option>
+                <option value="Commissioner">Commissioner</option>
+            </select>
+            <span asp-validation-for="Pos3" class="text-danger"></span>
         </div>
 
-        <div class="row" style="width: 1300px; margin: 0px auto 10px;">
-            <div class="col-xl-4 d-flex flex-row" style="padding-left: 0px;">
-                    <input asp-for="idtopic" name="searchTopicID" class="tb-custom" placeholder="Ex: 10005"
-                   style="width: 200px; padding: 20px 40px 20px 10px;font-size: 18px" value=@ViewBag.SearchTopicID />
-                <button asp-action="Create" formmethod="get" value="Search" style="font-size: 20px; margin-left: -40px;
-                    background-color: transparent; border: 0px;">
-                    <i class="fa fa-search" style="color: gray"></i>
-                </button>
-            </div>
-            <div class="col-xl-8 d-flex flex-row " style="padding-right: 0px;">
-                <input disabled value="@((error==1)?"":ViewBag.NameofTopic)" type="text" style="width: 500px; font-size: 18px;
-            border: 2px solid gray; border-radius: 10px; padding: 0px 10px;" />
-            </div>
+        <div style="margin-top: 30px;">
+            <input type="submit" value="Create" class="btn btn-primary"
+                   style="font-size: 18px; width: 130px;" />
+            <a asp-action="Index">| Back to List</a>
         </div>
-
-        @if (error == 1)
-        {
-            <div class="row" style="width: 1300px; margin: 0px auto 40px;">
-                <span style="color:red;">Invalid Topic ID</span>
-            </div>
-        }
-        else if (error == 2) {
-            
-            if (Temp.AssessmentDate.HasValue)
-            {
-                <div class="row" style="width: 1300px; margin: 30px auto 40px;">
-
-                    <div style="margin-bottom: 10px; font-weight: 600; font-size: 18px; padding: 0;">
-                        Date of Assessment
-                    </div>
-
-                    <div style="padding: 0;">
-                        <input asp-for="date" name="DateAssessment" style="width: 200px; font-size: 18px; border: 2px solid gray; border-radius: 10px;
-                        padding: 8px 10px;" type="date" value="@Temp.AssessmentDate.Value.ToString("yyyy-MM-dd")" />
-                    </div>
-                </div>
-            }
-
-            <h2 style="margin-bottom: 25px;">Add Members</h2>
-
-            <div class="row" style="margin-bottom: 25px;">
-                <div class="col-xl-3 d-flex flex-row">
-                    <a id="CreateMemberbtn" style="font-size: 16px; color: white;"
-                        class="btn btn-primary">
-                        + Create A New Member
-                    </a>
-                </div>
-                <div class="col-xl-9 d-flex flex-row" style="justify-content: flex-end;">
-                    <a id="ReduceMemberbtn" style="font-size: 16px; width: 130px; color: white;"
-                        class="btn btn-primary" hidden>
-                        Reduce
-                    </a>
-                </div>
-            </div>
-
-
-
-            <div style="border: solid 2px gray; margin-bottom: 40px;">
-                <div class="row" style="margin: 20px;">
-                    <div class="row" style="font-size: 18px; font-weight: 500;">
-                        <div class="col-xl-3 d-flex flex-row">
-                            Lecturer Code
-                        </div>
-
-                        <div class="col-xl-4 d-flex flex-row">
-                            Name of Lecturer
-                        </div>
-
-                        <div class="col-xl-5 d-flex flex-row">
-                            Position
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-xl-3 d-flex flex-row ">
-                            <input asp-for="LCode1" name="search1" class="tb-custom" placeholder="Ex: L20521767"
-                           style="width: 200px; padding: 20px 40px 20px 10px;font-size: 18px"
-                           value="@ViewBag.Search1" />
-                        </div>
-
-                        <div class="col-xl-4 d-flex flex-row ">
-                            <input class="tb-custom"
-                               style="width: 300px; padding: 20px 40px 20px 10px;font-size: 18px"
-                           value="@ViewBag.Name1" disabled />
-                        </div>
-
-                        <div class="col-xl-5 d-flex flex-row ">
-                            <select asp-for="Pos1" name="Lecturer1.PositionAssess" class="tb-custom" style="width: 400px;">
-                                <option value="Council Chairman" selected>Council Chairman</option>
-                                <option value="Counter Argument 01">Counter Argument 01</option>
-                                <option value="Counter Argument 02">Counter Argument 02</option>
-                                <option value="Council Secretary">Council Secretary</option>
-                                <option value="Commissioner">Commissioner</option>
-                            </select>
-                        </div>
-                    </div>
-                    @if (error1 == 1)
-                    {
-                        <div class="row" style="margin-top: 5px; padding-left: 25px;">
-                            <span style="color:red;">Invalid</span>
-                        </div>
-                    }
-                </div>
-
-                <div class="row" style="margin: 20px;">
-                    <div class="row" style="font-size: 18px; font-weight: 500;">
-                        <div class="col-xl-3 d-flex flex-row">
-                            Lecturer Code
-                        </div>
-
-                        <div class="col-xl-4 d-flex flex-row">
-                            Name of Lecturer
-                        </div>
-
-                        <div class="col-xl-5 d-flex flex-row">
-                            Position
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-xl-3 d-flex flex-row ">
-                            <input asp-for="LCode2" name="search2" class="tb-custom" placeholder="Ex: L20521767"
-                           style="width: 200px; padding: 20px 40px 20px 10px;font-size: 18px"
-                           value="@ViewBag.Search2" />
-                        </div>
-
-                        <div class="col-xl-4 d-flex flex-row ">
-                            <input class="tb-custom"
-                               style="width: 300px; padding: 20px 40px 20px 10px;font-size: 18px"
-                               value="@ViewBag.Name2" disabled />
-                        </div>
-
-                        <div class="col-xl-5 d-flex flex-row ">
-                            <select asp-for="Pos2" name="Lecturer2.PositionAssess" class="tb-custom" style="width: 400px;">
-                                <option value="Council Chairman" selected>Council Chairman</option>
-                                <option value="Counter Argument 01">Counter Argument 01</option>
-                                <option value="Counter Argument 02">Counter Argument 02</option>
-                                <option value="Council Secretary">Council Secretary</option>
-                                <option value="Commissioner">Commissioner</option>
-                            </select>
-                        </div>
-                    </div>
-                    @if (error2 == 1)
-                    {
-                        <div class="row" style="margin-top: 5px; padding-left: 25px;">
-                            <span style="color:red;">Invalid</span>
-                        </div>
-                    }
-                </div>
-
-                <div class="row" style="margin: 20px;">
-                    <div class="row" style="font-size: 18px; font-weight: 500;">
-                        <div class="col-xl-3 d-flex flex-row">
-                            Lecturer Code
-                        </div>
-
-                        <div class="col-xl-4 d-flex flex-row">
-                            Name of Lecturer
-                        </div>
-
-                        <div class="col-xl-5 d-flex flex-row">
-                            Position
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-xl-3 d-flex flex-row ">
-                            <input asp-for="LCode3" name="search3" class="tb-custom" placeholder="Ex: L20521767"
-                           style="width: 200px; padding: 20px 40px 20px 10px;font-size: 18px"
-                           value="@ViewBag.Search3" />
-                        </div>
-
-                        <div class="col-xl-4 d-flex flex-row ">
-                            <input class="tb-custom"
-                               style="width: 300px; padding: 20px 40px 20px 10px;font-size: 18px"
-                           value="@ViewBag.Name3" disabled />
-                        </div>
-
-                        <div class="col-xl-5 d-flex flex-row ">
-                            <select asp-for="Pos3" name="Lecturer3.PositionAssess" class="tb-custom" style="width: 400px;">
-                                <option value="Council Chairman" selected>Council Chairman</option>
-                                <option value="Counter Argument 01">Counter Argument 01</option>
-                                <option value="Counter Argument 02">Counter Argument 02</option>
-                                <option value="Council Secretary">Council Secretary</option>
-                                <option value="Commissioner">Commissioner</option>
-                            </select>
-                        </div>
-                    </div>
-                    @if (error3 == 1)
-                    {
-                        <div class="row" style="margin-top: 5px; padding-left: 25px;">
-                            <span style="color:red;">Invalid</span>
-                        </div>
-                    }
-                </div>
-
-                <div id="member4" class="row" style="margin: 20px;" hidden>
-                    <div class="row" style="font-size: 18px; font-weight: 500;">
-                        <div class="col-xl-3 d-flex flex-row">
-                            Lecturer Code
-                        </div>
-
-                        <div class="col-xl-4 d-flex flex-row">
-                            Name of Lecturer
-                        </div>
-
-                        <div class="col-xl-5 d-flex flex-row">
-                            Position
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-xl-3 d-flex flex-row ">
-                            <input asp-for="LCode4" id="search4" name="search4" class="tb-custom" placeholder="Ex: L20521767"
-                               style="width: 200px; padding: 20px 40px 20px 10px;font-size: 18px"
-                               value="@ViewBag.Search4" />
-                        </div>
-
-                        <div class="col-xl-4 d-flex flex-row ">
-                            <input class="tb-custom"
-                               style="width: 300px; padding: 20px 40px 20px 10px;font-size: 18px"
-                               value="@ViewBag.Name4" disabled />
-                        </div>
-
-                        <div class="col-xl-5 d-flex flex-row ">
-                            <select asp-for="Pos4" name="Lecturer4.PositionAssess" class="tb-custom" style="width: 400px;">
-                                <option value="Council Chairman" selected>Council Chairman</option>
-                                <option value="Counter Argument 01">Counter Argument 01</option>
-                                <option value="Counter Argument 02">Counter Argument 02</option>
-                                <option value="Council Secretary">Council Secretary</option>
-                                <option value="Commissioner">Commissioner</option>
-                            </select>
-                        </div>
-                    </div>
-                    @if (error4 == 1)
-                    {
-                        <div class="row" style="margin-top: 5px; padding-left: 25px;">
-                            <span style="color:red;">Invalid</span>
-                        </div>
-                    }
-                </div>
-
-                <div id="member5" class="row" style="margin: 20px;" hidden>
-                    <div class="row" style="font-size: 18px; font-weight: 500;">
-                        <div class="col-xl-3 d-flex flex-row">
-                            Lecturer Code
-                        </div>
-
-                        <div class="col-xl-4 d-flex flex-row">
-                            Name of Lecturer
-                        </div>
-
-                        <div class="col-xl-5 d-flex flex-row">
-                            Position
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-xl-3 d-flex flex-row ">
-                            <input asp-for="LCode5" id="search5" name="search5" class="tb-custom" placeholder="Ex: L20521767"
-                               style="width: 200px; padding: 20px 40px 20px 10px;font-size: 18px"
-                               value="@ViewBag.Search5" />
-                        </div>
-
-                        <div class="col-xl-4 d-flex flex-row ">
-                            <input class="tb-custom"
-                               style="width: 300px; padding: 20px 40px 20px 10px;font-size: 18px"
-                               value="@ViewBag.Name5" disabled />
-                        </div>
-
-                        <div class="col-xl-5 d-flex flex-row ">
-                            <select asp-for="Pos5" name="Lecturer5.PositionAssess" class="tb-custom" style="width: 400px;">
-                                <option value="Council Chairman" selected>Council Chairman</option>
-                                <option value="Counter Argument 01">Counter Argument 01</option>
-                                <option value="Counter Argument 02">Counter Argument 02</option>
-                                <option value="Council Secretary">Council Secretary</option>
-                                <option value="Commissioner">Commissioner</option>
-                            </select>
-                        </div>
-                    </div>
-                    @if (error5 == 1)
-                    {
-                        <div class="row" style="margin-top: 5px; padding-left: 25px;">
-                            <span style="color:red;">Invalid</span>
-                        </div>
-                    }
-                </div>
-
-                <div id="member6" class="row" style="margin: 20px;" hidden>
-                    <div class="row" style="font-size: 18px; font-weight: 500;">
-                        <div class="col-xl-3 d-flex flex-row">
-                            Lecturer Code
-                        </div>
-
-                        <div class="col-xl-4 d-flex flex-row">
-                            Name of Lecturer
-                        </div>
-
-                        <div class="col-xl-5 d-flex flex-row">
-                            Position
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-xl-3 d-flex flex-row ">
-                            <input asp-for="LCode6" id="search6" name="search6" class="tb-custom" placeholder="Ex: L20521767"
-                           style="width: 200px; padding: 20px 40px 20px 10px;font-size: 18px"
-                           value="@ViewBag.Search6" />
-                        </div>
-
-                        <div class="col-xl-4 d-flex flex-row ">
-                            <input class="tb-custom"
-                               style="width: 300px; padding: 20px 40px 20px 10px;font-size: 18px"
-                               value="@ViewBag.Name6" disabled />
-                        </div>
-
-                        <div class="col-xl-5 d-flex flex-row ">
-                            <select asp-for="Pos6" name="Lecturer6.PositionAssess" class="tb-custom" style="width: 400px;">
-                                <option value="Council Chairman" selected>Council Chairman</option>
-                                <option value="Counter Argument 01">Counter Argument 01</option>
-                                <option value="Counter Argument 02">Counter Argument 02</option>
-                                <option value="Council Secretary">Council Secretary</option>
-                                <option value="Commissioner">Commissioner</option>
-                            </select>
-                        </div>
-                    </div>
-                    @if (error6 == 1)
-                    {
-                        <div class="row" style="margin-top: 5px; padding-left: 25px;">
-                            <span style="color:red;">Invalid</span>
-                        </div>
-                    }
-                </div>
-
-                <div id="member7" class="row" style="margin: 20px;" hidden>
-                    <div class="row" style="font-size: 18px; font-weight: 500;">
-                        <div class="col-xl-3 d-flex flex-row">
-                            Lecturer Code
-                        </div>
-
-                        <div class="col-xl-4 d-flex flex-row">
-                            Name of Lecturer
-                        </div>
-
-                        <div class="col-xl-5 d-flex flex-row">
-                            Position
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-xl-3 d-flex flex-row ">
-                            <input asp-for="LCode7" id="search7" name="search7" class="tb-custom" placeholder="Ex: L20521767"
-                           style="width: 200px; padding: 20px 40px 20px 10px;font-size: 18px"
-                           value="@ViewBag.Search7" />
-                        </div>
-
-                        <div class="col-xl-4 d-flex flex-row ">
-                            <input class="tb-custom"
-                               style="width: 300px; padding: 20px 40px 20px 10px;font-size: 18px"
-                           value="@ViewBag.Name7" disabled />
-                        </div>
-
-                        <div class="col-xl-5 d-flex flex-row ">
-                            <select asp-for="Pos7" name="Lecturer7.PositionAssess" class="tb-custom" style="width: 400px;">
-                                <option value="Council Chairman" selected>Council Chairman</option>
-                                <option value="Counter Argument 01">Counter Argument 01</option>
-                                <option value="Counter Argument 02">Counter Argument 02</option>
-                                <option value="Council Secretary">Council Secretary</option>
-                                <option value="Commissioner">Commissioner</option>
-                            </select>
-                        </div>
-                    </div>
-                    @if (error7 == 1)
-                    {
-                        <div class="row" style="margin-top: 5px; padding-left: 25px;">
-                            <span style="color:red;">Invalid</span>
-                        </div>
-                    }
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-4">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="form-group">
-                            <label asp-for="NumberofAssessment" style=" font-size: 18px; font-weight: 500;">Number of Members</label><br />
-                        <input name="num" id="NumberMembers" asp-for="NumberofAssessment"
-                       class="tb-custom" readonly value="3" />
-                        <span asp-validation-for="NumberofAssessment" class="text-danger"></span>
-                    </div>
-                </div>
-            </div>
-
-        
-        }
-    }
-    <div style="text-align: end; font-size: 18px; margin-top: 30px;">
-        @if (error == 2) {
-            <input type="submit" value="Create" class="btn btn-primary" 
-            style="font-size: 18px; width: 130px;"/>
-        }
-         <a asp-action="Index">| Back to List</a>
     </div>
-    <input id="hiddenNum" hidden value="@ViewBag.Num" />
-</div>
 </form>
 
-<script>
-    document.getElementById('CreateMemberbtn').onclick = () => {
-            if (document.getElementById('NumberMembers').value == "3") {
-                document.getElementById('member4').hidden = false;
-                document.getElementById('member5').hidden = false;
-                document.getElementById('ReduceMemberbtn').hidden = false;
-                document.getElementById('NumberMembers').value = "5"
-            }
-            else if (document.getElementById('NumberMembers').value == "5") {
-                document.getElementById('member6').hidden = false;
-                document.getElementById('member7').hidden = false;
-                document.getElementById('NumberMembers').value = "7";
-            }
-    }
 
-    document.getElementById('ReduceMemberbtn').onclick = () => {
-
-        if (document.getElementById('NumberMembers').value == "7") {
-            document.getElementById('member6').hidden = true;
-            document.getElementById('member7').hidden = true;
-            document.getElementById('NumberMembers').value = "5";
-        }
-        else if (document.getElementById('NumberMembers').value == "5") {
-            
-            document.getElementById('member4').hidden = true;
-            document.getElementById('member5').hidden = true;
-            document.getElementById('ReduceMemberbtn').hidden = true;
-            document.getElementById('NumberMembers').value = "3";
-        }
-    }
-
-    if(document.getElementById('hiddenNum').value == "5"){
-        document.getElementById('member4').hidden = false;
-        document.getElementById('member5').hidden = false;
-        document.getElementById('ReduceMemberbtn').hidden = false;
-        document.getElementById('NumberMembers').value = "5"
-    }
-    else if (document.getElementById('hiddenNum').value == "7") {
-
-        document.getElementById('member4').hidden = false;
-        document.getElementById('member5').hidden = false;
-        document.getElementById('member6').hidden = false;
-        document.getElementById('member7').hidden = false;
-        document.getElementById('ReduceMemberbtn').hidden = false;
-        document.getElementById('NumberMembers').value = "7";
-    }
-</script>
 

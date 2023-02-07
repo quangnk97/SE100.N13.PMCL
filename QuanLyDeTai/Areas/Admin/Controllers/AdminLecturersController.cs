@@ -20,10 +20,12 @@ namespace QuanLyDeTai.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdminLecturers
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchLecturer)
         {
             var qLDT_DbContext = _context.Lecturers.Include(l => l.Faculty);
-            return View(await qLDT_DbContext.ToListAsync());
+            List<Lecturer> lecturers = await qLDT_DbContext.ToListAsync();
+            ViewData["SearchLecturer"] = searchLecturer;
+            return View(lecturers);
         }
 
         // GET: Admin/AdminLecturers/Details/5
@@ -61,6 +63,7 @@ namespace QuanLyDeTai.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                lecturer.Avatar = "default.png";
                 _context.Add(lecturer);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using QuanLyDeTai.Models;
 
 namespace QuanLyDeTai.Controllers
@@ -15,12 +16,12 @@ namespace QuanLyDeTai.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var RegistersListExtend = _context.Registers.Where(x => x.LecturerId == GlobalVariables.CurrentLoggedInUser.LecturerId && x.PositionTopic == "Topic Manager").ToList();
+            var RegistersListExtend = await _context.Registers.Where(x => x.LecturerId == GlobalVariables.CurrentLoggedInUser.LecturerId && x.PositionTopic == "Topic Manager").ToListAsync();
 
             List<Topic> TopicsListExtend = new List<Topic>();
             foreach (var item in RegistersListExtend)
             {
-                var temp = _context.Topics.FirstOrDefault(x => x.TopicId == item.TopicId);
+                var temp = await _context.Topics.FirstOrDefaultAsync(x => x.TopicId == item.TopicId);
                 if (temp.Approved == true && temp.IsExtended == 0 && temp.IsCancelled == 0)
                     TopicsListExtend.Add(temp);
             }    

@@ -57,13 +57,27 @@ namespace QuanLyDeTai.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdminAssessments/Create
-        public IActionResult Create(string searchTopicID)
+        public IActionResult Create(string searchTopicID, string search1, string search2, 
+                                    string search3, string search4, string search5, string search6,
+                                    string search7, string num)
         {
             if (!string.IsNullOrEmpty(searchTopicID))
             {
                 ViewData["SearchTopicID"] = searchTopicID;
                 List<Topic> topics = _context.Topics.ToList();
                 ViewData["TopicList"] = topics;
+
+                List<Lecturer> lecturers = _context.Lecturers.ToList();
+                ViewData["LecturerList"] = lecturers;
+
+                if (!string.IsNullOrEmpty(search1)) { ViewData["Search1"] = search1; }
+                if (!string.IsNullOrEmpty(search2)) { ViewData["Search2"] = search2; }
+                if (!string.IsNullOrEmpty(search3)) { ViewData["Search3"] = search3; }
+                if (!string.IsNullOrEmpty(search4)) { ViewData["Search4"] = search4; }
+                if (!string.IsNullOrEmpty(search5)) { ViewData["Search5"] = search5; }
+                if (!string.IsNullOrEmpty(search6)) { ViewData["Search6"] = search6; }
+                if (!string.IsNullOrEmpty(search7)) { ViewData["Search7"] = search7; }
+                if (!string.IsNullOrEmpty(num)) { ViewData["Num"] = num; }
             }
             return View();
         }
@@ -72,16 +86,57 @@ namespace QuanLyDeTai.Areas.Admin.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind] SubmitCouncil assessment)
+        public async Task<IActionResult> Create1([Bind] SubmitCouncil a)
         {
-            if (ModelState.IsValid)
+            Assessment ass = new Assessment();
+            ass.NumberOfMembers = a.NumberofAssessment;
+            _context.Assessments.Add(ass);
+            await _context.SaveChangesAsync();
+
+            Topic to = await _context.Topics.FirstOrDefaultAsync(x => x.TopicId == a.idtopic);
+            if (to != null)
             {
-                _context.Add(assessment);
+                to.AssessmentDate = a.date;
+                to.AssessmentId = ass.AssessmentId;
+                _context.Topics.Update(to);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
             }
-            return View(assessment);
+
+            Assess s1 = new Assess();
+            Lecturer lec = await _context.Lecturers.FirstOrDefaultAsync(x => x.LecturerCode == a.LCode1);
+            if (lec != null)
+            {
+                s1.AssessmentId = ass.AssessmentId;
+                s1.TopicId = a.idtopic;
+                s1.LecturerId = lec.LecturerId;
+                s1.PositionAssess = a.Pos1;
+                _context.Assesses.Add(s1);
+            }
+
+            Assess s2 = new Assess();
+            lec = await _context.Lecturers.FirstOrDefaultAsync(x => x.LecturerCode == a.LCode2);
+            if (lec != null)
+            {
+                s2.AssessmentId = ass.AssessmentId;
+                s2.TopicId = a.idtopic;
+                s2.LecturerId = lec.LecturerId;
+                s2.PositionAssess = a.Pos2;
+                _context.Assesses.Add(s2);
+            }
+
+            Assess s3 = new Assess();
+            lec = await _context.Lecturers.FirstOrDefaultAsync(x => x.LecturerCode == a.LCode3);
+            if (lec != null)
+            {
+                s3.AssessmentId = ass.AssessmentId;
+                s3.TopicId = a.idtopic;
+                s3.LecturerId = lec.LecturerId;
+                s3.PositionAssess = a.Pos3;
+                _context.Assesses.Add(s3);
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Admin/AdminAssessments/Edit/5

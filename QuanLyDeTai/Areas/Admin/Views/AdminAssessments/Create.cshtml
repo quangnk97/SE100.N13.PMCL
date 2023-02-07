@@ -1,0 +1,78 @@
+﻿@model QuanLyDeTai.SubmitCouncil
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<form asp-action="Create1" method="post">
+    <div style="margin: 0px auto 40px; width: 1300px; font-size: 18px;">
+        <h1>Create Assessment</h1>
+
+        <hr />
+        <div class="form-group">
+            <label asp-for="idtopic" class="control-label" style="font-weight: 600;">ID of Topic</label>
+            <input asp-for="idtopic" class="form-control" style="width: 400px;" placeholder="Ex: 10005" />
+            <span asp-validation-for="idtopic" class="text-danger"></span>
+        </div>
+        <br />
+        <div class="form-group">
+            <label asp-for="LCode1" class="control-label" style="font-weight: 600;">Code for Member 1</label>
+            <input asp-for="LCode1" class="form-control" style="width: 400px;" placeholder="Ex: L20521767" />
+            <span asp-validation-for="LCode1" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Pos1" class="control-label" style="font-weight: 600;">Position for Member 1</label>
+            <select asp-for="Pos1" name="pos1" class="form-control" style="width: 400px;">
+                <option value="Council Chairman" selected>Council Chairman</option>
+                <option value="Counter Argument 01">Counter Argument 01</option>
+                <option value="Counter Argument 02">Counter Argument 02</option>
+                <option value="Council Secretary">Council Secretary</option>
+                <option value="Commissioner">Commissioner</option>
+            </select>
+            <span asp-validation-for="Pos1" class="text-danger"></span>
+        </div>
+        <br />
+        <div class="form-group">
+            <label asp-for="LCode2" class="control-label" style="font-weight: 600;">Code for Member 2</label>
+            <input asp-for="LCode2" class="form-control" style="width: 400px;" placeholder="Ex: L20521767" />
+            <span asp-validation-for="LCode2" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Pos2" class="control-label" style="font-weight: 600;">Position for Member 2</label>
+            <select asp-for="Pos2" name="pos2" class="form-control" style="width: 400px;">
+                <option value="Council Chairman" selected>Council Chairman</option>
+                <option value="Counter Argument 01">Counter Argument 01</option>
+                <option value="Counter Argument 02">Counter Argument 02</option>
+                <option value="Council Secretary">Council Secretary</option>
+                <option value="Commissioner">Commissioner</option>
+            </select>
+            <span asp-validation-for="Pos2" class="text-danger"></span>
+        </div>
+        <br />
+        <div class="form-group">
+            <label asp-for="LCode3" class="control-label" style="font-weight: 600;">Code for Member 3</label>
+            <input asp-for="LCode3" class="form-control" style="width: 400px;" placeholder="Ex: L20521767" />
+            <span asp-validation-for="LCode3" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Pos3" class="control-label" style="font-weight: 600;">Position for Member 3</label>
+            <select asp-for="Pos3" name="pos3" class="form-control" style="width: 400px;">
+                <option value="Council Chairman" selected>Council Chairman</option>
+                <option value="Counter Argument 01">Counter Argument 01</option>
+                <option value="Counter Argument 02">Counter Argument 02</option>
+                <option value="Council Secretary">Council Secretary</option>
+                <option value="Commissioner">Commissioner</option>
+            </select>
+            <span asp-validation-for="Pos3" class="text-danger"></span>
+        </div>
+
+        <div style="margin-top: 30px;">
+            <input type="submit" value="Create" class="btn btn-primary"
+                   style="font-size: 18px; width: 130px;" />
+            <a asp-action="Index">| Back to List</a>
+        </div>
+    </div>
+</form>
+
+
+

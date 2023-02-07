@@ -1,0 +1,84 @@
+﻿@model QuanLyDeTai.Models.Topic
+
+@{
+    ViewData["Title"] = "UserCancelTopic";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row m-b-10" style="border-bottom: 3px solid black; margin-bottom: 50px !important">
+    <div class="d-flex justify-content-end text-dark" style="font-size: 25px; font-weight: 700">
+        CANCEL TOPIC
+    </div>
+</div>
+
+<form id="cancelTopicForm" asp-action="Cancel" method="post">
+    <div class="row m-b-10" style="margin-bottom: 50px !important">
+        <div class="col-xl-6 d-flex flex-column">
+            <span style="color: black; font-size: 16px; font-weight: 700">Name</span>
+            <select asp-for="TopicId" name="TopicId" class="tb-custom" asp-items="ViewBag.TopicsListCancel" id="selectCancelTopicName"></select>
+
+        </div>
+        <div class="col-xl-6 d-flex flex-column">
+            <span style="color: black; font-size: 16px; font-weight: 700">Registered year</span>
+            <select class="tb-custom" asp-items="ViewBag.RegisteredYearListCancel" id="registeredYearCancelTopic" disabled></select>
+        </div>
+    </div>
+
+    <div class="row m-b-10" style="margin-bottom: 50px !important">
+        <div class="col-xl-12 d-flex flex-column">
+            <span style="color: black; font-size: 16px; font-weight: 700">Reason <span style="color: red">*</span></span>
+            <textarea asp-for="Reason" name="Reason" class="tb-custom" placeholder="Input reason..." style="height: 300px; padding: 10px"></textarea>
+        </div>
+        @if (TempData["abc"] != null)
+        {
+            <div class="d-flex justify-content-start align-items-center" style="margin-top: 10px">
+                <span style="color:red">@TempData["abc"].ToString()</span>
+            </div>
+        }
+    </div>
+    
+
+    <div class="row d-flex justify-content-end" style="margin-top: 50px">
+        <button class="btn-register" type="submit">SEND REQUEST</button>
+    </div>
+</form>
+
+<div class="overlayConfirmCancelTopicDialog" id="confirmCancelTopicDialog" hidden>
+    <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%)">
+        <div class="custom-cancel-topic-popup">
+            <i class="fa-regular fa-circle-question" style="font-size: 70px; color: #3184FF"></i>
+            <h2 style="margin-top: 20px; font-size: 25px; font-weight: 500">
+                Confirmation
+            </h2>
+            <span id="confirmCancelTopicName" style="font-size: 20px; font-weight: 300; margin-bottom: 20px"></span>
+
+
+            <div class="buttons">
+                <button type="button" id="confirmCancelTopicButton">Yes</button>
+                <button type="button" id="cancelCancelTopicButton">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('cancelTopicForm').onsubmit = (e) => {
+        e.preventDefault();
+        document.getElementById('confirmCancelTopicDialog').hidden = false;
+        document.getElementById('confirmCancelTopicName').innerText = "Send cancel request for topic " + document.getElementById('selectCancelTopicName').options[document.getElementById('selectCancelTopicName').selectedIndex].text + " ?";
+    }
+
+    document.getElementById('confirmCancelTopicButton').onclick = () => {
+        document.getElementById('confirmCancelTopicDialog').hidden = true;
+        document.getElementById('cancelTopicForm').submit();
+    }
+
+    document.getElementById('cancelCancelTopicButton').onclick = () => {
+        document.getElementById('confirmCancelTopicDialog').hidden = true;
+    }
+
+    document.getElementById('selectCancelTopicName').onchange = () => {
+        document.getElementById('registeredYearCancelTopic').value = document.getElementById('selectCancelTopicName').value;
+    }
+</script>
+

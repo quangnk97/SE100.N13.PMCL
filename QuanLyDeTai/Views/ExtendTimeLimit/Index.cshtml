@@ -1,0 +1,92 @@
+﻿@model QuanLyDeTai.Models.Topic
+
+@{
+    ViewData["Title"] = "UserExtendTimeLimit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row m-b-10" style="border-bottom: 3px solid black; margin-bottom: 50px !important">
+    <div class="d-flex justify-content-end text-dark" style="font-size: 25px; font-weight: 700">
+        EXTEND TIME LIMIT
+    </div>
+</div>
+
+<form id="extendTimeLimitForm" asp-action="Extend" method="post">
+    <div class="row m-b-10" style="margin-bottom: 50px !important">
+        <div class="col-xl-6 d-flex flex-column">
+            <span style="color: black; font-size: 16px; font-weight: 700">Name</span>
+            <select asp-for="TopicId" name="TopicId" class="tb-custom" asp-items="ViewBag.TopicsListExtend" id="selectExtendTopicName"></select>
+        </div>
+        <div class="col-xl-6 d-flex flex-column">
+            <span style="color: black; font-size: 16px; font-weight: 700">Registered year</span>
+            <select class="tb-custom" asp-items="ViewBag.RegisteredYearListExtend" id="registeredYearExtendTopic" disabled></select>
+        </div>
+    </div>
+
+    <div class="row m-b-10" style="margin-bottom: 50px !important">
+        <div class="col-xl-6 d-flex flex-column">
+            <span style="color: black; font-size: 16px; font-weight: 700">Request time</span>
+            <select asp-for="RequestTime" name="RequestTime" class="tb-custom">
+                <option value="30">1 month</option>
+                <option value="60">2 months</option>
+                <option value="90">3 months</option>
+                <option value="120">4 months</option>
+                <option value="150">5 months</option>
+                <option value="180">6 months</option>
+            </select>
+        </div>
+    </div>
+    @if (TempData["abc"] != null)
+    {
+        <div class="d-flex justify-content-start align-items-center" style="margin-top: 10px">
+            <span style="color:red">@TempData["abc"].ToString()</span>
+        </div>
+    }
+
+    <div class="row d-flex justify-content-end" style="margin-top: 50px">
+        <button class="btn-register" type="submit">SEND REQUEST</button>
+    </div>
+</form>
+
+<div class="overlayConfirmExtendTimeLimitDialog" id="confirmExtendTimeLimitDialog" hidden>
+    <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%)">
+        <div class="custom-extend-topic-popup">
+            <i class="fa-regular fa-circle-question" style="font-size: 70px; color: #3184FF"></i>
+            <h2 style="margin-top: 20px; font-size: 25px; font-weight: 500">
+                Confirmation
+            </h2>
+            <span id="confirmExtendTimeLimitTopicName" style="font-size: 20px; font-weight: 300; margin-bottom: 20px"></span>
+
+
+            <div class="buttons">
+                <button type="button" id="confirmExtendTimeLimitButton">Yes</button>
+                <button type="button" id="cancelExtendTimeLimitButton">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('extendTimeLimitForm').onsubmit = (e) => {
+        e.preventDefault();
+        document.getElementById('confirmExtendTimeLimitDialog').hidden = false;
+        document.getElementById('confirmExtendTimeLimitTopicName').innerText = "Send extend time limit request for topic " + document.getElementById('selectExtendTopicName').options[document.getElementById('selectExtendTopicName').selectedIndex].text + " ?";
+    }
+
+    document.getElementById('confirmExtendTimeLimitButton').onclick = () => {
+        document.getElementById('confirmExtendTimeLimitDialog').hidden = true;
+        document.getElementById('extendTimeLimitForm').submit();
+    }
+
+    document.getElementById('cancelExtendTimeLimitButton').onclick = () => {
+        document.getElementById('confirmExtendTimeLimitDialog').hidden = true;
+    }
+
+    document.getElementById('selectExtendTopicName').onchange = () => {
+        document.getElementById('registeredYearExtendTopic').value = document.getElementById('selectExtendTopicName').value;
+    }
+</script>
+
+
+
+

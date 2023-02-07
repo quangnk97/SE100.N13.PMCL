@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 html {
   font-size: 14px;
 }
@@ -14,5 +18,317 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    font-family: 'Roboto', sans-serif !important;
+}
+
+.login_form {
+    margin-top: 140px;
+    width: fit-content;
+    height: fit-content;
+    border-radius: 20px;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(64,64,64,0.29);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(64,64,64,0.29);
+    box-shadow: 10px 10px 5px 0px rgba(64,64,64,0.29);
+}
+
+.login_form_right {
+    padding: 100px;
+    background-color: white;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.login_form_left {
+    padding: 30px;
+    background-color: #3184FF;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.login_input_group {
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.btn_login_custom {
+    background-color: #3184FF;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    width: 150px;
+    height: 45px;
+    font-size: 20px;
+}
+
+.side-nav-menu {
+    margin-top: 40px !important;
+}
+
+.tb-custom {
+    border: 2px solid gray;
+    border-radius: 10px;
+    height: 45px;
+    font-size: 17px;
+    font-weight: 300;
+    color: black;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.btn-register {
+    background-color: #3184FF;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    width: 200px;
+    height: 50px;
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+.e-grid {
+    font-family: 'Roboto', sans-serif;
+    border: 2px solid gray;
+    border-radius: 10px;
+    padding: 4px 10px 0px 10px;
+    background-color: transparent;
+}
+.e-grid .e-toolbar {
+    border: none;
+}
+.e-grid .e-row {
+    background-color: transparent;
+    border: none;
+}
+.e-grid .e-rowcell {
+    font-size: 16px;
+    font-weight: 300;
+    background-color: transparent;
+}
+.e-grid .e-headercell {
+   color: black;
+   background-color: transparent;
+}
+
+.e-grid .e-headercelldiv {
+   font-size: 15px;
+   font-weight: 500;
+   background-color: transparent;
+}
+.e-grid .e-gridpager .e-currentitem {
+    background-color: #3184FF;
+}
+.e-grid .e-gridpager {
+    font-family: 'Roboto', sans-serif;
+}
+.e-grid .e-toolbar-items {
+    background-color: transparent;
+}
+.e-grid .e-toolbar .e-input-group {
+    border: 2px solid gray;
+    padding: 0px 0px 0px 10px;
+}
+.e-grid .e-toolbar .e-input-group input.e-input {
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+}
+
+.input-personal-info {
+    border: 2px solid gray;
+    border-radius: 10px;
+    width: 250px;
+    height: 40px;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: 300;
+}
+
+.btn-personal-info-custom {
+    background-color: #3184FF;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    width: 100px;
+    height: 35px;
+    font-size: 13px;
+    margin-right: 20px;
+}
+
+#togglePassword {
+    cursor: pointer;
+}
+
+/* Register topic popup */
+.overlayConfirmRegisterTopicDialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(128, 128, 128, 0.5);
+}
+
+.custom-register-topic-popup {
+    display: flex;
+    flex-direction: column;
+    border: 7px solid #3184FF;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: white;
+    align-items: center;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(64,64,64,0.29);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(64,64,64,0.29);
+    box-shadow: 10px 10px 5px 0px rgba(64,64,64,0.29);
+}
+
+#confirmRegisterTopicButton {
+    background-color: #3184FF;
+    margin-right: 20px;
+}
+#cancelRegisterTopicButton {
+    background-color: red;
+}
+#confirmRegisterTopicButton, #cancelRegisterTopicButton {
+    font-size: 18px;
+    font-weight: 300;
+    color: white;
+    padding: 15px 35px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+#confirmRegisterTopicButton:hover {
+    background-color: royalblue;
+}
+#cancelRegisterTopicButton:hover {
+    background-color: darkred;
+}
+
+/* Extend time limit popup */
+.overlayConfirmExtendTimeLimitDialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(128, 128, 128, 0.5);
+}
+
+.custom-extend-topic-popup {
+    display: flex;
+    flex-direction: column;
+    border: 7px solid #3184FF;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: white;
+    align-items: center;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(64,64,64,0.29);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(64,64,64,0.29);
+    box-shadow: 10px 10px 5px 0px rgba(64,64,64,0.29);
+}
+
+#confirmExtendTimeLimitButton {
+    background-color: #3184FF;
+    margin-right: 20px;
+}
+#cancelExtendTimeLimitButton {
+    background-color: red;
+}
+#confirmExtendTimeLimitButton, #cancelExtendTimeLimitButton {
+    font-size: 18px;
+    font-weight: 300;
+    color: white;
+    padding: 15px 35px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+#confirmExtendTimeLimitButton:hover {
+    background-color: royalblue;
+}
+#cancelExtendTimeLimitButton:hover {
+    background-color: darkred;
+}
+
+/* Cancel topic popup */
+.overlayConfirmCancelTopicDialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(128, 128, 128, 0.5);
+}
+
+.custom-cancel-topic-popup {
+    display: flex;
+    flex-direction: column;
+    border: 7px solid #3184FF;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: white;
+    align-items: center;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(64,64,64,0.29);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(64,64,64,0.29);
+    box-shadow: 10px 10px 5px 0px rgba(64,64,64,0.29);
+}
+
+#confirmCancelTopicButton {
+    background-color: #3184FF;
+    margin-right: 20px;
+}
+#cancelCancelTopicButton {
+    background-color: red;
+}
+#confirmCancelTopicButton, #cancelCancelTopicButton {
+    font-size: 18px;
+    font-weight: 300;
+    color: white;
+    padding: 15px 35px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+#confirmCancelTopicButton:hover {
+    background-color: royalblue;
+}
+#cancelCancelTopicButton:hover {
+    background-color: darkred;
+}
+
+/* Personal Info popup */
+.overlayConfirmEditPerInfoDialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(128, 128, 128, 0.5);
+}
+
+.custom-edit-perinfo-popup {
+    display: flex;
+    flex-direction: column;
+    border: 7px solid #3184FF;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: white;
+    align-items: center;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(64,64,64,0.29);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(64,64,64,0.29);
+    box-shadow: 10px 10px 5px 0px rgba(64,64,64,0.29);
+}
+
+
+/* Image input */
+.avaSelect {
+    background-color: #3184FF;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-left: 3rem;
 }

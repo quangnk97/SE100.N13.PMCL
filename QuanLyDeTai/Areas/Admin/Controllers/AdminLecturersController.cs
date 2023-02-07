@@ -20,10 +20,12 @@ namespace QuanLyDeTai.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdminLecturers
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchLecturer)
         {
             var qLDT_DbContext = _context.Lecturers.Include(l => l.Faculty);
-            return View(await qLDT_DbContext.ToListAsync());
+            List<Lecturer> lecturers = await qLDT_DbContext.ToListAsync();
+            ViewData["SearchLecturer"] = searchLecturer;
+            return View(lecturers);
         }
 
         // GET: Admin/AdminLecturers/Details/5
@@ -48,7 +50,7 @@ namespace QuanLyDeTai.Areas.Admin.Controllers
         // GET: Admin/AdminLecturers/Create
         public IActionResult Create()
         {
-            ViewData["FacultyId"] = new SelectList(_context.Faculties, "FacultyId", "FacultyId");
+            ViewData["FacultyName"] = new SelectList(_context.Faculties, "FacultyId", "FacultyName");
             return View();
         }
 
@@ -61,6 +63,7 @@ namespace QuanLyDeTai.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                lecturer.Avatar = "default.png";
                 _context.Add(lecturer);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -82,7 +85,7 @@ namespace QuanLyDeTai.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["FacultyId"] = new SelectList(_context.Faculties, "FacultyId", "FacultyId", lecturer.FacultyId);
+            ViewData["FacultyName"] = new SelectList(_context.Faculties, "FacultyId", "FacultyName", lecturer.FacultyId);
             return View(lecturer);
         }
 

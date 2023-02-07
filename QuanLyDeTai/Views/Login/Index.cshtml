@@ -1,0 +1,99 @@
+﻿@model QuanLyDeTai.Models.Lecturer
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MIHO</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.syncfusion.com/ej2/20.1.55/material.css" />
+    @*<link href="https://cdn.syncfusion.com/ej2/20.1.55/bootstrap5-dark.css" rel="stylesheet" />*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/QuanLyDeTai.styles.css" asp-append-version="true" />
+    <script src="https://cdn.syncfusion.com/ej2/20.1.55/dist/ej2.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <link rel="shortcut icon" href="~/MIHO_logo.png">
+
+    <!-- page css -->
+    <link href="~/adminassets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet">
+
+    <!-- Core css -->
+    <link href="~/adminassets/css/app.min.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body style="background-color: #DEEDF0; background-image: url('https://wallpaper.dog/large/20455774.jpg')" class="d-flex justify-content-center align-items-center">
+    <div class="login_form d-flex flex-row">
+        <div class="login_form_left d-flex justify-content-center align-items-center">
+            <img style="width: 300px; height: 300px" src="~/MIHO_logo.png" />
+        </div>
+        <div class="login_form_right d-flex justify-content-center align-items-center">
+            <form asp-action="Login" method="get">
+                <div class="d-flex justify-content-center align-items-center" style="margin-bottom: 50px">
+                    <span style="color: blue; font-size: 23px; font-weight: 700">WELCOME BACK</span>
+                </div>
+                <div class="login_input_group d-flex align-items-center justify-content-center" style="margin-bottom: 15px">
+                    <i class="fa-solid fa-user" style="color: black"></i>
+                    <input type="text" class="border-0 m-l-10" name="LecturerCode" value="@Model.LecturerCode" placeholder="Username" style="font-weight: 500; font-size: 17px; color: black" />
+                    <i class="fa-solid fa-eye" style="color: transparent"></i>
+                </div>
+                <div class="login_input_group d-flex align-items-center justify-content-center">
+                    <i class="fa-solid fa-lock" style="color: black"></i>
+                    <input id="txtPassword" type="password" class="border-0 m-l-10" name="Password" value="@Model.Password" placeholder="Password" style="font-weight: 500; font-size: 17px; color: black; padding-right: 8px;" />
+                    <i class="fa-solid fa-eye" style="color: black" id="togglePassword"></i>
+                </div>
+                @if (TempData["PasswordValid"] != null)
+                {
+                    <div class="d-flex justify-content-center align-items-center" style="margin-top: 10px">
+                        <span style="color:red">@TempData["PasswordValid"].ToString()</span>
+                    </div>
+                }
+                @if (TempData["Message"] != null)
+                {
+                    <div class="d-flex justify-content-center align-items-center" style="margin-top: 10px">
+                        <span style="color:red">@TempData["Message"].ToString()</span>
+                    </div>
+                }
+                <div class="d-flex justify-content-center align-items-center" style="margin-top: 30px">
+                    <button class="btn_login_custom" type="submit">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var togglePassword = document.querySelector('#togglePassword');
+        var password = document.querySelector('#txtPassword');
+        togglePassword.addEventListener('click', function (e) {
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            this.classList.toggle('fa-eye-slash');
+        });
+    </script>
+
+    <script src="~/adminassets/js/vendors.min.js"></script>
+
+    <!-- page js -->
+    <script src="~/adminassets/vendors/chartjs/Chart.min.js"></script>
+    <script src="~/adminassets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <script src="~/adminassets/js/pages/dashboard-project.js"></script>
+
+    <!-- Core JS -->
+    <script src="~/adminassets/js/app.min.js"></script>
+    <ejs-scripts></ejs-scripts>
+</body>
+</html>

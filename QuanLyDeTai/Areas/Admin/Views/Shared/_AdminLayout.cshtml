@@ -1,47 +1,61 @@
-﻿<!DOCTYPE html>
+﻿@using Syncfusion.EJ2
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - QuanLyDeTai</title>
+    <title>MIHO</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    @*<link rel="stylesheet" href="https://cdn.syncfusion.com/ej2/20.1.55/material.css" />*@
     <link href="https://cdn.syncfusion.com/ej2/20.1.55/bootstrap5-dark.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/QuanLyDeTai.styles.css" asp-append-version="true" />
     <script src="https://cdn.syncfusion.com/ej2/20.1.55/dist/ej2.min.js"></script>
+    <link rel="shortcut icon" href="~/MIHO_logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
-    <link rel="shortcut icon" href="~/adminassets/images/logo/favicon.png">
-
+    <!-- Syncfusion ASP.NET MVC controls scripts -->
+    <script src="https://cdn.syncfusion.com/ej2/20.4.38/dist/ej2.min.js"></script>
+    <!-- Syncfusion ASP.NET MVC controls styles -->
+    <link rel="stylesheet" href="https://cdn.syncfusion.com/ej2/20.4.38/fluent.css" />
+    
     <!-- page css -->
     <link href="~/adminassets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet">
 
     <!-- Core css -->
     <link href="~/adminassets/css/app.min.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="app">
         <div class="layout">
             <!-- Header START -->
-            <div class="header">
-                <div class="logo logo-dark">
-                    <a href="index.html">
-                        <img src="~/adminassets/images/logo/logo.png" alt="Logo">
-                        <img class="logo-fold" src="~/adminassets/images/logo/logo-fold.png" alt="Logo">
+            <div class="header border-0">
+                <div class="logo logo-dark border-0" style="background-color: #3184FF">
+                        <img style="width: 100px; height: 90px; float: left"
+                            class="m-t-10"
+                            src="~/MIHO_logo.png" alt="Logo">
+                        <img class="logo-fold" style="width: 75px; height: 70px; float: left"
+                             src="~/MIHO_logo.png" alt="Logo">
                     </a>
                 </div>
-                <div class="logo logo-white">
-                    <a href="index.html">
-                        <img src="~/adminassets/images/logo/logo-white.png" alt="Logo">
-                        <img class="logo-fold" src="~/adminassets/images/logo/logo-fold-white.png" alt="Logo">
+                <div class="logo logo-white" style="background-color: #3184FF">
+                    <a asp-action="Index" asp-area="Admin" asp-controller="Home">
+                        <img style="width: 100px; height: 90px; float: left"
+                             class="m-t-10"
+                             src="~/MIHO_logo.png" alt="Logo">
+                        <img class="logo-fold" style="width: 75px; height: 70px; float: left"
+                             src="~/MIHO_logo.png" alt="Logo">
                     </a>
                 </div>
-                <div class="nav-wrap">
+                <div class="nav-wrap border-0" style="background-color: #9FCBFF">
                     <ul class="nav-left">
                         <li class="desktop-toggle">
-                            <a href="javascript:void(0);">
+                            <a>
                                 <i class="anticon"></i>
                             </a>
                         </li>
@@ -50,21 +64,26 @@
                                 <i class="anticon"></i>
                             </a>
                         </li>
-                        <li>
+                        @*<li>
                             <a href="javascript:void(0);" data-toggle="modal" data-target="#search-drawer">
                                 <i class="anticon anticon-search"></i>
                             </a>
+                        </li>*@
+                        <li>
+                            <span style="color: black;
+                                        font-size: 40px;
+                                        font-weight: 700">MIHO</span>
                         </li>
                     </ul>
                     <ul class="nav-right">
                         <li class="dropdown dropdown-animated scale-left">
                             <a href="javascript:void(0);" data-toggle="dropdown">
-                                <i class="anticon anticon-bell notification-badge"></i>
+                                <i class="fa-solid fa-bell notification-badge"></i>
                             </a>
                             <div class="dropdown-menu pop-notification">
                                 <div class="p-v-15 p-h-25 border-bottom d-flex justify-content-between align-items-center">
                                     <p class="text-dark font-weight-semibold m-b-0">
-                                        <i class="anticon anticon-bell"></i>
+                                        <i class="fa-solid fa-bell"></i>
                                         <span class="m-l-10">Notification</span>
                                     </p>
                                     <a class="btn-sm btn-default btn" href="javascript:void(0);">
@@ -166,7 +185,7 @@
                                         <i class="anticon font-size-10 anticon-right"></i>
                                     </div>
                                 </a>
-                                <a href="javascript:void(0);" class="dropdown-item d-block p-h-15 p-v-10">
+                                <a asp-action="Index" asp-controller="Login" asp-area="" class="dropdown-item d-block p-h-15 p-v-10">
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div>
                                             <i class="anticon opacity-04 font-size-16 anticon-logout"></i>
@@ -177,11 +196,11 @@
                                 </a>
                             </div>
                         </li>
-                        <li>
+                        @*<li>
                             <a href="javascript:void(0);" data-toggle="modal" data-target="#quick-view">
                                 <i class="anticon anticon-appstore"></i>
                             </a>
-                        </li>
+                        </li>*@
                     </ul>
                 </div>
             </div>    
@@ -321,7 +340,7 @@
             <!-- Search End-->
 
             <!-- Quick View START -->
-            <div class="modal modal-right fade quick-view" id="quick-view">
+            @*<div class="modal modal-right fade quick-view" id="quick-view">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header justify-content-between align-items-center">
@@ -375,7 +394,7 @@
                         </div>
                     </div>
                 </div>            
-            </div>
+            </div>*@
             <!-- Quick View END -->
         </div>
     </div>
@@ -392,5 +411,13 @@
     <script src="~/adminassets/js/app.min.js"></script>
     @await Component.InvokeAsync("Notyf")
     @await RenderSectionAsync("Scripts", required: false)
+
+    <!-- Syncfusion ASP.NET Core Script Manager -->
+    <ejs-scripts></ejs-scripts>
+    <!-- Syncfusion ASP.NET MVC Script Manager -->
+    @Html.EJS().ScriptManager()
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 </body>
 </html>

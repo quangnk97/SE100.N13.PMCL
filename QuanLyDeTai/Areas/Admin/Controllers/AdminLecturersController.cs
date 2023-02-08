@@ -59,7 +59,7 @@ namespace QuanLyDeTai.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("LecturerId,LecturerCode,LecturerName,Dob,Major,Email,PhoneNumber,Contract,LevelCurrent,FacultyId,Avatar")] Lecturer lecturer)
+        public async Task<IActionResult> Create([Bind("LecturerId,LecturerCode,Password,LecturerName,Dob,Major,Email,PhoneNumber,Contract,LevelCurrent,FacultyId,Avatar")] Lecturer lecturer)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +94,7 @@ namespace QuanLyDeTai.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("LecturerId,LecturerCode,LecturerName,Dob,Major,Email,PhoneNumber,Contract,LevelCurrent,FacultyId,Avatar")] Lecturer lecturer)
+        public async Task<IActionResult> Edit(int id, [Bind("LecturerId,LecturerCode,Password,LecturerName,Dob,Major,Email,PhoneNumber,Contract,LevelCurrent,FacultyId,Avatar")] Lecturer lecturer)
         {
             if (id != lecturer.LecturerId)
             {

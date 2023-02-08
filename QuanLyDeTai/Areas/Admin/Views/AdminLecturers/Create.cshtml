@@ -50,12 +50,20 @@
             </div>
             <div class="form-group">
                 <label asp-for="Contract" class="control-label">Type of Contract</label>
-                <input asp-for="Contract" class="form-control" placeholder="Ex: Payroll/ Contract/ Visiting" />
+                <select asp-for="Contract" name="contract" class="form-control">
+                    <option value="Payroll" selected>Payroll</option>
+                    <option value="Contract">Contract</option>
+                    <option value="Visiting">Visiting</option>
+                </select>
                 <span asp-validation-for="Contract" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="LevelCurrent" class="control-label">Current Level</label>
-                <input asp-for="LevelCurrent" class="form-control" placeholder="Ex: Master" />
+                <select asp-for="LevelCurrent" name="levelCurrent" class="form-control">
+                    <option value="Master" selected>Master</option>
+                    <option value="PhD">PhD</option>
+                    <option value="Professor">Professor</option>
+                </select>
                 <span asp-validation-for="LevelCurrent" class="text-danger"></span>
             </div>
             <div class="form-group">

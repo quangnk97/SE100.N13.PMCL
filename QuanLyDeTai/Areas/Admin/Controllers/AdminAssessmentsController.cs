@@ -68,7 +68,7 @@ namespace QuanLyDeTai.Areas.Admin.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public async Task<IActionResult> Create1([Bind] SubmitCouncil a)
+        public async Task<IActionResult> Create1([Bind] SubmitCouncil a, DateTime date1)
         {
             if (ModelState.IsValid)
             {
@@ -81,6 +81,7 @@ namespace QuanLyDeTai.Areas.Admin.Controllers
                 if (to != null)
                 {
                     to.AssessmentId = ass.AssessmentId;
+                    to.AssessmentDate = date1;
                     _context.Topics.Update(to);
 
                     Assess s1 = new Assess();

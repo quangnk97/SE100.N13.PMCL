@@ -6,6 +6,7 @@ namespace QuanLyDeTai
     {
         public int idtopic { get; set; }
 
+        public DateTime date1 { get; set; }
         public string LCode1 { get; set; }
         public string Pos1 { get; set; }
 

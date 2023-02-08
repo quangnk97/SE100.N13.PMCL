@@ -71,7 +71,7 @@ namespace QuanLyDeTai.Areas.Admin.Controllers
             try
             {
                 topic.IsExtended = -1;
-                topic.Duration = topic.Duration + topic.RequestTime * 30;
+                topic.Duration = topic.Duration + topic.RequestTime;
                 _context.Update(topic);
                 await _context.SaveChangesAsync();
             }
